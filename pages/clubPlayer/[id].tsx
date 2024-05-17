@@ -3,8 +3,8 @@
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../../components/plasmic/proliga_clone/PlasmicGlobalContextsProvider";
-import { ScreenVariantProvider } from "../../components/plasmic/proliga_clone/PlasmicGlobalVariant__Screen";
-import { UnnamedGlobalGroupOfVariantsContext } from "../../components/plasmic/proliga_clone/PlasmicGlobalVariant__UnnamedGlobalGroupOfVariants";
+// import { ScreenVariantProvider } from "../../components/plasmic/proliga_clone/PlasmicGlobalVariant__Screen";
+// import { UnnamedGlobalGroupOfVariantsContext } from "../../components/plasmic/proliga_clone/PlasmicGlobalVariant__UnnamedGlobalGroupOfVariants";
 import { PlasmicMoreInfo } from "../../components/plasmic/proliga_clone/PlasmicMoreInfo";
 import { useRouter } from "next/router";
 
