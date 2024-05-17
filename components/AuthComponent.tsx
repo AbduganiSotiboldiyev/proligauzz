@@ -21,7 +21,7 @@ function AuthComponent_(
   const [loading, setLoading] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [authError,setAuthError] = React.useState(null)
+  const [authError,setAuthError] = React.useState({message : "error"} )
   const [formError, setFormError] = React.useState("");
   return (
       <PlasmicAuthComponent
@@ -38,7 +38,7 @@ function AuthComponent_(
       }}
       submitButton={{
         onClick: async () => {
-          setAuthError(null)
+          // setAuthError(null)
           setLoading(true);
 
           try {
@@ -60,7 +60,7 @@ function AuthComponent_(
 
             router.replace("/");
           } catch (err) {
-            setAuthError(err)
+            // setAuthError(err)
           } finally {
             setLoading(false);
           }
