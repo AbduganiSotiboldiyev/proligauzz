@@ -3,40 +3,38 @@
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../../components/plasmic/proliga_clone/PlasmicGlobalContextsProvider";
-// import { ScreenVariantProvider } from "../../components/plasmic/proliga_clone/PlasmicGlobalVariant__Screen";
-import { PlasmicShowMoreInfo } from "../../components/plasmic/proliga_clone/PlasmicShowMoreInfo";
+
+import { PlasmicPlayerInfo } from "../../components/plasmic/proliga/PlasmicPlayerInfo";
 import { useRouter } from "next/router";
 
-function ShowMoreInfo() {
-  // Use PlasmicShowMoreInfo to render this component as it was
+function PlayerInfo() {
+  // Use PlasmicPlayerInfo to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicShowMoreInfo are:
+  // Props you can pass into PlasmicPlayerInfo are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, PlasmicShowMoreInfo is wrapped by your project's global
+  // By default, PlasmicPlayerInfo is wrapped by your project's global
   // variant context providers. These wrappers may be moved to
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
   return (
-    // <UnnamedGlobalGroupOfVariantsContext.Provider value={undefined}>
-      <GlobalContextsProvider>
-        <PageParamsProvider__
-          route={useRouter()?.pathname}
-          params={useRouter()?.query}
-          query={useRouter()?.query}
-        >
-          <PlasmicShowMoreInfo />
-        </PageParamsProvider__>
-      </GlobalContextsProvider>
-    // </UnnamedGlobalGroupOfVariantsContext.Provider>
+    <GlobalContextsProvider>
+      <PageParamsProvider__
+        route={useRouter()?.pathname}
+        params={useRouter()?.query}
+        query={useRouter()?.query}
+      >
+        <PlasmicPlayerInfo />
+      </PageParamsProvider__>
+    </GlobalContextsProvider>
   );
 }
 
-export default ShowMoreInfo;
+export default PlayerInfo;

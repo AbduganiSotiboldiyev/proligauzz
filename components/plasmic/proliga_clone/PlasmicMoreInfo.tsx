@@ -59,7 +59,6 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
 import {
   executePlasmicDataOp,
   usePlasmicDataOp,
@@ -129,8 +128,6 @@ function PlasmicMoreInfo__RenderFunc(props: {
   let [$queries, setDollarQueries] = React.useState<
     Record<string, ReturnType<typeof usePlasmicDataOp>>
   >({});
-
-  const dataSourcesCtx = usePlasmicDataSourceContext();
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
     clubPlayer: usePlasmicDataOp(() => {
@@ -293,7 +290,7 @@ function withPlasmicPageGuard<P extends object>(
 ) {
   const PageGuard: React.FC<P> = props => (
     <PlasmicPageGuard__
-      minRole={"f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"}
+      minRole={null}
       appId={"tDWy3GXn2mzd9e2xUaPdmu"}
       authorizeEndpoint={"https://studio.plasmic.app/authorize"}
       canTriggerLogin={false}

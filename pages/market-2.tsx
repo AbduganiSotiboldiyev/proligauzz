@@ -3,41 +3,38 @@
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../components/plasmic/proliga_clone/PlasmicGlobalContextsProvider";
-// import { ScreenVariantProvider } from "../components/plasmic/proliga_clone/PlasmicGlobalVariant__Screen";
-// import { UnnamedGlobalGroupOfVariantsContext } from "../components/plasmic/proliga_clone/PlasmicGlobalVariant__UnnamedGlobalGroupOfVariants";
-import { PlasmicMarket2 } from "../components/plasmic/proliga_clone/PlasmicMarket2";
+
+import { PlasmicMarkets } from "../components/plasmic/proliga/PlasmicMarkets";
 import { useRouter } from "next/router";
 
-function Market2() {
-  // Use PlasmicMarket2 to render this component as it was
+function Markets() {
+  // Use PlasmicMarkets to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicMarket2 are:
+  // Props you can pass into PlasmicMarkets are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, PlasmicMarket2 is wrapped by your project's global
+  // By default, PlasmicMarkets is wrapped by your project's global
   // variant context providers. These wrappers may be moved to
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
   return (
-    // <UnnamedGlobalGroupOfVariantsContext.Provider value={undefined}>
-      <GlobalContextsProvider>
-        <PageParamsProvider__
-          route={useRouter()?.pathname}
-          params={useRouter()?.query}
-          query={useRouter()?.query}
-        >
-          <PlasmicMarket2 />
-        </PageParamsProvider__>
-      </GlobalContextsProvider>
-    // </UnnamedGlobalGroupOfVariantsContext.Provider>
+    <GlobalContextsProvider>
+      <PageParamsProvider__
+        route={useRouter()?.pathname}
+        params={useRouter()?.query}
+        query={useRouter()?.query}
+      >
+        <PlasmicMarkets />
+      </PageParamsProvider__>
+    </GlobalContextsProvider>
   );
 }
 
-export default Market2;
+export default Markets;

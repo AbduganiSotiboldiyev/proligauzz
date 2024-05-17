@@ -366,7 +366,7 @@ function PlasmicNavbar__RenderFunc(props: {
                 sty.link__vGl2M
               )}
               component={Link}
-              href={`/market`}
+              href={`/market-2`}
               platform={"nextjs"}
             >
               <Button
@@ -381,9 +381,9 @@ function PlasmicNavbar__RenderFunc(props: {
                 onClick={async event => {
                   const $steps = {};
 
-                  $steps["goToMarket"] = true
+                  $steps["goToMarkets"] = true
                     ? (() => {
-                        const actionArgs = { destination: `/market` };
+                        const actionArgs = { destination: `/market-2` };
                         return (({ destination }) => {
                           if (
                             typeof destination === "string" &&
@@ -399,11 +399,11 @@ function PlasmicNavbar__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["goToMarket"] != null &&
-                    typeof $steps["goToMarket"] === "object" &&
-                    typeof $steps["goToMarket"].then === "function"
+                    $steps["goToMarkets"] != null &&
+                    typeof $steps["goToMarkets"] === "object" &&
+                    typeof $steps["goToMarkets"].then === "function"
                   ) {
-                    $steps["goToMarket"] = await $steps["goToMarket"];
+                    $steps["goToMarkets"] = await $steps["goToMarkets"];
                   }
                 }}
                 startIcon={
@@ -430,23 +430,23 @@ function PlasmicNavbar__RenderFunc(props: {
               className={classNames(
                 projectcss.all,
                 projectcss.a,
-                sty.link__uaGlh
+                sty.link__iPsEb
               )}
               component={Link}
               href={`/ideal-xl`}
               platform={"nextjs"}
             >
               <Button
-                className={classNames("__wab_instance", sty.button___6Z1Ce)}
+                className={classNames("__wab_instance", sty.button___7KVW)}
                 endIcon={
                   <IconIcon
-                    className={classNames(projectcss.all, sty.svg__naCp)}
+                    className={classNames(projectcss.all, sty.svg__jp21T)}
                     role={"img"}
                   />
                 }
                 startIcon={
                   <ChecksvgIcon
-                    className={classNames(projectcss.all, sty.svg__v545Y)}
+                    className={classNames(projectcss.all, sty.svg__f2L5G)}
                     role={"img"}
                   />
                 }
@@ -456,7 +456,7 @@ function PlasmicNavbar__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__btWlS
+                    sty.text__cjiSe
                   )}
                 >
                   {"Ideal XI"}

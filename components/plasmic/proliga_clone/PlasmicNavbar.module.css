@@ -410,26 +410,26 @@
   width: auto;
   height: 1em;
 }
-.link__uaGlh {
+.link__iPsEb {
   position: relative;
   align-self: flex-start;
   display: flex;
 }
-.button___6Z1Ce:global(.__wab_instance) {
+.button___7KVW:global(.__wab_instance) {
   max-width: 100%;
 }
 @media (max-width: 768px) {
-  .button___6Z1Ce:global(.__wab_instance) {
+  .button___7KVW:global(.__wab_instance) {
     display: none;
   }
 }
-.svg__v545Y {
+.svg__f2L5G {
   position: relative;
   object-fit: cover;
   width: auto;
   height: 1em;
 }
-.text__btWlS {
+.text__cjiSe {
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -444,7 +444,7 @@
   text-decoration-line: none !important;
   text-overflow: clip !important;
 }
-.svg__naCp {
+.svg__jp21T {
   position: relative;
   object-fit: cover;
   width: auto;
