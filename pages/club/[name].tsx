@@ -26,7 +26,7 @@ function ClubInfo() {
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
   return (
-    <UnnamedGlobalGroupOfVariantsContext.Provider value={undefined}>
+    // <UnnamedGlobalGroupOfVariantsContext.Provider value={undefined}>
       <GlobalContextsProvider>
         <PageParamsProvider__
           route={useRouter()?.pathname}
@@ -36,7 +36,7 @@ function ClubInfo() {
           <PlasmicClubInfo />
         </PageParamsProvider__>
       </GlobalContextsProvider>
-    </UnnamedGlobalGroupOfVariantsContext.Provider>
+    // </UnnamedGlobalGroupOfVariantsContext.Provider>
   );
 }
 
