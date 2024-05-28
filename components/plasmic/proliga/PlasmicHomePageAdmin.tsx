@@ -59,8 +59,6 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
-
 import AdminNavbar from "../../AdminNavbar"; // plasmic-import: a1eyFQc8LDBj/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -118,8 +116,6 @@ function PlasmicHomePageAdmin__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const currentUser = useCurrentUser?.() || {};
-
-  const dataSourcesCtx = usePlasmicDataSourceContext();
 
   return (
     <React.Fragment>
@@ -231,7 +227,7 @@ function withPlasmicPageGuard<P extends object>(
 ) {
   const PageGuard: React.FC<P> = props => (
     <PlasmicPageGuard__
-      minRole={"810e4a25-58ee-4068-9525-5f2968d1853a"}
+      minRole={null}
       appId={"tDWy3GXn2mzd9e2xUaPdmu"}
       authorizeEndpoint={"https://studio.plasmic.app/authorize"}
       canTriggerLogin={false}

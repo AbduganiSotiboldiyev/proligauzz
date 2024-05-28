@@ -45,9 +45,11 @@ function AuthComponent_(
             let authFunction = null;
             if(props.isSignUpFlow) {
               authFunction = supabase.auth.signUp({email, password})
+              router.replace("/")
             }
             else {
               authFunction = supabase.auth.signInWithPassword({email, password})
+              router.replace("/home-page-admin");
             }
 
             const { error } =  await authFunction
@@ -58,7 +60,6 @@ function AuthComponent_(
               return;
             }
 
-            router.replace("/home-page-admin");
           } catch (err) {
             // setAuthError(err)
           } finally {

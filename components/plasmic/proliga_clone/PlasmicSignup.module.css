@@ -38,6 +38,7 @@
 .navbar:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
+  margin-top: -6px;
 }
 .authComponent:global(.__wab_instance) {
   max-width: 100%;
