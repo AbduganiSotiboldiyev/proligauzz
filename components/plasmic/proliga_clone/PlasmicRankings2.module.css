@@ -21,14 +21,29 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 650px;
   height: auto;
   max-width: 100%;
-  background: #222333;
+  background: var(--token-as44I7WwR-rZ);
   margin-right: 0px;
-  padding: 8px 0px 8px 8px;
+  padding: 0px;
+}
+.freeBox__gTgK7 > :global(.__wab_flex-container) {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: calc(0px - 0px);
+  height: calc(100% + 0px);
+}
+.freeBox__gTgK7 > :global(.__wab_flex-container) > *,
+.freeBox__gTgK7 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__gTgK7 > :global(.__wab_flex-container) > picture > img,
+.freeBox__gTgK7
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 0px;
 }
 @media (min-width: 0px) and (max-width: 568px) {
   .freeBox__gTgK7 {
@@ -53,8 +68,9 @@
   max-width: 100%;
   justify-content: center;
   align-items: center;
-  background: #232433;
-  padding: 8px;
+  background: var(--token-jgohepLVeKvh);
+  margin-bottom: 16px;
+  padding: 0px;
 }
 @media (min-width: 0px) and (max-width: 568px) {
   .freeBox__pIjXu {
@@ -110,7 +126,7 @@
   max-width: 100%;
   font-size: 23px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--token-_Z-x7YSfdB4D);
 }
 @media (min-width: 0px) and (max-width: 568px) {
   .cmsEntryField___68ECd:global(.__wab_instance) {
@@ -121,8 +137,8 @@
   object-fit: cover;
   max-width: 100%;
   font-size: 22px;
-  font-weight: 200;
-  color: #ffffff;
+  font-weight: 400;
+  color: var(--token-_Z-x7YSfdB4D);
 }
 @media (min-width: 0px) and (max-width: 568px) {
   .cmsEntryField__ujBjG:global(.__wab_instance) {
@@ -135,12 +151,12 @@
   width: 60px;
   height: 60px;
   font-size: 22px;
-  font-weight: 200;
+  font-weight: 600;
   text-align: center;
   padding-top: 10px;
   padding-right: 10px;
   margin-right: 10px;
-  color: #ffffff;
+  color: var(--token-_Z-x7YSfdB4D);
   flex-shrink: 0;
   border-radius: 50%;
 }
@@ -155,10 +171,10 @@
   width: 60px;
   height: 60px;
   font-size: 22px;
-  font-weight: 300;
+  font-weight: 800;
   text-align: center;
   padding-top: 10px;
-  color: #ffffff;
+  color: var(--token-_Z-x7YSfdB4D);
   flex-shrink: 0;
   border-radius: 50%;
 }

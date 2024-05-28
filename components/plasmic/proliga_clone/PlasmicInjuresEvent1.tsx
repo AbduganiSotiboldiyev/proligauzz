@@ -174,12 +174,10 @@ function PlasmicInjuresEvent1__RenderFunc(props: {
               displayMinWidth={"0"}
               displayWidth={"30px"}
               loading={"lazy"}
-              src={{
-                src: "/plasmic/proliga_clone/images/vectorCancelIconPng302651Jpg.jpg",
-                fullWidth: 360,
-                fullHeight: 360,
-                aspectRatio: undefined
-              }}
+              src={
+                "https://icon-library.com/images/white-cross-icon/white-cross-icon-2.jpg"
+              }
+              width={"21px"}
             />
           </div>
         </div>

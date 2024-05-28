@@ -59,8 +59,16 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
 import Button from "../../Button"; // plasmic-import: FZ59S2Z_LV2k/component
 import LoginButton2 from "../../LoginButton2"; // plasmic-import: 4z0H5ajimEuS/component
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariants_8Rmrqs5Mzp6I } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: 8Rmrqs5Mzp6I/globalVariant
 
@@ -87,7 +95,6 @@ export const PlasmicNavbar__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicNavbar__OverridesType = {
   root?: Flex__<"div">;
-  img?: Flex__<typeof PlasmicImg__>;
   loginButton2?: Flex__<typeof LoginButton2>;
 };
 
@@ -124,8 +131,13 @@ function PlasmicNavbar__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   const currentUser = useCurrentUser?.() || {};
 
+  let [$queries, setDollarQueries] = React.useState<
+    Record<string, ReturnType<typeof usePlasmicDataOp>>
+  >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -140,9 +152,29 @@ function PlasmicNavbar__RenderFunc(props: {
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
-    $queries: {},
+    $queries: $queries,
     $refs
   });
+  const dataSourcesCtx = usePlasmicDataSourceContext();
+  const plasmicInvalidate = usePlasmicInvalidate();
+
+  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
+    defaultMoney: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "822c885d-5ddd-45c8-b8f0-774400585e7a",
+        userArgs: {},
+        cacheKey: `plasmic.$.822c885d-5ddd-45c8-b8f0-774400585e7a.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    })
+  };
+  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
+    setDollarQueries(new$Queries);
+
+    $queries = new$Queries;
+  }
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariants_8Rmrqs5Mzp6I()
@@ -185,15 +217,23 @@ function PlasmicNavbar__RenderFunc(props: {
             href={`/`}
             platform={"nextjs"}
           >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__nqpLo
-              )}
-            >
-              {"Proliga "}
-            </div>
+            <PlasmicImg__
+              alt={""}
+              className={classNames(sty.img__qVo0B)}
+              displayHeight={"50px"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"50px"}
+              loading={"lazy"}
+              src={{
+                src: "/plasmic/proliga/images/photo20240409032849Jpg.jpg",
+                fullWidth: 1280,
+                fullHeight: 1271,
+                aspectRatio: undefined
+              }}
+            />
           </PlasmicLink__>
           <Stack__
             as={"div"}
@@ -366,7 +406,7 @@ function PlasmicNavbar__RenderFunc(props: {
                 sty.link__vGl2M
               )}
               component={Link}
-              href={`/market-2`}
+              href={`/markets`}
               platform={"nextjs"}
             >
               <Button
@@ -377,13 +417,13 @@ function PlasmicNavbar__RenderFunc(props: {
                     role={"img"}
                   />
                 }
-                link={`/market-2`}
+                link={`/markets`}
                 onClick={async event => {
                   const $steps = {};
 
                   $steps["goToMarkets"] = true
                     ? (() => {
-                        const actionArgs = { destination: `/market-2` };
+                        const actionArgs = { destination: `/markets` };
                         return (({ destination }) => {
                           if (
                             typeof destination === "string" &&
@@ -530,6 +570,194 @@ function PlasmicNavbar__RenderFunc(props: {
                 </div>
               </Button>
             </PlasmicLink__>
+            {(() => {
+              try {
+                return (currentUser?.roleIds ?? []).includes(
+                  "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <PlasmicLink__
+                className={classNames(
+                  projectcss.all,
+                  projectcss.a,
+                  sty.link__fy5Z9
+                )}
+                component={Link}
+                href={`/team/classic`}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["postgresCreate"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          dataOp: {
+                            sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                            opId: "c69f6705-8c2d-4a0c-a63e-1e0b3a9519ef",
+                            userArgs: {},
+                            cacheKey: null,
+                            invalidatedKeys: ["plasmic_refresh_all"],
+                            roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                          }
+                        };
+                        return (async ({ dataOp, continueOnError }) => {
+                          try {
+                            const response = await executePlasmicDataOp(
+                              dataOp,
+                              {
+                                userAuthToken: dataSourcesCtx?.userAuthToken,
+                                user: dataSourcesCtx?.user
+                              }
+                            );
+                            await plasmicInvalidate(dataOp.invalidatedKeys);
+                            return response;
+                          } catch (e) {
+                            if (!continueOnError) {
+                              throw e;
+                            }
+                            return e;
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["postgresCreate"] != null &&
+                    typeof $steps["postgresCreate"] === "object" &&
+                    typeof $steps["postgresCreate"].then === "function"
+                  ) {
+                    $steps["postgresCreate"] = await $steps["postgresCreate"];
+                  }
+                }}
+                platform={"nextjs"}
+              >
+                <Button
+                  className={classNames("__wab_instance", sty.button__kGq7)}
+                  endIcon={
+                    <IconIcon
+                      className={classNames(projectcss.all, sty.svg___1QdIx)}
+                      role={"img"}
+                    />
+                  }
+                  link={`/team/classic`}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["postgresCreate"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            dataOp: {
+                              sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                              opId: "700fd543-f1bb-45f8-84a6-9279696ba59d",
+                              userArgs: {
+                                variables: [$queries.defaultMoney.data[0].value]
+                              },
+                              cacheKey: null,
+                              invalidatedKeys: ["plasmic_refresh_all"],
+                              roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                            }
+                          };
+                          return (async ({ dataOp, continueOnError }) => {
+                            try {
+                              const response = await executePlasmicDataOp(
+                                dataOp,
+                                {
+                                  userAuthToken: dataSourcesCtx?.userAuthToken,
+                                  user: dataSourcesCtx?.user
+                                }
+                              );
+                              await plasmicInvalidate(dataOp.invalidatedKeys);
+                              return response;
+                            } catch (e) {
+                              if (!continueOnError) {
+                                throw e;
+                              }
+                              return e;
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["postgresCreate"] != null &&
+                      typeof $steps["postgresCreate"] === "object" &&
+                      typeof $steps["postgresCreate"].then === "function"
+                    ) {
+                      $steps["postgresCreate"] = await $steps["postgresCreate"];
+                    }
+
+                    $steps["invokeGlobalAction"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [undefined, "Team created!", undefined, 6]
+                          };
+                          return $globalActions[
+                            "plasmic-antd5-config-provider.showNotification"
+                          ]?.apply(null, [...actionArgs.args]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] = await $steps[
+                        "invokeGlobalAction"
+                      ];
+                    }
+
+                    $steps["goToTeams"] = true
+                      ? (() => {
+                          const actionArgs = { destination: `/team/classic` };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToTeams"] != null &&
+                      typeof $steps["goToTeams"] === "object" &&
+                      typeof $steps["goToTeams"].then === "function"
+                    ) {
+                      $steps["goToTeams"] = await $steps["goToTeams"];
+                    }
+                  }}
+                  startIcon={
+                    <ChecksvgIcon
+                      className={classNames(projectcss.all, sty.svg__duTOh)}
+                      role={"img"}
+                    />
+                  }
+                  submitsForm={true}
+                  target={true}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__q6YEk
+                    )}
+                  >
+                    {"My Team"}
+                  </div>
+                </Button>
+              </PlasmicLink__>
+            ) : null}
           </Stack__>
           {false ? (
             <div className={classNames(projectcss.all, sty.freeBox__k04Vr)}>
@@ -574,10 +802,8 @@ function PlasmicNavbar__RenderFunc(props: {
         </Stack__>
         <div className={classNames(projectcss.all, sty.freeBox__vxTjO)}>
           <PlasmicImg__
-            data-plasmic-name={"img"}
-            data-plasmic-override={overrides.img}
             alt={""}
-            className={classNames(sty.img)}
+            className={classNames(sty.img__y8Z6M)}
             displayHeight={"40px"}
             displayMaxHeight={"none"}
             displayMaxWidth={"none"}
@@ -669,8 +895,7 @@ function PlasmicNavbar__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "loginButton2"],
-  img: ["img"],
+  root: ["root", "loginButton2"],
   loginButton2: ["loginButton2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -678,7 +903,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  img: typeof PlasmicImg__;
   loginButton2: typeof LoginButton2;
 };
 
@@ -742,7 +966,6 @@ export const PlasmicNavbar = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    img: makeNodeComponent("img"),
     loginButton2: makeNodeComponent("loginButton2"),
 
     // Metadata about props expected for PlasmicNavbar

@@ -62,6 +62,7 @@ import {
 import TextInput from "../../TextInput"; // plasmic-import: xwgFLXqL07mD/component
 import { Button } from "@plasmicpkgs/antd/skinny/registerButton";
 import Button2 from "../../Button"; // plasmic-import: FZ59S2Z_LV2k/component
+import Switch from "../../Switch"; // plasmic-import: hHE4D7ugAvRd/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -108,8 +109,10 @@ export type PlasmicAuthComponent__OverridesType = {
   passwordInput?: Flex__<typeof TextInput>;
   svg?: Flex__<"svg">;
   submitButton?: Flex__<typeof Button>;
-  link?: Flex__<"a"> & Partial<LinkProps>;
   button?: Flex__<typeof Button2>;
+  h5?: Flex__<"h5">;
+  _switch?: Flex__<typeof Switch>;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultAuthComponentProps {
@@ -182,6 +185,12 @@ function PlasmicAuthComponent__RenderFunc(props: {
         type: "private",
         variableType: "variant",
         initFunc: ({ $props, $state, $queries, $ctx }) => $props.isLoading
+      },
+      {
+        path: "_switch.isOn",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -222,229 +231,392 @@ function PlasmicAuthComponent__RenderFunc(props: {
         }
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__fu39V)}
-      >
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__uwwQu,
-            {
-              [sty.textisSignUpFlow__uwwQuPPyrn]: hasVariant(
-                $state,
-                "isSignUpFlow",
-                "isSignUpFlow"
-              )
-            }
-          )}
-        >
-          {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
-            ? "Sign Up"
-            : "Login"}
-        </div>
-        <div
-          className={classNames(projectcss.all, sty.freeBox__wNrqB, {
-            [sty.freeBoxisError__wNrqBy7MDj]: hasVariant(
-              $state,
-              "isError",
-              "isError"
-            )
-          })}
-        >
-          <div
-            className={classNames(projectcss.all, sty.freeBox__souSm, {
-              [sty.freeBoxisError__souSmY7MDj]: hasVariant(
-                $state,
-                "isError",
-                "isError"
-              )
-            })}
+      <div className={classNames(projectcss.all, sty.freeBox__aLJlu)}>
+        <div className={classNames(projectcss.all, sty.freeBox__kzxqf)}>
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__fu39V)}
           >
             <div
-              className={classNames(projectcss.all, sty.freeBox__plQdr, {
-                [sty.freeBoxisError__plQdrY7MDj]: hasVariant(
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__uwwQu,
+                {
+                  [sty.textisSignUpFlow__uwwQuPPyrn]: hasVariant(
+                    $state,
+                    "isSignUpFlow",
+                    "isSignUpFlow"
+                  )
+                }
+              )}
+            >
+              {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+                ? "Sign Up"
+                : "Login"}
+            </div>
+            <div
+              className={classNames(projectcss.all, sty.freeBox__wNrqB, {
+                [sty.freeBoxisError__wNrqBy7MDj]: hasVariant(
                   $state,
                   "isError",
                   "isError"
                 )
               })}
             >
-              {renderPlasmicSlot({
-                defaultContents: (
-                  <div
+              <div
+                className={classNames(projectcss.all, sty.freeBox__souSm, {
+                  [sty.freeBoxisError__souSmY7MDj]: hasVariant(
+                    $state,
+                    "isError",
+                    "isError"
+                  )
+                })}
+              >
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__plQdr, {
+                    [sty.freeBoxisError__plQdrY7MDj]: hasVariant(
+                      $state,
+                      "isError",
+                      "isError"
+                    )
+                  })}
+                >
+                  {renderPlasmicSlot({
+                    defaultContents: (
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text___3PLoz
+                        )}
+                      >
+                        <React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ color: "#FF0000", fontWeight: 700 }}
+                          >
+                            {"Error message"}
+                          </span>
+                        </React.Fragment>
+                      </div>
+                    ),
+                    value: args.errorMessage
+                  })}
+                </div>
+              </div>
+            </div>
+            <TextInput
+              data-plasmic-name={"emailInput"}
+              data-plasmic-override={overrides.emailInput}
+              autoFocus={
+                hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+                  ? true
+                  : undefined
+              }
+              className={classNames("__wab_instance", sty.emailInput, {
+                [sty.emailInputisSignUpFlow]: hasVariant(
+                  $state,
+                  "isSignUpFlow",
+                  "isSignUpFlow"
+                )
+              })}
+              onChange={(...eventArgs) => {
+                generateStateOnChangeProp($state, ["emailInput", "value"])(
+                  (e => e.target?.value).apply(null, eventArgs)
+                );
+              }}
+              placeholder={"Enter your email"}
+              type={"email"}
+              value={
+                generateStateValueProp($state, ["emailInput", "value"]) ?? ""
+              }
+            />
+
+            <TextInput
+              data-plasmic-name={"passwordInput"}
+              data-plasmic-override={overrides.passwordInput}
+              className={classNames("__wab_instance", sty.passwordInput, {
+                [sty.passwordInputisSignUpFlow]: hasVariant(
+                  $state,
+                  "isSignUpFlow",
+                  "isSignUpFlow"
+                )
+              })}
+              onChange={(...eventArgs) => {
+                generateStateOnChangeProp($state, ["passwordInput", "value"])(
+                  (e => e.target?.value).apply(null, eventArgs)
+                );
+              }}
+              placeholder={"Enter your password"}
+              type={"password"}
+              value={
+                generateStateValueProp($state, ["passwordInput", "value"]) ?? ""
+              }
+            />
+
+            <Rolling1X10S200Px200PxsvgIcon
+              data-plasmic-name={"svg"}
+              data-plasmic-override={overrides.svg}
+              className={classNames(projectcss.all, sty.svg, {
+                [sty.svgisLoading]: hasVariant($state, "isLoading", "isLoading")
+              })}
+              role={"img"}
+            />
+
+            <Button
+              data-plasmic-name={"submitButton"}
+              data-plasmic-override={overrides.submitButton}
+              className={classNames("__wab_instance", sty.submitButton, {
+                [sty.submitButtonisLoading]: hasVariant(
+                  $state,
+                  "isLoading",
+                  "isLoading"
+                )
+              })}
+              danger={false}
+              loading={false}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__ftF,
+                  {
+                    [sty.textisLoading__ftFdXOhM]: hasVariant(
+                      $state,
+                      "isLoading",
+                      "isLoading"
+                    ),
+                    [sty.textisSignUpFlow__ftFPPyrn]: hasVariant(
+                      $state,
+                      "isSignUpFlow",
+                      "isSignUpFlow"
+                    )
+                  }
+                )}
+              >
+                {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+                  ? "Sign up"
+                  : "Login"}
+              </div>
+            </Button>
+            <div className={classNames(projectcss.all, sty.freeBox__ePKyb)}>
+              <PlasmicLink__
+                className={classNames(
+                  projectcss.all,
+                  projectcss.a,
+                  projectcss.__wab_text,
+                  sty.link__k1Z9V,
+                  {
+                    [sty.linkisSignUpFlow__k1Z9VpPyrn]: hasVariant(
+                      $state,
+                      "isSignUpFlow",
+                      "isSignUpFlow"
+                    )
+                  }
+                )}
+                component={Link}
+                platform={"nextjs"}
+              >
+                {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+                  ? "I already have an account"
+                  : "Forgot your password ?"}
+              </PlasmicLink__>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___3SMdV,
+                  {
+                    [sty.textisSignUpFlow___3SMdVpPyrn]: hasVariant(
+                      $state,
+                      "isSignUpFlow",
+                      "isSignUpFlow"
+                    )
+                  }
+                )}
+              >
+                {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+                  ? "I already have an account"
+                  : "Don't have an account"}
+              </div>
+              <PlasmicLink__
+                className={classNames(
+                  projectcss.all,
+                  projectcss.a,
+                  sty.link__ezWnS,
+                  {
+                    [sty.linkisSignUpFlow__ezWnSpPyrn]: hasVariant(
+                      $state,
+                      "isSignUpFlow",
+                      "isSignUpFlow"
+                    )
+                  }
+                )}
+                component={Link}
+                href={
+                  hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+                    ? `/login`
+                    : `/signup`
+                }
+                platform={"nextjs"}
+              >
+                <Button2
+                  data-plasmic-name={"button"}
+                  data-plasmic-override={overrides.button}
+                  className={classNames("__wab_instance", sty.button, {
+                    [sty.buttonisSignUpFlow]: hasVariant(
+                      $state,
+                      "isSignUpFlow",
+                      "isSignUpFlow"
+                    )
+                  })}
+                  color={"link"}
+                >
+                  {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+                    ? "Login here"
+                    : "Sign Up here"}
+                </Button2>
+              </PlasmicLink__>
+            </div>
+          </Stack__>
+          <div className={classNames(projectcss.all, sty.freeBox__pkG1C)}>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___4Rghs
+              )}
+            >
+              <React.Fragment>
+                <React.Fragment>{""}</React.Fragment>
+                {
+                  <h5
+                    data-plasmic-name={"h5"}
+                    data-plasmic-override={overrides.h5}
                     className={classNames(
                       projectcss.all,
+                      projectcss.h5,
                       projectcss.__wab_text,
-                      sty.text___3PLoz
+                      sty.h5
                     )}
                   >
                     <React.Fragment>
                       <span
                         className={"plasmic_default__all plasmic_default__span"}
-                        style={{ color: "#FF0000", fontWeight: 700 }}
+                        style={{ fontWeight: 700 }}
                       >
-                        {"Error message"}
+                        {"What is Proliga?"}
                       </span>
                     </React.Fragment>
-                  </div>
-                ),
-                value: args.errorMessage
-              })}
+                  </h5>
+                }
+                <React.Fragment>
+                  {
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum ..."
+                  }
+                </React.Fragment>
+              </React.Fragment>
             </div>
-          </div>
-        </div>
-        <TextInput
-          data-plasmic-name={"emailInput"}
-          data-plasmic-override={overrides.emailInput}
-          autoFocus={
-            hasVariant($state, "isSignUpFlow", "isSignUpFlow")
-              ? true
-              : undefined
-          }
-          className={classNames("__wab_instance", sty.emailInput, {
-            [sty.emailInputisSignUpFlow]: hasVariant(
-              $state,
-              "isSignUpFlow",
-              "isSignUpFlow"
-            )
-          })}
-          onChange={(...eventArgs) => {
-            generateStateOnChangeProp($state, ["emailInput", "value"])(
-              (e => e.target?.value).apply(null, eventArgs)
-            );
-          }}
-          placeholder={"Enter your email"}
-          type={"email"}
-          value={generateStateValueProp($state, ["emailInput", "value"]) ?? ""}
-        />
-
-        <TextInput
-          data-plasmic-name={"passwordInput"}
-          data-plasmic-override={overrides.passwordInput}
-          className={classNames("__wab_instance", sty.passwordInput, {
-            [sty.passwordInputisSignUpFlow]: hasVariant(
-              $state,
-              "isSignUpFlow",
-              "isSignUpFlow"
-            )
-          })}
-          onChange={(...eventArgs) => {
-            generateStateOnChangeProp($state, ["passwordInput", "value"])(
-              (e => e.target?.value).apply(null, eventArgs)
-            );
-          }}
-          placeholder={"Enter your password"}
-          type={"password"}
-          value={
-            generateStateValueProp($state, ["passwordInput", "value"]) ?? ""
-          }
-        />
-
-        <Rolling1X10S200Px200PxsvgIcon
-          data-plasmic-name={"svg"}
-          data-plasmic-override={overrides.svg}
-          className={classNames(projectcss.all, sty.svg, {
-            [sty.svgisLoading]: hasVariant($state, "isLoading", "isLoading")
-          })}
-          role={"img"}
-        />
-
-        <Button
-          data-plasmic-name={"submitButton"}
-          data-plasmic-override={overrides.submitButton}
-          className={classNames("__wab_instance", sty.submitButton, {
-            [sty.submitButtonisLoading]: hasVariant(
-              $state,
-              "isLoading",
-              "isLoading"
-            )
-          })}
-          danger={false}
-          loading={false}
-        >
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__ftF,
-              {
-                [sty.textisLoading__ftFdXOhM]: hasVariant(
-                  $state,
-                  "isLoading",
-                  "isLoading"
-                ),
-                [sty.textisSignUpFlow__ftFPPyrn]: hasVariant(
-                  $state,
-                  "isSignUpFlow",
-                  "isSignUpFlow"
-                )
-              }
-            )}
-          >
-            {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
-              ? "Sign up"
-              : "Login"}
-          </div>
-        </Button>
-        <div className={classNames(projectcss.all, sty.freeBox__ePKyb)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__k1Z9V,
-              {
-                [sty.textisSignUpFlow__k1Z9VpPyrn]: hasVariant(
-                  $state,
-                  "isSignUpFlow",
-                  "isSignUpFlow"
-                )
-              }
-            )}
-          >
-            {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
-              ? "I already have an account"
-              : "Don't have an account"}
-          </div>
-          <PlasmicLink__
-            data-plasmic-name={"link"}
-            data-plasmic-override={overrides.link}
-            className={classNames(projectcss.all, projectcss.a, sty.link, {
-              [sty.linkisSignUpFlow]: hasVariant(
-                $state,
-                "isSignUpFlow",
-                "isSignUpFlow"
-              )
-            })}
-            component={Link}
-            href={
-              hasVariant($state, "isSignUpFlow", "isSignUpFlow")
-                ? `/login`
-                : `/signup`
-            }
-            platform={"nextjs"}
-          >
-            <Button2
-              data-plasmic-name={"button"}
-              data-plasmic-override={overrides.button}
-              className={classNames("__wab_instance", sty.button, {
-                [sty.buttonisSignUpFlow]: hasVariant(
-                  $state,
-                  "isSignUpFlow",
-                  "isSignUpFlow"
-                )
-              })}
-              color={"link"}
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__up1Xs)}
             >
-              {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
-                ? "Login here"
-                : "Sign Up here"}
-            </Button2>
-          </PlasmicLink__>
+              <PlasmicLink__
+                className={classNames(
+                  projectcss.all,
+                  projectcss.a,
+                  projectcss.__wab_text,
+                  sty.link___9CPhk
+                )}
+                component={Link}
+                platform={"nextjs"}
+              >
+                {"show more"}
+              </PlasmicLink__>
+              <Switch
+                data-plasmic-name={"_switch"}
+                data-plasmic-override={overrides._switch}
+                className={classNames("__wab_instance", sty._switch)}
+                isOn={generateStateValueProp($state, ["_switch", "isOn"])}
+                onIsOnChange={generateStateOnChangeProp($state, [
+                  "_switch",
+                  "isOn"
+                ])}
+              />
+            </Stack__>
+            {(() => {
+              try {
+                return $state._switch.isOn;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__hfdz4
+                )}
+              >
+                {
+                  " has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                }
+              </div>
+            ) : null}
+          </div>
         </div>
-      </Stack__>
+      </div>
+      <div className={classNames(projectcss.all, sty.freeBox__wlu9Z)}>
+        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))([
+          2, 3, 4
+        ]).map((__plasmic_item_0, __plasmic_idx_0) => {
+          const currentItem = __plasmic_item_0;
+          const currentIndex = __plasmic_idx_0;
+          return (
+            <PlasmicImg__
+              data-plasmic-name={"img"}
+              data-plasmic-override={overrides.img}
+              alt={""}
+              className={classNames(sty.img)}
+              displayHeight={"auto"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"auto"}
+              height={"100"}
+              key={currentIndex}
+              loading={"lazy"}
+              src={(() => {
+                try {
+                  return "https://i.pinimg.com/564x/48/49/ba/4849ba2ea6517f805785071120cccc08.jpg";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "https://i.pinimg.com/564x/48/49/ba/4849ba2ea6517f805785071120cccc08.jpg";
+                  }
+                  throw e;
+                }
+              })()}
+              width={"100"}
+            />
+          );
+        })}
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
@@ -456,15 +628,19 @@ const PlasmicDescendants = {
     "passwordInput",
     "svg",
     "submitButton",
-    "link",
-    "button"
+    "button",
+    "h5",
+    "_switch",
+    "img"
   ],
   emailInput: ["emailInput"],
   passwordInput: ["passwordInput"],
   svg: ["svg"],
   submitButton: ["submitButton"],
-  link: ["link", "button"],
-  button: ["button"]
+  button: ["button"],
+  h5: ["h5"],
+  _switch: ["_switch"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -475,8 +651,10 @@ type NodeDefaultElementType = {
   passwordInput: typeof TextInput;
   svg: "svg";
   submitButton: typeof Button;
-  link: "a";
   button: typeof Button2;
+  h5: "h5";
+  _switch: typeof Switch;
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -543,8 +721,10 @@ export const PlasmicAuthComponent = Object.assign(
     passwordInput: makeNodeComponent("passwordInput"),
     svg: makeNodeComponent("svg"),
     submitButton: makeNodeComponent("submitButton"),
-    link: makeNodeComponent("link"),
     button: makeNodeComponent("button"),
+    h5: makeNodeComponent("h5"),
+    _switch: makeNodeComponent("_switch"),
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicAuthComponent
     internalVariantProps: PlasmicAuthComponent__VariantProps,

@@ -186,7 +186,11 @@ function PlasmicAbsences__RenderFunc(props: {
             data-plasmic-override={overrides.columns}
             className={classNames(projectcss.all, sty.columns)}
           >
-            <div className={classNames(projectcss.all, sty.column___9RqJs)}>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.column___9RqJs)}
+            >
               <InjuredClub
                 className={classNames("__wab_instance", sty.injuredClub__ewOQ)}
               />
@@ -225,8 +229,12 @@ function PlasmicAbsences__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.injuredClub__sg1Ro)}
                 variant2={true}
               />
-            </div>
-            <div className={classNames(projectcss.all, sty.column__xJzxb)}>
+            </Stack__>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.column__xJzxb)}
+            >
               <InjuredClub
                 className={classNames(
                   "__wab_instance",
@@ -295,8 +303,12 @@ function PlasmicAbsences__RenderFunc(props: {
               <InjuredClub
                 className={classNames("__wab_instance", sty.injuredClub__roum)}
               />
-            </div>
-            <div className={classNames(projectcss.all, sty.column___7UCml)}>
+            </Stack__>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.column___7UCml)}
+            >
               <InjuredClub
                 className={classNames("__wab_instance", sty.injuredClub__ffOzQ)}
                 variant3={true}
@@ -330,7 +342,7 @@ function PlasmicAbsences__RenderFunc(props: {
                 )}
                 variant2={true}
               />
-            </div>
+            </Stack__>
           </div>
           <Footer
             data-plasmic-name={"footer"}

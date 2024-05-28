@@ -11,6 +11,16 @@
       }
     },
     {
+      "name": "Button back",
+      "type": "color",
+      "value": "#963CFF",
+      "category": "color",
+      "meta": {
+        "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
+        "id": "RZcyrn6MkYNW"
+      }
+    },
+    {
       "name": "Facebook",
       "type": "color",
       "value": "#4267B2",
@@ -51,6 +61,26 @@
       }
     },
     {
+      "name": "Green Back",
+      "type": "color",
+      "value": "#64FF3C",
+      "category": "color",
+      "meta": {
+        "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
+        "id": "xGiRE7fxgNcn"
+      }
+    },
+    {
+      "name": "Header Back",
+      "type": "color",
+      "value": "#650A7B",
+      "category": "color",
+      "meta": {
+        "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
+        "id": "Idu70QTJRl6-"
+      }
+    },
+    {
       "name": "LoginBack",
       "type": "color",
       "value": "#11111F",
@@ -58,6 +88,16 @@
       "meta": {
         "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
         "id": "_Z-x7YSfdB4D"
+      }
+    },
+    {
+      "name": "Navbar Proliga",
+      "type": "color",
+      "value": "#37003C",
+      "category": "color",
+      "meta": {
+        "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
+        "id": "qXSDjipMXR1n"
       }
     },
     {
@@ -2148,6 +2188,16 @@
       "meta": {
         "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
         "id": "9XqXqiDLGt82"
+      }
+    },
+    {
+      "name": "Unnamed Style Token 4",
+      "type": "color",
+      "value": "#00AA20",
+      "category": "color",
+      "meta": {
+        "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
+        "id": "mKZG6c9qAjpe"
       }
     },
     {

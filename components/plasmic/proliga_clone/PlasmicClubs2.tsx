@@ -194,19 +194,6 @@ function PlasmicClubs2__RenderFunc(props: {
               data-plasmic-override={overrides.link}
               className={classNames(projectcss.all, projectcss.a, sty.link)}
               component={Link}
-              href={(() => {
-                try {
-                  return "/clubs/" + currentItem.id;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return `/club-2/${""}`;
-                  }
-                  throw e;
-                }
-              })()}
               key={currentIndex}
               platform={"nextjs"}
             >

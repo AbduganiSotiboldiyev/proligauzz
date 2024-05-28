@@ -137,39 +137,29 @@ function PlasmicMarkets__RenderFunc(props: {
     clubPlayers: usePlasmicDataOp(() => {
       return {
         sourceId: "8cdHi4ivRUEkK6qbegQevF",
-        opId: "22bad793-23fb-4697-9e46-0b36c07c0aee",
+        opId: "2b21b1b6-c456-4b94-9b70-a0ec5cc48532",
         userArgs: {},
-        cacheKey: `plasmic.$.22bad793-23fb-4697-9e46-0b36c07c0aee.$.`,
+        cacheKey: `plasmic.$.2b21b1b6-c456-4b94-9b70-a0ec5cc48532.$.`,
         invalidatedKeys: null,
         roleId: null
       };
     }),
-    clubs: usePlasmicDataOp(() => {
+    playerAsc: usePlasmicDataOp(() => {
       return {
         sourceId: "8cdHi4ivRUEkK6qbegQevF",
-        opId: "157523a8-a564-4845-81d4-23951d76d034",
+        opId: "048efa24-8b31-42a4-b744-4095bde4dd68",
         userArgs: {},
-        cacheKey: `plasmic.$.157523a8-a564-4845-81d4-23951d76d034.$.`,
+        cacheKey: `plasmic.$.048efa24-8b31-42a4-b744-4095bde4dd68.$.`,
         invalidatedKeys: null,
         roleId: null
       };
     }),
-    players: usePlasmicDataOp(() => {
+    playerDesc: usePlasmicDataOp(() => {
       return {
         sourceId: "8cdHi4ivRUEkK6qbegQevF",
-        opId: "6ab7b077-d6d7-443c-b43a-f8b385e79200",
+        opId: "881aa476-7bba-49cd-a113-5b95d4e99b0a",
         userArgs: {},
-        cacheKey: `plasmic.$.6ab7b077-d6d7-443c-b43a-f8b385e79200.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    playersDescanding: usePlasmicDataOp(() => {
-      return {
-        sourceId: "8cdHi4ivRUEkK6qbegQevF",
-        opId: "d1cb0887-bbdb-4d01-9946-8a2ae359471e",
-        userArgs: {},
-        cacheKey: `plasmic.$.d1cb0887-bbdb-4d01-9946-8a2ae359471e.$.`,
+        cacheKey: `plasmic.$.881aa476-7bba-49cd-a113-5b95d4e99b0a.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -248,7 +238,7 @@ function PlasmicMarkets__RenderFunc(props: {
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
-                    return $queries.players.data;
+                    return $queries.playerAsc.data;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -263,7 +253,9 @@ function PlasmicMarkets__RenderFunc(props: {
                 const currentItem = __plasmic_item_0;
                 const currentIndex = __plasmic_idx_0;
                 return (
-                  <PlasmicLink__
+                  <Stack__
+                    as={PlasmicLink__}
+                    hasGap={true}
                     className={classNames(
                       projectcss.all,
                       projectcss.a,
@@ -271,6 +263,51 @@ function PlasmicMarkets__RenderFunc(props: {
                     )}
                     component={Link}
                     key={currentIndex}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["goToPlayerInfo"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: `/player-2/${(() => {
+                                try {
+                                  return currentItem.id;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}`
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPlayerInfo"] != null &&
+                        typeof $steps["goToPlayerInfo"] === "object" &&
+                        typeof $steps["goToPlayerInfo"].then === "function"
+                      ) {
+                        $steps["goToPlayerInfo"] = await $steps[
+                          "goToPlayerInfo"
+                        ];
+                      }
+                    }}
                     platform={"nextjs"}
                   >
                     <div
@@ -286,19 +323,7 @@ function PlasmicMarkets__RenderFunc(props: {
                         displayMinWidth={"0"}
                         displayWidth={"auto"}
                         loading={"lazy"}
-                        src={(() => {
-                          try {
-                            return currentItem.image;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
+                        src={currentItem.image}
                         width={"112px"}
                       />
                     </div>
@@ -378,7 +403,30 @@ function PlasmicMarkets__RenderFunc(props: {
                             sty.text__bisx1
                           )}
                         >
-                          {"previous value\n4.306.249"}
+                          {"previous value"}
+                        </div>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___9NvmI
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return currentItem.previues_value;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "previous value";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
                         </div>
                       </div>
                     </div>
@@ -399,10 +447,23 @@ function PlasmicMarkets__RenderFunc(props: {
                             sty.link__raRNm
                           )}
                           component={Link}
-                          href={"#"}
                           platform={"nextjs"}
                         >
-                          {"39%"}
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return currentItem.id * 10 - 10 + "%";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "39%";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
                         </PlasmicLink__>
                       </div>
                       <div
@@ -421,14 +482,20 @@ function PlasmicMarkets__RenderFunc(props: {
                           sty.text__gk9Ze
                         )}
                       >
-                        {"6.007.170"}
+                        <React.Fragment>
+                          {currentItem["current_value "]}
+                        </React.Fragment>
                       </div>
                     </div>
-                  </PlasmicLink__>
+                  </Stack__>
                 );
               })}
             </div>
-            <div className={classNames(projectcss.all, sty.column__exdnn)}>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.column__exdnn)}
+            >
               <div
                 className={classNames(
                   projectcss.all,
@@ -436,7 +503,7 @@ function PlasmicMarkets__RenderFunc(props: {
                   sty.text__fkZm
                 )}
               >
-                {"Highest transfer Rises"}
+                {"Highest market reduction"}
               </div>
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
@@ -649,7 +716,7 @@ function PlasmicMarkets__RenderFunc(props: {
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
-                    return $queries.playersDescanding.data;
+                    return $queries.playerDesc.data;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -664,9 +731,60 @@ function PlasmicMarkets__RenderFunc(props: {
                 const currentItem = __plasmic_item_0;
                 const currentIndex = __plasmic_idx_0;
                 return (
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__xk7BC)}
+                  <PlasmicLink__
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.a,
+                      sty.link__xk7BC
+                    )}
+                    component={Link}
                     key={currentIndex}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["goToPlayerInfo"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: `/player-2/${(() => {
+                                try {
+                                  return currentItem.id;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}`
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPlayerInfo"] != null &&
+                        typeof $steps["goToPlayerInfo"] === "object" &&
+                        typeof $steps["goToPlayerInfo"].then === "function"
+                      ) {
+                        $steps["goToPlayerInfo"] = await $steps[
+                          "goToPlayerInfo"
+                        ];
+                      }
+                    }}
+                    platform={"nextjs"}
                   >
                     <PlasmicImg__
                       alt={""}
@@ -678,74 +796,69 @@ function PlasmicMarkets__RenderFunc(props: {
                       displayMinWidth={"0"}
                       displayWidth={"auto"}
                       loading={"lazy"}
-                      src={(() => {
-                        try {
-                          return currentItem.image;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "https://assets-fantasy.llt-services.com/players/t186/p908/256x256/p908_t186_1_001_000.png";
-                          }
-                          throw e;
-                        }
-                      })()}
+                      src={currentItem.image}
                       width={"112px"}
                     />
 
                     <div
                       className={classNames(projectcss.all, sty.freeBox__vAvM)}
                     >
-                      <PlasmicLink__
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.a,
-                          projectcss.__wab_text,
-                          sty.link__pKRx3
-                        )}
-                        component={Link}
-                        href={"https://www.plasmic.app/"}
-                        platform={"nextjs"}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return currentItem.position;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "GOA";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </PlasmicLink__>
                       <div
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___2Mju
+                          sty.freeBox__a1F3M
                         )}
                       >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return currentItem.name;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "Ronaldo";
+                        <PlasmicLink__
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.a,
+                            projectcss.__wab_text,
+                            sty.link__pKRx3
+                          )}
+                          component={Link}
+                          href={"https://www.plasmic.app/"}
+                          platform={"nextjs"}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return currentItem.position;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "GOA";
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
+                            })()}
+                          </React.Fragment>
+                        </PlasmicLink__>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___2Mju
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return currentItem.name;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "Ronaldo";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
                       </div>
                       <div
                         className={classNames(
@@ -763,7 +876,9 @@ function PlasmicMarkets__RenderFunc(props: {
                           sty.text__u5Rv3
                         )}
                       >
-                        {"1.205.63"}
+                        <React.Fragment>
+                          {currentItem.previues_value}
+                        </React.Fragment>
                       </div>
                     </div>
                     <div
@@ -780,7 +895,21 @@ function PlasmicMarkets__RenderFunc(props: {
                         href={"https://www.plasmic.app/"}
                         platform={"nextjs"}
                       >
-                        {"39%"}
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return currentItem.id + 23 + "%";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "39%";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
                       </PlasmicLink__>
                       <div
                         className={classNames(
@@ -798,13 +927,247 @@ function PlasmicMarkets__RenderFunc(props: {
                           sty.text__gdgLe
                         )}
                       >
-                        {"18.265.43"}
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return currentItem["current_value "];
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "18.265.43";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                    </div>
+                  </PlasmicLink__>
+                );
+              })}
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return $queries.playerAsc.data;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__lBevJ)}
+                    key={currentIndex}
+                  >
+                    <PlasmicImg__
+                      alt={""}
+                      className={classNames(sty.img__p1Xkx)}
+                      displayHeight={"96px"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"96px"}
+                      loading={"lazy"}
+                      src={(() => {
+                        try {
+                          return currentItem.image;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                    />
+
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__z1Xxd)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__rsFze
+                        )}
+                      >
+                        <PlasmicLink__
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.a,
+                            projectcss.__wab_text,
+                            sty.link__fqbjS
+                          )}
+                          component={Link}
+                          href={undefined}
+                          platform={"nextjs"}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return currentItem.position;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "DEF";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </PlasmicLink__>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__pyyNi
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return currentItem.name;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "Player";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__tk5Kl
+                        )}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___2C4Yr
+                          )}
+                        >
+                          {"previous value"}
+                        </div>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__lgRl
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return currentItem.previues_value;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "previous value";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__iIpz)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__ixj7
+                        )}
+                      >
+                        <PlasmicLink__
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.a,
+                            projectcss.__wab_text,
+                            sty.link__j9I34
+                          )}
+                          component={Link}
+                          href={"#"}
+                          platform={"nextjs"}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return currentItem.id * 10 + "%";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "39%";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </PlasmicLink__>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__ka0XJ
+                        )}
+                      >
+                        {"Current value"}
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text___3YM3Q
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return currentItem["current_value "];
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "6.007.170";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
                       </div>
                     </div>
                   </div>
                 );
               })}
-            </div>
+            </Stack__>
           </div>
           <Footer
             data-plasmic-name={"footer"}

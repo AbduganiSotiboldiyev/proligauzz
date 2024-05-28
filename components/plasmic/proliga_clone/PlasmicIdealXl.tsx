@@ -65,8 +65,12 @@ import { AntdDropdown } from "@plasmicpkgs/antd5/skinny/registerDropdown";
 import { AntdMenuItem } from "@plasmicpkgs/antd5/skinny/registerMenu";
 import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton";
 import SoccerPlaceMens from "../../SoccerPlaceMens"; // plasmic-import: w6mcybgJxhpK/component
+import Select from "../../Select"; // plasmic-import: bCMc_ebYmgPo/component
 import { CmsQueryRepeater } from "@plasmicpkgs/plasmic-cms";
 import { CmsRowField } from "@plasmicpkgs/plasmic-cms";
+import Footer from "../../Footer"; // plasmic-import: kIdovXGtWiEz/component
+
+import { useScreenVariants as useScreenVariants_8Rmrqs5Mzp6I } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: 8Rmrqs5Mzp6I/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -91,10 +95,13 @@ export type PlasmicIdealXl__OverridesType = {
   navbar?: Flex__<typeof Navbar>;
   clubs2?: Flex__<typeof Clubs2>;
   h4?: Flex__<"h4">;
+  dropdown?: Flex__<typeof AntdDropdown>;
+  button?: Flex__<typeof AntdButton>;
   h5?: Flex__<"h5">;
   soccerPlaceMens?: Flex__<typeof SoccerPlaceMens>;
-  h6?: Flex__<"h6">;
+  select?: Flex__<typeof Select>;
   cmsDataFetcher?: Flex__<typeof CmsQueryRepeater>;
+  footer?: Flex__<typeof Footer>;
 };
 
 export interface DefaultIdealXlProps {}
@@ -129,6 +136,28 @@ function PlasmicIdealXl__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const currentUser = useCurrentUser?.() || {};
+
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "select.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariants_8Rmrqs5Mzp6I()
+  });
 
   return (
     <React.Fragment>
@@ -212,10 +241,10 @@ function PlasmicIdealXl__RenderFunc(props: {
             <div className={classNames(projectcss.all, sty.freeBox__nSjWh)}>
               <div className={classNames(projectcss.all, sty.freeBox__mv3Y)}>
                 <AntdDropdown
-                  className={classNames("__wab_instance", sty.dropdown__gtEtN)}
-                  dropdownMenuScopeClassName={
-                    sty["dropdown__gtEtN__dropdownMenu"]
-                  }
+                  data-plasmic-name={"dropdown"}
+                  data-plasmic-override={overrides.dropdown}
+                  className={classNames("__wab_instance", sty.dropdown)}
+                  dropdownMenuScopeClassName={sty["dropdown__dropdownMenu"]}
                   menuItems={() => (
                     <React.Fragment>
                       <AntdMenuItem
@@ -260,7 +289,9 @@ function PlasmicIdealXl__RenderFunc(props: {
                   ]}
                 >
                   <AntdButton
-                    className={classNames("__wab_instance", sty.button__iiSK)}
+                    data-plasmic-name={"button"}
+                    data-plasmic-override={overrides.button}
+                    className={classNames("__wab_instance", sty.button)}
                   >
                     <div
                       className={classNames(
@@ -322,7 +353,11 @@ function PlasmicIdealXl__RenderFunc(props: {
                   className={classNames("__wab_instance", sty.soccerPlaceMens)}
                 />
               </div>
-              <div className={classNames(projectcss.all, sty.freeBox__qwkJf)}>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__qwkJf)}
+              >
                 <div className={classNames(projectcss.all, sty.freeBox__iCwhV)}>
                   <div
                     className={classNames(projectcss.all, sty.freeBox___5GM1)}
@@ -331,109 +366,34 @@ function PlasmicIdealXl__RenderFunc(props: {
                       className={classNames(
                         projectcss.all,
                         projectcss.__wab_text,
-                        sty.text__gAcdl
+                        sty.text__kKGw5
                       )}
                     >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h6
-                            data-plasmic-name={"h6"}
-                            data-plasmic-override={overrides.h6}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h6,
-                              projectcss.__wab_text,
-                              sty.h6
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"Players"}
-                              </span>
-                            </React.Fragment>
-                          </h6>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
+                      {"Players"}
                     </div>
                   </div>
                   <div
                     className={classNames(projectcss.all, sty.freeBox__aY7QO)}
                   >
-                    <AntdDropdown
-                      className={classNames(
-                        "__wab_instance",
-                        sty.dropdown__dnHoo
-                      )}
-                      dropdownMenuScopeClassName={
-                        sty["dropdown__dnHoo__dropdownMenu"]
-                      }
-                      menuItems={() => (
-                        <React.Fragment>
-                          <AntdMenuItem
-                            className={classNames(
-                              "__wab_instance",
-                              sty.menuItem___4PAAm
-                            )}
-                            key={"menu-item-1"}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__fkFna
-                              )}
-                            >
-                              {"Menu item"}
-                            </div>
-                          </AntdMenuItem>
-                          <AntdMenuItem
-                            className={classNames(
-                              "__wab_instance",
-                              sty.menuItem__mQgEy
-                            )}
-                            key={"menu-item-2"}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__acMmW
-                              )}
-                            >
-                              {"Menu item"}
-                            </div>
-                          </AntdMenuItem>
-                        </React.Fragment>
-                      )}
-                      menuItemsJson={[
-                        { type: "item", value: "action1", label: "Action 1" },
-                        { type: "item", value: "action2", label: "Action 2" }
+                    <Select
+                      data-plasmic-name={"select"}
+                      data-plasmic-override={overrides.select}
+                      className={classNames("__wab_instance", sty.select)}
+                      onChange={(...eventArgs) => {
+                        generateStateOnChangeProp($state, ["select", "value"])(
+                          eventArgs[0]
+                        );
+                      }}
+                      options={[
+                        { value: "option1", label: "Option 1" },
+                        { value: "option2", label: "Option 2" }
                       ]}
-                    >
-                      <AntdButton
-                        className={classNames(
-                          "__wab_instance",
-                          sty.button__w4Jqf
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__nYnbZ
-                          )}
-                        >
-                          {"Dropdown"}
-                        </div>
-                      </AntdButton>
-                    </AntdDropdown>
+                      placeholder={"Players"}
+                      value={generateStateValueProp($state, [
+                        "select",
+                        "value"
+                      ])}
+                    />
                   </div>
                 </div>
                 <div className={classNames(projectcss.all, sty.freeBox__w1Wrw)}>
@@ -623,9 +583,14 @@ function PlasmicIdealXl__RenderFunc(props: {
                     </DataCtxReader__>
                   </CmsQueryRepeater>
                 </div>
-              </div>
+              </Stack__>
             </div>
           </div>
+          <Footer
+            data-plasmic-name={"footer"}
+            data-plasmic-override={overrides.footer}
+            className={classNames("__wab_instance", sty.footer)}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -638,18 +603,24 @@ const PlasmicDescendants = {
     "navbar",
     "clubs2",
     "h4",
+    "dropdown",
+    "button",
     "h5",
     "soccerPlaceMens",
-    "h6",
-    "cmsDataFetcher"
+    "select",
+    "cmsDataFetcher",
+    "footer"
   ],
   navbar: ["navbar"],
   clubs2: ["clubs2"],
   h4: ["h4"],
+  dropdown: ["dropdown", "button"],
+  button: ["button"],
   h5: ["h5"],
   soccerPlaceMens: ["soccerPlaceMens"],
-  h6: ["h6"],
-  cmsDataFetcher: ["cmsDataFetcher"]
+  select: ["select"],
+  cmsDataFetcher: ["cmsDataFetcher"],
+  footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -659,10 +630,13 @@ type NodeDefaultElementType = {
   navbar: typeof Navbar;
   clubs2: typeof Clubs2;
   h4: "h4";
+  dropdown: typeof AntdDropdown;
+  button: typeof AntdButton;
   h5: "h5";
   soccerPlaceMens: typeof SoccerPlaceMens;
-  h6: "h6";
+  select: typeof Select;
   cmsDataFetcher: typeof CmsQueryRepeater;
+  footer: typeof Footer;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -745,10 +719,13 @@ export const PlasmicIdealXl = Object.assign(
     navbar: makeNodeComponent("navbar"),
     clubs2: makeNodeComponent("clubs2"),
     h4: makeNodeComponent("h4"),
+    dropdown: makeNodeComponent("dropdown"),
+    button: makeNodeComponent("button"),
     h5: makeNodeComponent("h5"),
     soccerPlaceMens: makeNodeComponent("soccerPlaceMens"),
-    h6: makeNodeComponent("h6"),
+    select: makeNodeComponent("select"),
     cmsDataFetcher: makeNodeComponent("cmsDataFetcher"),
+    footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicIdealXl
     internalVariantProps: PlasmicIdealXl__VariantProps,

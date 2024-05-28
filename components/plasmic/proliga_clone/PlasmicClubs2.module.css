@@ -14,11 +14,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
-  background: #11111f;
-  min-width: 0;
+  background: none;
   padding: 8px;
 }
 .link {

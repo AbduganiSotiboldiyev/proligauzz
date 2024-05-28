@@ -65,8 +65,13 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import Navbar from "../../Navbar"; // plasmic-import: TKT8XnZtrLZi/component
+import Clubs2 from "../../Clubs2"; // plasmic-import: 3EueAFP_3sEI/component
 import { SimpleChart } from "@plasmicpkgs/react-chartjs-2";
+import Footer from "../../Footer"; // plasmic-import: kIdovXGtWiEz/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
+
+import { useScreenVariants as useScreenVariants_8Rmrqs5Mzp6I } from "../proliga_clone/PlasmicGlobalVariant__Screen"; // plasmic-import: 8Rmrqs5Mzp6I/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -88,9 +93,11 @@ export const PlasmicPlayerInfo__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicPlayerInfo__OverridesType = {
   root?: Flex__<"div">;
-  h1?: Flex__<"h1">;
-  chart?: Flex__<typeof SimpleChart>;
+  navbar?: Flex__<typeof Navbar>;
+  clubs2?: Flex__<typeof Clubs2>;
   link?: Flex__<"a"> & Partial<LinkProps>;
+  chart?: Flex__<typeof SimpleChart>;
+  footer?: Flex__<typeof Footer>;
 };
 
 export interface DefaultPlayerInfoProps {}
@@ -162,6 +169,10 @@ function PlasmicPlayerInfo__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariants_8Rmrqs5Mzp6I()
+  });
+
   return (
     <React.Fragment>
       <Head></Head>
@@ -189,179 +200,194 @@ function PlasmicPlayerInfo__RenderFunc(props: {
             sty.root
           )}
         >
-          <h1
-            data-plasmic-name={"h1"}
-            data-plasmic-override={overrides.h1}
-            className={classNames(
-              projectcss.all,
-              projectcss.h1,
-              projectcss.__wab_text,
-              sty.h1
-            )}
-          >
-            <React.Fragment>
-              {(() => {
-                try {
-                  return $queries.query.data[0].name;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "Page title";
-                  }
-                  throw e;
-                }
-              })()}
-            </React.Fragment>
-          </h1>
-          <div className={classNames(projectcss.all, sty.freeBox__xdMCu)}>
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img___0OoC)}
-              displayHeight={"auto"}
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              height={"214px"}
-              loading={"lazy"}
-              src={
-                "https://assets-fantasy.llt-services.com/players/t179/p1821/256x256/p1821_t179_1_001_000.png"
-              }
-              width={"344px"}
-            />
-          </div>
-          <SimpleChart
-            data-plasmic-name={"chart"}
-            data-plasmic-override={overrides.chart}
-            className={classNames("__wab_instance", sty.chart)}
-            data={[
-              { region: "APAC", revenue: 3294, spend: 2675 },
-              { region: "EMEA", revenue: 3245, spend: 3895 },
-              { region: "LATAM", revenue: 2165, spend: 3498 },
-              { region: "AMER", revenue: 3215, spend: 1656 }
-            ]}
-            type={"line"}
+          <Navbar
+            data-plasmic-name={"navbar"}
+            data-plasmic-override={overrides.navbar}
+            className={classNames("__wab_instance", sty.navbar)}
           />
 
-          <div className={classNames(projectcss.all, sty.freeBox___0CmUs)}>
-            <div className={classNames(projectcss.all, sty.freeBox__tnxJ)}>
-              <div className={classNames(projectcss.all, sty.freeBox__qzn9Z)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__wYltr
-                  )}
-                >
-                  {"Position"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__tXebw
-                  )}
-                >
-                  {"FSYP"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__yfCB)}>
-                <PlasmicLink__
-                  data-plasmic-name={"link"}
-                  data-plasmic-override={overrides.link}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.a,
-                    projectcss.__wab_text,
-                    sty.link
-                  )}
-                  component={Link}
-                  href={"https://www.plasmic.app/"}
-                  platform={"nextjs"}
-                >
-                  {"STR"}
-                </PlasmicLink__>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__fiSj
-                  )}
-                >
-                  {"ISaac"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___1J5Jj
-                  )}
-                >
-                  {"92"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__fbX8B)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__vLuJj
-                  )}
-                >
-                  {"Value"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__j08Jk
-                  )}
-                >
-                  {"Average"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__vuD6M)}>
+          <Clubs2
+            data-plasmic-name={"clubs2"}
+            data-plasmic-override={overrides.clubs2}
+            className={classNames("__wab_instance", sty.clubs2)}
+          />
+
+          <div className={classNames(projectcss.all, sty.freeBox__uhOzD)}>
+            <div className={classNames(projectcss.all, sty.freeBox__xC2PH)}>
+              <div className={classNames(projectcss.all, sty.freeBox__xdMCu)}>
                 <PlasmicImg__
                   alt={""}
-                  className={classNames(sty.img__cgS9C)}
+                  className={classNames(sty.img___0OoC)}
                   displayHeight={"auto"}
                   displayMaxHeight={"none"}
                   displayMaxWidth={"100%"}
                   displayMinHeight={"0"}
                   displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  height={"14px"}
-                  loading={"lazy"}
-                  src={
-                    "https://www.iconpacks.net/icons/1/free-euro-icon-795-thumb.png"
+                  displayWidth={"329px"}
+                  height={
+                    hasVariant(globalVariants, "screen", "portrait")
+                      ? "120px"
+                      : "214px"
                   }
-                  width={"14px"}
+                  loading={"lazy"}
+                  src={$queries.query.data[0].image}
+                  width={
+                    hasVariant(globalVariants, "screen", "portrait")
+                      ? "120px"
+                      : "214px"
+                  }
                 />
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___0CmUs)}>
+                <div className={classNames(projectcss.all, sty.freeBox__tnxJ)}>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__qzn9Z)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__wYltr
+                      )}
+                    >
+                      {"Position"}
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__tXebw
+                      )}
+                    >
+                      {"FSYP"}
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__yfCB)}
+                  >
+                    <PlasmicLink__
+                      data-plasmic-name={"link"}
+                      data-plasmic-override={overrides.link}
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.a,
+                        projectcss.__wab_text,
+                        sty.link
+                      )}
+                      component={Link}
+                      href={"https://www.plasmic.app/"}
+                      platform={"nextjs"}
+                    >
+                      <React.Fragment>
+                        {$queries.query.data[0].position}
+                      </React.Fragment>
+                    </PlasmicLink__>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__fiSj
+                      )}
+                    >
+                      <React.Fragment>
+                        {$queries.query.data[0].name}
+                      </React.Fragment>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text___1J5Jj
+                      )}
+                    >
+                      {"92"}
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__fbX8B)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__vLuJj
+                      )}
+                    >
+                      {"Value"}
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__j08Jk
+                      )}
+                    >
+                      {"Average"}
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__vuD6M)}
+                  >
+                    <PlasmicImg__
+                      alt={""}
+                      className={classNames(sty.img__cgS9C)}
+                      displayHeight={"14px"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"14px"}
+                      height={"14px"}
+                      loading={"lazy"}
+                      src={
+                        "https://www.iconpacks.net/icons/1/free-euro-icon-795-thumb.png"
+                      }
+                      width={"14px"}
+                    />
 
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__ru4Cf
-                  )}
-                >
-                  {"5.256.346"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___1N3Wx
-                  )}
-                >
-                  {"7.08"}
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__ru4Cf
+                      )}
+                    >
+                      <React.Fragment>
+                        {$queries.query.data[0].market_value}
+                      </React.Fragment>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text___1N3Wx
+                      )}
+                    >
+                      {"7.08"}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <SimpleChart
+              data-plasmic-name={"chart"}
+              data-plasmic-override={overrides.chart}
+              className={classNames("__wab_instance", sty.chart)}
+              data={[
+                { region: "APAC", revenue: 3294, spend: 2675 },
+                { region: "EMEA", revenue: 3245, spend: 3895 },
+                { region: "LATAM", revenue: 2165, spend: 3498 },
+                { region: "AMER", revenue: 3215, spend: 1656 }
+              ]}
+              labelField={"spend"}
+              type={"line"}
+            />
           </div>
+          <Footer
+            data-plasmic-name={"footer"}
+            data-plasmic-override={overrides.footer}
+            className={classNames("__wab_instance", sty.footer)}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -369,19 +395,23 @@ function PlasmicPlayerInfo__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "h1", "chart", "link"],
-  h1: ["h1"],
+  root: ["root", "navbar", "clubs2", "link", "chart", "footer"],
+  navbar: ["navbar"],
+  clubs2: ["clubs2"],
+  link: ["link"],
   chart: ["chart"],
-  link: ["link"]
+  footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  h1: "h1";
-  chart: typeof SimpleChart;
+  navbar: typeof Navbar;
+  clubs2: typeof Clubs2;
   link: "a";
+  chart: typeof SimpleChart;
+  footer: typeof Footer;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -461,9 +491,11 @@ export const PlasmicPlayerInfo = Object.assign(
   withPlasmicPageGuard(makeNodeComponent("root")),
   {
     // Helper components rendering sub-elements
-    h1: makeNodeComponent("h1"),
-    chart: makeNodeComponent("chart"),
+    navbar: makeNodeComponent("navbar"),
+    clubs2: makeNodeComponent("clubs2"),
     link: makeNodeComponent("link"),
+    chart: makeNodeComponent("chart"),
+    footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicPlayerInfo
     internalVariantProps: PlasmicPlayerInfo__VariantProps,

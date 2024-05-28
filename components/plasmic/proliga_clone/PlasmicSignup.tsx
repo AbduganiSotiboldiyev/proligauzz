@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import Navbar from "../../Navbar"; // plasmic-import: TKT8XnZtrLZi/component
 import AuthComponent from "../../AuthComponent"; // plasmic-import: f9VC6U83GUs6/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -81,6 +82,8 @@ export const PlasmicSignup__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicSignup__OverridesType = {
   register?: Flex__<"div">;
+  freeBox?: Flex__<"div">;
+  navbar?: Flex__<typeof Navbar>;
   authComponent?: Flex__<typeof AuthComponent>;
 };
 
@@ -157,12 +160,24 @@ function PlasmicSignup__RenderFunc(props: {
             sty.register
           )}
         >
-          <AuthComponent
-            data-plasmic-name={"authComponent"}
-            data-plasmic-override={overrides.authComponent}
-            className={classNames("__wab_instance", sty.authComponent)}
-            isSignUpFlow={true}
-          />
+          <div
+            data-plasmic-name={"freeBox"}
+            data-plasmic-override={overrides.freeBox}
+            className={classNames(projectcss.all, sty.freeBox)}
+          >
+            <Navbar
+              data-plasmic-name={"navbar"}
+              data-plasmic-override={overrides.navbar}
+              className={classNames("__wab_instance", sty.navbar)}
+            />
+
+            <AuthComponent
+              data-plasmic-name={"authComponent"}
+              data-plasmic-override={overrides.authComponent}
+              className={classNames("__wab_instance", sty.authComponent)}
+              isSignUpFlow={true}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -170,7 +185,9 @@ function PlasmicSignup__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  register: ["register", "authComponent"],
+  register: ["register", "freeBox", "navbar", "authComponent"],
+  freeBox: ["freeBox", "navbar", "authComponent"],
+  navbar: ["navbar"],
   authComponent: ["authComponent"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -178,6 +195,8 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   register: "div";
+  freeBox: "div";
+  navbar: typeof Navbar;
   authComponent: typeof AuthComponent;
 };
 
@@ -258,6 +277,8 @@ export const PlasmicSignup = Object.assign(
   withPlasmicPageGuard(makeNodeComponent("register")),
   {
     // Helper components rendering sub-elements
+    freeBox: makeNodeComponent("freeBox"),
+    navbar: makeNodeComponent("navbar"),
     authComponent: makeNodeComponent("authComponent"),
 
     // Metadata about props expected for PlasmicSignup

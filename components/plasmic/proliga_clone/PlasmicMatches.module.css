@@ -8,7 +8,7 @@
   justify-items: center;
   justify-content: flex-start;
   align-items: center;
-  background: #000000;
+  background: none;
   min-width: 0;
   min-height: 0;
   grid-template-columns:
@@ -55,7 +55,8 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #11111f;
+  background: url("https://www.premierleague.com/resources/rebrand/v7.146.7/i/elements/backgrounds/primary-graphic.svg"),
+    var(--token-RZcyrn6MkYNW);
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
   padding: 8px;
@@ -98,7 +99,7 @@
 .h2 {
   font-weight: 800;
   width: 100%;
-  font-size: 36px;
+  font-size: 24px;
   min-width: 0;
 }
 @media (max-width: 768px) {
@@ -207,6 +208,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  background: var(--token-jgohepLVeKvh);
   min-width: 0;
   padding: 8px;
 }
@@ -230,7 +232,7 @@
   max-width: 100%;
   justify-content: center;
   align-items: center;
-  background: #232433;
+  background: var(--token-as44I7WwR-rZ);
   min-width: 0;
   padding: 8px;
 }
@@ -243,7 +245,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: linear-gradient(#000000, #000000), #ffffff;
+  background: var(--token-DbGdjBpQ6R_X);
   min-width: 0;
   padding: 8px;
 }
@@ -263,7 +265,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #232433;
+  background: var(--token-jgohepLVeKvh);
   margin-bottom: 10px;
   cursor: pointer;
   min-width: 0;
@@ -297,7 +299,8 @@
 .cmsEntryField___4Ln3V:global(.__wab_instance) {
   object-fit: cover;
   max-width: 100%;
-  color: var(--token-jgohepLVeKvh);
+  color: var(--token-_Z-x7YSfdB4D);
+  font-weight: 700;
 }
 .text__aCut0 {
   position: relative;
@@ -323,7 +326,7 @@
   height: 575px;
   max-width: 100%;
   min-height: 400px;
-  background: linear-gradient(#000000, #000000), #ffffff;
+  background: #ffffff;
   flex-shrink: 0;
   padding: 8px;
 }
@@ -341,7 +344,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #000000;
+  background: none;
   margin-bottom: 10px;
   min-width: 0;
   padding: 8px 8px 8px 0px;
@@ -366,7 +369,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -390,7 +393,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -414,7 +417,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -438,7 +441,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -462,7 +465,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -486,7 +489,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -581,7 +584,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px;
 }
@@ -601,7 +604,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #232433;
+  background: var(--token-jgohepLVeKvh);
   margin-bottom: 10px;
   cursor: pointer;
   min-width: 0;
@@ -628,7 +631,8 @@
 .cmsEntryField__pOoa9:global(.__wab_instance) {
   object-fit: cover;
   max-width: 100%;
-  color: var(--token-jgohepLVeKvh);
+  color: var(--token-_Z-x7YSfdB4D);
+  font-weight: 700;
 }
 .cmsEntryField__lvDxq:global(.__wab_instance) {
   object-fit: contain;
@@ -660,7 +664,7 @@
   max-width: 100%;
   justify-content: center;
   align-items: center;
-  background: #232433;
+  background: var(--token-as44I7WwR-rZ);
   min-width: 0;
   padding: 8px;
 }
@@ -673,7 +677,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: linear-gradient(#000000, #000000), #ffffff;
+  background: var(--token-as44I7WwR-rZ);
   min-width: 0;
   padding: 8px;
 }
@@ -693,7 +697,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #232433;
+  background: var(--token-jgohepLVeKvh);
   margin-bottom: 10px;
   cursor: pointer;
   min-width: 0;
@@ -727,7 +731,8 @@
 .cmsEntryField___8U0Zh:global(.__wab_instance) {
   object-fit: cover;
   max-width: 100%;
-  color: var(--token-jgohepLVeKvh);
+  color: var(--token-_Z-x7YSfdB4D);
+  font-weight: 700;
 }
 .text__kxvbu {
   position: relative;
@@ -753,7 +758,7 @@
   height: 575px;
   max-width: 100%;
   min-height: 400px;
-  background: linear-gradient(#000000, #000000), #ffffff;
+  background: #ffffff;
   flex-shrink: 0;
   padding: 8px;
 }
@@ -766,7 +771,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #000000;
+  background: none;
   margin-bottom: 10px;
   min-width: 0;
   padding: 8px 8px 8px 0px;
@@ -791,7 +796,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -815,7 +820,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -839,7 +844,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -863,7 +868,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -887,7 +892,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -911,7 +916,7 @@
   height: auto;
   max-width: 100%;
   margin-bottom: 10px;
-  background: #000000;
+  background: none;
   min-width: 0;
   padding: 8px 8px 8px 0px;
 }
@@ -1006,7 +1011,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #000000;
+  background: var(--token-as44I7WwR-rZ);
   min-width: 0;
   padding: 8px;
 }
@@ -1026,7 +1031,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #232433;
+  background: var(--token-jgohepLVeKvh);
   margin-bottom: 10px;
   cursor: pointer;
   min-width: 0;
@@ -1053,7 +1058,7 @@
 .cmsEntryField__tmsMa:global(.__wab_instance) {
   object-fit: cover;
   max-width: 100%;
-  color: var(--token-jgohepLVeKvh);
+  color: var(--token-_Z-x7YSfdB4D);
 }
 .cmsEntryField__apNJf:global(.__wab_instance) {
   object-fit: contain;

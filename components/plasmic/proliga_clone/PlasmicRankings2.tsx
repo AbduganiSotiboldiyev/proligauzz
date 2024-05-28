@@ -137,7 +137,11 @@ function PlasmicRankings2__RenderFunc(props: {
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__gTgK7)}>
+      <Stack__
+        as={"div"}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.freeBox__gTgK7)}
+      >
         <CmsQueryRepeater
           data-plasmic-name={"cmsDataFetcher"}
           data-plasmic-override={overrides.cmsDataFetcher}
@@ -289,7 +293,7 @@ function PlasmicRankings2__RenderFunc(props: {
             }
           </DataCtxReader__>
         </CmsQueryRepeater>
-      </div>
+      </Stack__>
     </div>
   ) as React.ReactElement | null;
 }

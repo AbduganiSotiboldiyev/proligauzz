@@ -61,18 +61,12 @@ import {
 
 import Navbar from "../../Navbar"; // plasmic-import: TKT8XnZtrLZi/component
 import Clubs2 from "../../Clubs2"; // plasmic-import: 3EueAFP_3sEI/component
-import SignInButtons from "../../SignInButtons"; // plasmic-import: fX0Kd1k2n7hr/component
 import SearchComponent from "../../SearchComponent"; // plasmic-import: mmk_GiTXUtux/component
-import { CmsQueryRepeater } from "@plasmicpkgs/plasmic-cms";
-import { CmsRowImage } from "@plasmicpkgs/plasmic-cms";
-import { CmsRowField } from "@plasmicpkgs/plasmic-cms";
-import MatchesCalendar from "../../MatchesCalendar"; // plasmic-import: kLkBCj52Hj5c/component
 import SoccerPlaceMens from "../../SoccerPlaceMens"; // plasmic-import: w6mcybgJxhpK/component
-import MarketMember from "../../MarketMember"; // plasmic-import: 4Bc2YM6MYzzT/component
+import MessageCard from "../../MessageCard"; // plasmic-import: KNRpEkS9bXP0/component
+import Select from "../../Select"; // plasmic-import: bCMc_ebYmgPo/component
 import Footer from "../../Footer"; // plasmic-import: kIdovXGtWiEz/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
-
-import { useScreenVariants as useScreenVariants_8Rmrqs5Mzp6I } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: 8Rmrqs5Mzp6I/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -97,16 +91,12 @@ export type PlasmicHomepage__OverridesType = {
   navbar?: Flex__<typeof Navbar>;
   clubs2?: Flex__<typeof Clubs2>;
   heroSection?: Flex__<"div">;
-  signIn?: Flex__<"div">;
-  h4?: Flex__<"h4">;
-  h2?: Flex__<"h2">;
-  signInButtons?: Flex__<typeof SignInButtons>;
   searchComponent?: Flex__<typeof SearchComponent>;
-  breakingNews?: Flex__<"div">;
-  breakingNewsSection?: Flex__<"div">;
-  news?: Flex__<"div">;
-  matchesCalendar?: Flex__<typeof MatchesCalendar>;
   soccerPlaceMens?: Flex__<typeof SoccerPlaceMens>;
+  select?: Flex__<typeof Select>;
+  select2?: Flex__<typeof Select>;
+  select5?: Flex__<typeof Select>;
+  select6?: Flex__<typeof Select>;
   footer?: Flex__<typeof Footer>;
 };
 
@@ -143,8 +133,40 @@ function PlasmicHomepage__RenderFunc(props: {
 
   const currentUser = useCurrentUser?.() || {};
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariants_8Rmrqs5Mzp6I()
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "select.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select5.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "select6.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
   });
 
   return (
@@ -186,542 +208,47 @@ function PlasmicHomepage__RenderFunc(props: {
             className={classNames("__wab_instance", sty.clubs2)}
           />
 
-          <div
+          <Stack__
+            as={"div"}
             data-plasmic-name={"heroSection"}
             data-plasmic-override={overrides.heroSection}
+            hasGap={true}
             className={classNames(projectcss.all, sty.heroSection)}
           >
+            <PlasmicImg__
+              alt={""}
+              className={classNames(sty.img__aMoxZ)}
+              displayHeight={"auto"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"auto"}
+              loading={"lazy"}
+              src={
+                "https://dlcdnwebimgs.asus.com/gain/3EF83AFB-7D9C-4D1A-918E-8910190606D1/fwebp"
+              }
+              width={"800px"}
+            />
+
             <div
-              data-plasmic-name={"signIn"}
-              data-plasmic-override={overrides.signIn}
-              className={classNames(projectcss.all, sty.signIn)}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__qIiUy
+              )}
             >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__s6F1K
-                )}
-              >
-                <React.Fragment>
-                  <React.Fragment>{""}</React.Fragment>
-                  {
-                    <h4
-                      data-plasmic-name={"h4"}
-                      data-plasmic-override={overrides.h4}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.h4,
-                        projectcss.__wab_text,
-                        sty.h4
-                      )}
-                    >
-                      {"Play the only"}
-                    </h4>
-                  }
-                  <React.Fragment>{""}</React.Fragment>
-                </React.Fragment>
-              </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___26BG1
-                )}
-              >
-                <React.Fragment>
-                  <React.Fragment>{""}</React.Fragment>
-                  {
-                    <h3
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.h3,
-                        projectcss.__wab_text,
-                        sty.h3__hxRlm
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h2
-                            data-plasmic-name={"h2"}
-                            data-plasmic-override={overrides.h2}
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h2,
-                              projectcss.__wab_text,
-                              sty.h2
-                            )}
-                          >
-                            <React.Fragment>
-                              <React.Fragment>{"PROLIGA "}</React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "#FF4844" }}
-                              >
-                                {"FANTASY"}
-                              </span>
-                              <React.Fragment>{"\n "}</React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"game"}
-                              </span>
-                            </React.Fragment>
-                          </h2>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </h3>
-                  }
-                  <React.Fragment>{""}</React.Fragment>
-                </React.Fragment>
-              </div>
-              <SignInButtons
-                data-plasmic-name={"signInButtons"}
-                data-plasmic-override={overrides.signInButtons}
-                className={classNames("__wab_instance", sty.signInButtons)}
-              />
+              {
+                "\u0418\u0433\u0440\u0430\u0439\u0442\u0435 \u0441 \u043d\u0430\u043c\u0438 \u0438 \u043f\u043e\u043b\u0443\u0447\u0430\u0439\u0442\u0435 \u043f\u043e\u0434\u0430\u0440\u043a\u0438!"
+              }
             </div>
-          </div>
+          </Stack__>
           <SearchComponent
             data-plasmic-name={"searchComponent"}
             data-plasmic-override={overrides.searchComponent}
             className={classNames("__wab_instance", sty.searchComponent)}
           />
 
-          <div
-            data-plasmic-name={"breakingNews"}
-            data-plasmic-override={overrides.breakingNews}
-            className={classNames(projectcss.all, sty.breakingNews)}
-          >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__y02QJ
-              )}
-            >
-              <React.Fragment>
-                <React.Fragment>{""}</React.Fragment>
-                {
-                  <h3
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.h3,
-                      projectcss.__wab_text,
-                      sty.h3__hvU5C
-                    )}
-                  >
-                    <React.Fragment>
-                      <span
-                        className={"plasmic_default__all plasmic_default__span"}
-                        style={{ color: "var(--token-jgohepLVeKvh)" }}
-                      >
-                        {"Breaking News"}
-                      </span>
-                      <React.Fragment> </React.Fragment>
-                      <span
-                        className={"plasmic_default__all plasmic_default__span"}
-                        style={{ color: "#FF4844" }}
-                      >
-                        {"Fantasy"}
-                      </span>
-                    </React.Fragment>
-                  </h3>
-                }
-                <React.Fragment>{""}</React.Fragment>
-              </React.Fragment>
-            </div>
-          </div>
-          <div
-            data-plasmic-name={"breakingNewsSection"}
-            data-plasmic-override={overrides.breakingNewsSection}
-            className={classNames(projectcss.all, sty.breakingNewsSection)}
-          >
-            <div
-              data-plasmic-name={"news"}
-              data-plasmic-override={overrides.news}
-              className={classNames(projectcss.all, sty.news)}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___7Fwo3
-                )}
-              >
-                <React.Fragment>
-                  <React.Fragment>{""}</React.Fragment>
-                  {
-                    <h3
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.h3,
-                        projectcss.__wab_text,
-                        sty.h3__tuzbh
-                      )}
-                    >
-                      <React.Fragment>
-                        <span
-                          className={
-                            "plasmic_default__all plasmic_default__span"
-                          }
-                          style={{ color: "var(--token-jgohepLVeKvh)" }}
-                        >
-                          {"Latest News"}
-                        </span>
-                      </React.Fragment>
-                    </h3>
-                  }
-                  <React.Fragment>{""}</React.Fragment>
-                </React.Fragment>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__c3RJc)}>
-                <CmsQueryRepeater
-                  className={classNames(
-                    "__wab_instance",
-                    sty.cmsDataFetcher__xxHef
-                  )}
-                  desc={false}
-                  emptyMessage={
-                    <DataCtxReader__>
-                      {$ctx => (
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__kn1L
-                          )}
-                        >
-                          {"No matching published entries found."}
-                        </div>
-                      )}
-                    </DataCtxReader__>
-                  }
-                  fields={["title", "description", "img"]}
-                  filterField={"title"}
-                  forceEmptyState={false}
-                  forceLoadingState={false}
-                  limit={0}
-                  loadingMessage={
-                    <DataCtxReader__>
-                      {$ctx => (
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__bC4Hg
-                          )}
-                        >
-                          {"Loading..."}
-                        </div>
-                      )}
-                    </DataCtxReader__>
-                  }
-                  noAutoRepeat={false}
-                  noLayout={true}
-                  useDraft={false}
-                >
-                  <DataCtxReader__>
-                    {$ctx => (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__yxdlE
-                        )}
-                      >
-                        <CmsRowImage
-                          className={classNames(
-                            "__wab_instance",
-                            sty.cmsEntryImage__pUu9Y
-                          )}
-                          srcProp={"src"}
-                        >
-                          <PlasmicImg__
-                            alt={""}
-                            className={classNames(sty.img___3A1WI)}
-                            displayHeight={"auto"}
-                            displayMaxHeight={"none"}
-                            displayMaxWidth={"none"}
-                            displayMinHeight={"0"}
-                            displayMinWidth={"0"}
-                            displayWidth={"100%"}
-                            height={"120px"}
-                            src={
-                              "https://studio.plasmic.app/static/img/placeholder-full.png"
-                            }
-                            width={"120px"}
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__qbsFt
-                            )}
-                          >
-                            <CmsRowField
-                              className={classNames(
-                                "__wab_instance",
-                                sty.cmsEntryField__aMm4O
-                              )}
-                              themeResetClassName={classNames(
-                                projectcss.root_reset,
-                                projectcss.root_reset_tags,
-                                projectcss.plasmic_default_styles,
-                                projectcss.plasmic_mixins,
-                                projectcss.plasmic_tokens,
-                                plasmic_antd_5_hostless_css.plasmic_tokens,
-                                plasmic_plasmic_rich_components_css.plasmic_tokens
-                              )}
-                            />
-
-                            <CmsRowField
-                              className={classNames(
-                                "__wab_instance",
-                                sty.cmsEntryField__oyJvI
-                              )}
-                              field={"description"}
-                              themeResetClassName={classNames(
-                                projectcss.root_reset,
-                                projectcss.root_reset_tags,
-                                projectcss.plasmic_default_styles,
-                                projectcss.plasmic_mixins,
-                                projectcss.plasmic_tokens,
-                                plasmic_antd_5_hostless_css.plasmic_tokens,
-                                plasmic_plasmic_rich_components_css.plasmic_tokens
-                              )}
-                              usePlasmicTheme={false}
-                            />
-                          </div>
-                        </CmsRowImage>
-                      </div>
-                    )}
-                  </DataCtxReader__>
-                </CmsQueryRepeater>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox___5I0MG)}>
-                <CmsQueryRepeater
-                  className={classNames(
-                    "__wab_instance",
-                    sty.cmsDataFetcher__iV7JE
-                  )}
-                  desc={false}
-                  emptyMessage={
-                    <DataCtxReader__>
-                      {$ctx => (
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___7GgIw
-                          )}
-                        >
-                          {"No matching published entries found."}
-                        </div>
-                      )}
-                    </DataCtxReader__>
-                  }
-                  fields={["description", "title", "img"]}
-                  forceEmptyState={false}
-                  forceLoadingState={false}
-                  limit={0}
-                  loadingMessage={
-                    <DataCtxReader__>
-                      {$ctx => (
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__ei3Yq
-                          )}
-                        >
-                          {"Loading..."}
-                        </div>
-                      )}
-                    </DataCtxReader__>
-                  }
-                  noAutoRepeat={false}
-                  noLayout={false}
-                  table={"breakingNewsMini"}
-                  useDraft={false}
-                >
-                  <DataCtxReader__>
-                    {$ctx => (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__iDh3
-                        )}
-                      >
-                        <CmsRowImage
-                          className={classNames(
-                            "__wab_instance",
-                            sty.cmsEntryImage__s4GiD
-                          )}
-                          srcProp={"src"}
-                        >
-                          <PlasmicImg__
-                            alt={""}
-                            className={classNames(sty.img___5Rlnl)}
-                            displayHeight={"auto"}
-                            displayMaxHeight={"none"}
-                            displayMaxWidth={"none"}
-                            displayMinHeight={"0"}
-                            displayMinWidth={"0"}
-                            displayWidth={
-                              hasVariant(globalVariants, "screen", "mobileOnly")
-                                ? "180px"
-                                : hasVariant(
-                                    globalVariants,
-                                    "screen",
-                                    "portrait"
-                                  )
-                                ? "100%"
-                                : "200px"
-                            }
-                            src={
-                              "https://studio.plasmic.app/static/img/placeholder-full.png"
-                            }
-                            width={
-                              hasVariant(globalVariants, "screen", "mobileOnly")
-                                ? ``
-                                : "120px"
-                            }
-                          />
-
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__p8J
-                            )}
-                          >
-                            <CmsRowField
-                              className={classNames(
-                                "__wab_instance",
-                                sty.cmsEntryField__rRucq
-                              )}
-                              themeResetClassName={classNames(
-                                projectcss.root_reset,
-                                projectcss.root_reset_tags,
-                                projectcss.plasmic_default_styles,
-                                projectcss.plasmic_mixins,
-                                projectcss.plasmic_tokens,
-                                plasmic_antd_5_hostless_css.plasmic_tokens,
-                                plasmic_plasmic_rich_components_css.plasmic_tokens
-                              )}
-                            />
-
-                            <CmsRowField
-                              className={classNames(
-                                "__wab_instance",
-                                sty.cmsEntryField__zl4VW
-                              )}
-                              field={"description"}
-                              themeResetClassName={classNames(
-                                projectcss.root_reset,
-                                projectcss.root_reset_tags,
-                                projectcss.plasmic_default_styles,
-                                projectcss.plasmic_mixins,
-                                projectcss.plasmic_tokens,
-                                plasmic_antd_5_hostless_css.plasmic_tokens,
-                                plasmic_plasmic_rich_components_css.plasmic_tokens
-                              )}
-                            />
-                          </div>
-                        </CmsRowImage>
-                      </div>
-                    )}
-                  </DataCtxReader__>
-                </CmsQueryRepeater>
-              </div>
-            </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___9W9Te)}
-            >
-              <h3
-                className={classNames(
-                  projectcss.all,
-                  projectcss.h3,
-                  projectcss.__wab_text,
-                  sty.h3__aPlYd
-                )}
-              >
-                <React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ color: "var(--token-jgohepLVeKvh)" }}
-                  >
-                    {"Matches Calendar"}
-                  </span>
-                </React.Fragment>
-              </h3>
-              <MatchesCalendar
-                data-plasmic-name={"matchesCalendar"}
-                data-plasmic-override={overrides.matchesCalendar}
-                className={classNames("__wab_instance", sty.matchesCalendar)}
-              />
-            </Stack__>
-          </div>
-          <div className={classNames(projectcss.all, sty.columns__pbCpx)}>
-            <div className={classNames(projectcss.all, sty.column___9OAg)}>
-              <PlasmicLink__
-                className={classNames(
-                  projectcss.all,
-                  projectcss.a,
-                  projectcss.__wab_text,
-                  sty.link___2IPcp
-                )}
-                component={Link}
-                href={"https://www.plasmic.app/"}
-                platform={"nextjs"}
-              >
-                {"See all the news"}
-              </PlasmicLink__>
-            </div>
-            <div className={classNames(projectcss.all, sty.column___0Y2I7)}>
-              <PlasmicLink__
-                className={classNames(
-                  projectcss.all,
-                  projectcss.a,
-                  projectcss.__wab_text,
-                  sty.link__kw5LY
-                )}
-                component={Link}
-                href={"https://www.plasmic.app/"}
-                platform={"nextjs"}
-              >
-                {"All matches"}
-              </PlasmicLink__>
-            </div>
-          </div>
-          <div className={classNames(projectcss.all, sty.freeBox__lTi8W)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__hSnOz
-              )}
-            >
-              {"Stats"}
-            </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__lS2S
-              )}
-            >
-              {"Fantasy"}
-            </div>
-          </div>
           <div className={classNames(projectcss.all, sty.columns__hmshc)}>
             <div className={classNames(projectcss.all, sty.column__ubaBx)}>
               <div
@@ -731,7 +258,29 @@ function PlasmicHomepage__RenderFunc(props: {
                   sty.text__smc8L
                 )}
               >
-                {"Most Ideal team Fixture 30"}
+                {
+                  "\u0421\u041e\u0411\u0420\u0410\u0422\u042a  \u041a\u041e\u041c\u0410\u041d\u0414\u0423"
+                }
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__ipYwg)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__tYlG
+                  )}
+                >
+                  {"11"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___8FaeX
+                  )}
+                >
+                  {"100 \u0441\u0443\u043c"}
+                </div>
               </div>
               <SoccerPlaceMens
                 data-plasmic-name={"soccerPlaceMens"}
@@ -739,79 +288,59 @@ function PlasmicHomepage__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.soccerPlaceMens)}
               />
 
-              <MarketMember
-                className={classNames(
-                  "__wab_instance",
-                  sty.marketMember__pTmtT
-                )}
-              />
-
-              <PlasmicLink__
-                className={classNames(
-                  projectcss.all,
-                  projectcss.a,
-                  projectcss.__wab_text,
-                  sty.link__smNsN
-                )}
-                component={Link}
-                href={"https://www.plasmic.app/"}
-                platform={"nextjs"}
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__qLnOw)}
               >
-                {"go to team of the weak"}
-              </PlasmicLink__>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    sty.link__lzWbv
+                  )}
+                  component={Link}
+                  href={"https://www.plasmic.app/"}
+                  platform={"nextjs"}
+                >
+                  {
+                    "\u041d\u0410\u0417\u0412 \u041a\u041e\u041c\u0410\u041d\u0414"
+                  }
+                </PlasmicLink__>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    sty.link___72HwL
+                  )}
+                  component={Link}
+                  href={"https://www.plasmic.app/"}
+                  platform={"nextjs"}
+                >
+                  {"\u041a\u0410\u041f\u0418\u0422\u0410\u041d"}
+                </PlasmicLink__>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    sty.link__exs7U
+                  )}
+                  component={Link}
+                  href={"https://www.plasmic.app/"}
+                  platform={"nextjs"}
+                >
+                  {"\u0421\u041eX\u0420\u0410\u041d\u0418\u0422\u042a"}
+                </PlasmicLink__>
+              </Stack__>
             </div>
-            <div className={classNames(projectcss.all, sty.column__ljt9J)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__qp8Lp
-                )}
-              >
-                {"In-Form Players"}
-              </div>
-              <PlasmicImg__
-                alt={""}
-                className={classNames(sty.img__nHt9)}
-                displayHeight={"auto"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"auto"}
-                loading={"lazy"}
-                src={{
-                  src: "/plasmic/proliga_clone/images/emptyStateNoResultswebp.webp",
-                  fullWidth: 145,
-                  fullHeight: 110,
-                  aspectRatio: undefined
-                }}
-              />
-
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__nYQjH
-                )}
-              >
-                {"no data"}
-              </div>
-              <PlasmicLink__
-                className={classNames(
-                  projectcss.all,
-                  projectcss.a,
-                  projectcss.__wab_text,
-                  sty.link__rrSDg
-                )}
-                component={Link}
-                href={"https://www.plasmic.app/"}
-                platform={"nextjs"}
-              >
-                {"Show players"}
-              </PlasmicLink__>
-            </div>
-            <div className={classNames(projectcss.all, sty.column___7Ggbf)}>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.column___7Ggbf)}
+            >
               <div
                 className={classNames(
                   projectcss.all,
@@ -819,80 +348,1871 @@ function PlasmicHomepage__RenderFunc(props: {
                   sty.text__ru5GL
                 )}
               >
-                {"Market"}
+                {"\u041f\u0420\u0410\u0412\u0418\u041b\u0418!"}
               </div>
-              <MarketMember
+              <MessageCard
+                className={classNames("__wab_instance", sty.messageCard__hDvns)}
+              />
+
+              <MessageCard
                 className={classNames(
                   "__wab_instance",
-                  sty.marketMember___2JEJo
+                  sty.messageCard___4RSaU
                 )}
               />
 
-              <MarketMember
-                borjaMayoral={true}
+              <MessageCard
                 className={classNames(
                   "__wab_instance",
-                  sty.marketMember__pqCvr
+                  sty.messageCard___2ONt1
                 )}
               />
 
-              <MarketMember
-                className={classNames(
-                  "__wab_instance",
-                  sty.marketMember__sRxMk
-                )}
+              <MessageCard
+                className={classNames("__wab_instance", sty.messageCard__apEks)}
               />
-
-              <MarketMember
-                className={classNames(
-                  "__wab_instance",
-                  sty.marketMember__pxnig
-                )}
-                mendez={true}
-              />
-
-              <MarketMember
-                className={classNames(
-                  "__wab_instance",
-                  sty.marketMember__jbBtg
-                )}
-              />
-
-              <MarketMember
-                borjaMayoral={true}
-                className={classNames(
-                  "__wab_instance",
-                  sty.marketMember__i6QhO
-                )}
-              />
-
-              <MarketMember
-                className={classNames(
-                  "__wab_instance",
-                  sty.marketMember___6HLlc
-                )}
-              />
-
-              <MarketMember
-                className={classNames(
-                  "__wab_instance",
-                  sty.marketMember__kSyqu
-                )}
-              />
-
-              <PlasmicLink__
+            </Stack__>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.column__ljt9J)}
+            >
+              <div
                 className={classNames(
                   projectcss.all,
-                  projectcss.a,
                   projectcss.__wab_text,
-                  sty.link__lWzaV
+                  sty.text__qp8Lp
                 )}
-                component={Link}
-                href={"https://www.plasmic.app/"}
-                platform={"nextjs"}
               >
-                {"go to transfer market"}
-              </PlasmicLink__>
+                {"\u041f\u0420\u0410\u0412\u0418\u041b\u0418!"}
+              </div>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__nZk)}
+              >
+                <Select
+                  data-plasmic-name={"select"}
+                  data-plasmic-override={overrides.select}
+                  className={classNames("__wab_instance", sty.select)}
+                  onChange={(...eventArgs) => {
+                    generateStateOnChangeProp($state, ["select", "value"])(
+                      eventArgs[0]
+                    );
+                  }}
+                  options={[
+                    { value: "option1", label: "Option 1" },
+                    { value: "option2", label: "Option 2" }
+                  ]}
+                  placeholder={
+                    "-\u0412\u0441\u0435 \u043a\u043b\u0443\u0431\u044b"
+                  }
+                  value={generateStateValueProp($state, ["select", "value"])}
+                />
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__olZs)}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__hP66M
+                  )}
+                >
+                  {"\u0426\u0435\u043d\u0430 \u043e\u0442"}
+                </div>
+                <Select
+                  data-plasmic-name={"select2"}
+                  data-plasmic-override={overrides.select2}
+                  className={classNames("__wab_instance", sty.select2)}
+                  onChange={(...eventArgs) => {
+                    generateStateOnChangeProp($state, ["select2", "value"])(
+                      eventArgs[0]
+                    );
+                  }}
+                  options={[
+                    { value: "option1", label: "Option 1" },
+                    { value: "option2", label: "Option 2" }
+                  ]}
+                  placeholder={"40"}
+                  value={generateStateValueProp($state, ["select2", "value"])}
+                />
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___4FfY4)}
+              >
+                <Select
+                  data-plasmic-name={"select5"}
+                  data-plasmic-override={overrides.select5}
+                  className={classNames("__wab_instance", sty.select5)}
+                  onChange={(...eventArgs) => {
+                    generateStateOnChangeProp($state, ["select5", "value"])(
+                      eventArgs[0]
+                    );
+                  }}
+                  options={[
+                    { value: "option1", label: "Option 1" },
+                    { value: "option2", label: "Option 2" }
+                  ]}
+                  placeholder={
+                    "-\u0412\u0441\u0435  \u0438\u0433\u0440\u043e\u043a\u0438"
+                  }
+                  value={generateStateValueProp($state, ["select5", "value"])}
+                />
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__bdilj)}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ahhtc
+                  )}
+                >
+                  {"\u0414\u043e"}
+                </div>
+                <Select
+                  data-plasmic-name={"select6"}
+                  data-plasmic-override={overrides.select6}
+                  className={classNames("__wab_instance", sty.select6)}
+                  onChange={(...eventArgs) => {
+                    generateStateOnChangeProp($state, ["select6", "value"])(
+                      eventArgs[0]
+                    );
+                  }}
+                  options={[
+                    { value: "option1", label: "Option 1" },
+                    { value: "option2", label: "Option 2" }
+                  ]}
+                  placeholder={"12,0"}
+                  value={generateStateValueProp($state, ["select6", "value"])}
+                />
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__tfmIo)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___3Rqje
+                  )}
+                >
+                  {"\u0418\u0433\u0440\u043e\u043a"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__nXnUk
+                  )}
+                >
+                  {"\u041e\u0447\u043a\u0438"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___04Pyj
+                  )}
+                >
+                  {"\u0426\u0435\u043d\u0430"}
+                </div>
+              </Stack__>
+              <div className={classNames(projectcss.all, sty.freeBox__fJFlU)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img___6DBE)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__msyDb)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__pAknB
+                  )}
+                >
+                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__hg32Z
+                  )}
+                >
+                  {"32"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___62SEp
+                  )}
+                >
+                  {"12.5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__f0IVw)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__y5KrK)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__hz3Ct)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__me2YB
+                  )}
+                >
+                  {"\u041c\u0435\u0441\u0441\u0438"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__winha
+                  )}
+                >
+                  {"11"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ezFd
+                  )}
+                >
+                  {"10,5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__edVNc)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__kOawP)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__vkCjS)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__gFkUp
+                  )}
+                >
+                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___7ExXl
+                  )}
+                >
+                  {"32"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__zwTp4
+                  )}
+                >
+                  {"12.5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__z5ACu)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__pguL)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__ub07N)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__rQb3C
+                  )}
+                >
+                  {"\u041c\u0435\u0441\u0441\u0438"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__bSAtL
+                  )}
+                >
+                  {"11"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__bEjft
+                  )}
+                >
+                  {"10,5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__jgO73)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img___7ZLm)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img___0TMco)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__arpgY
+                  )}
+                >
+                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jlIgg
+                  )}
+                >
+                  {"32"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__vvVfn
+                  )}
+                >
+                  {"12.5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__vwNj5)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img___2RcI7)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__uz2A1)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__qzYTg
+                  )}
+                >
+                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__m8H4O
+                  )}
+                >
+                  {"32"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__vazOn
+                  )}
+                >
+                  {"12.5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__qdDw)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__fWag2)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__oGrB5)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___4G5XL
+                  )}
+                >
+                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__adJoz
+                  )}
+                >
+                  {"32"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__zoxXi
+                  )}
+                >
+                  {"12.5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___9EfPu)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__tyMtF)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__kxU39)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ibbk
+                  )}
+                >
+                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__umwI5
+                  )}
+                >
+                  {"32"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__xNm8B
+                  )}
+                >
+                  {"12.5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__x8EHu)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__lX1Qe)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__dMaJc)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__oft4H
+                  )}
+                >
+                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__r1Oyy
+                  )}
+                >
+                  {"32"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__tCriD
+                  )}
+                >
+                  {"12.5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__xmYee)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__egzat)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
+                  width={"14px"}
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__rPfdy)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__fKhW0
+                  )}
+                >
+                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__rmwlv
+                  )}
+                >
+                  {"32"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__nPJ7
+                  )}
+                >
+                  {"12.5"}
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___7GljZ)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jNvEx
+                  )}
+                >
+                  {
+                    "\u041f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0438\u0439"
+                  }
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__l2Bv
+                  )}
+                >
+                  {"|"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__bIGh
+                  )}
+                >
+                  {"\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439"}
+                </div>
+              </div>
+            </Stack__>
+          </div>
+          <div className={classNames(projectcss.all, sty.columns__mFen7)}>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.column___2E1RK)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__eOCd
+                )}
+              >
+                {"\u0418\u0433\u0440\u044b"}
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___1F1Kc)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__tfyri)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t3.png"
+                  }
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__y0Kx3
+                  )}
+                >
+                  {"Arsenal"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__lJtcL
+                  )}
+                >
+                  {"21:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__cwhfo
+                  )}
+                >
+                  {"Chelsea"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__mTwCg)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t8.png"
+                  }
+                />
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___7MuNc)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__lyYBn)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t14.png"
+                  }
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__klcN9
+                  )}
+                >
+                  {"Arsenal"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__dZokZ
+                  )}
+                >
+                  {"21:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ngAl
+                  )}
+                >
+                  {"Chelsea"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__jpV5K)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t49.png"
+                  }
+                />
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__nswPv)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__fNjj)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t21.png"
+                  }
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__nVwBu
+                  )}
+                >
+                  {"Arsenal"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__hE7ZA
+                  )}
+                >
+                  {"21:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__iiP1
+                  )}
+                >
+                  {"Chelsea"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__xz9B8)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t6.png"
+                  }
+                />
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__lSveU)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img___6Hq8Q)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t102.png"
+                  }
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ych0Y
+                  )}
+                >
+                  {"Arsenal"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__gaFu
+                  )}
+                >
+                  {"21:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__cEhwp
+                  )}
+                >
+                  {"Chelsea"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__eIrOq)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t8.png"
+                  }
+                />
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__x7Yjm)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img___4SNLz)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t3.png"
+                  }
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__cvKng
+                  )}
+                >
+                  {"Arsenal"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___5YDjs
+                  )}
+                >
+                  {"21:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jle3B
+                  )}
+                >
+                  {"Chelsea"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__odgSd)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t31.png"
+                  }
+                />
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__b3Ks)}>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img___4Box9)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t39.png"
+                  }
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__rVpEu
+                  )}
+                >
+                  {"Arsenal"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___8YXf
+                  )}
+                >
+                  {"21:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__s8Mpk
+                  )}
+                >
+                  {"Chelsea"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__uIaHw)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t8.png"
+                  }
+                />
+              </div>
+            </Stack__>
+            <div className={classNames(projectcss.all, sty.column__w2Ixm)}>
+              <PlasmicImg__
+                alt={""}
+                className={classNames(sty.img__jcG8)}
+                displayHeight={"auto"}
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"auto"}
+                loading={"lazy"}
+                src={
+                  "https://www.creatopy.com/blog/wp-content/uploads/2016/05/Ebay-420x600.png"
+                }
+              />
+            </div>
+            <div className={classNames(projectcss.all, sty.column__d53Iu)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__zjZe1
+                )}
+              >
+                {
+                  "\u0421\u0432\u044f\u0437\u0430\u0442\u044c\u0441\u044f \u0441 \u043d\u0430\u043c\u0438"
+                }
+              </div>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__br8Ag)}
+              >
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__djMtZ)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"32px"}
+                  loading={"lazy"}
+                  src={
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
+                  }
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__zSyD4)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"32px"}
+                  loading={"lazy"}
+                  src={
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/2048px-Telegram_2019_Logo.svg.png"
+                  }
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__cTmnU)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"32px"}
+                  loading={"lazy"}
+                  src={
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhqhCE1ZItBk2eXdpda7hUVibZjDbg_iVhUzQ1_xvmjQ&s"
+                  }
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img___5Ra7A)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"32px"}
+                  loading={"lazy"}
+                  src={
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Odnoklassniki.svg/1200px-Odnoklassniki.svg.png"
+                  }
+                />
+
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__v6Ff)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"32px"}
+                  loading={"lazy"}
+                  src={
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/512px-Logo_of_Twitter.svg.png"
+                  }
+                />
+              </Stack__>
+              <PlasmicImg__
+                alt={""}
+                className={classNames(sty.img___6H1Lm)}
+                displayHeight={"auto"}
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"auto"}
+                loading={"lazy"}
+                src={
+                  "https://lh5.googleusercontent.com/s33DzDKEMEHPerhhGM8VZxT2NQbWzvjqQDfN0m_cgVSE4GS1JgeF9illZxM4AleZLqpjpGU9oVPkL1CYniGp53lQSbDLDkrf0n3gid1ZAGO1ad6UDML3Lvfk5TBDB9N0sD3adio_"
+                }
+              />
+            </div>
+          </div>
+          <div className={classNames(projectcss.all, sty.columns__dioX)}>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.column__dY1Z8)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___2Hjdd
+                )}
+              >
+                {"\u041d\u043e\u0432\u043e\u0441\u0442\u0438"}
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__bwAt)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__gNxV8
+                  )}
+                >
+                  {"14:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__dyz7H
+                  )}
+                >
+                  {
+                    "\u0418\u0433\u0440\u043e\u043a \u00ab\u0427\u0435\u043b\u0441\u0438\u00bb \u0443\u0437\u043d\u0430\u043b \u043e\u0431 \u044d\u0442\u043e\u043c"
+                  }
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__cKGo6)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__dbYba
+                  )}
+                >
+                  {"16:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___5FzwA
+                  )}
+                >
+                  {
+                    "\u0418\u0433\u0440\u043e\u043a \u00ab\u0427\u0435\u043b\u0441\u0438\u00bb \u0443\u0437\u043d\u0430\u043b \u043e\u0431 \u044d\u0442\u043e\u043c"
+                  }
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__itf9G)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___3Lm0B
+                  )}
+                >
+                  {"14:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jcm90
+                  )}
+                >
+                  {
+                    "\u0418\u0433\u0440\u043e\u043a \u00ab\u0427\u0435\u043b\u0441\u0438\u00bb \u0443\u0437\u043d\u0430\u043b \u043e\u0431 \u044d\u0442\u043e\u043c"
+                  }
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__w5XLt)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__bb231
+                  )}
+                >
+                  {"14:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__e36SH
+                  )}
+                >
+                  {
+                    "\u0418\u0433\u0440\u043e\u043a \u00ab\u0427\u0435\u043b\u0441\u0438\u00bb \u0443\u0437\u043d\u0430\u043b \u043e\u0431 \u044d\u0442\u043e\u043c"
+                  }
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__asMut)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__wLpZ
+                  )}
+                >
+                  {"14:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__y1Opr
+                  )}
+                >
+                  {
+                    "\u0418\u0433\u0440\u043e\u043a \u00ab\u0427\u0435\u043b\u0441\u0438\u00bb \u0443\u0437\u043d\u0430\u043b \u043e\u0431 \u044d\u0442\u043e\u043c"
+                  }
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__z30Rr)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__cbWfn
+                  )}
+                >
+                  {"14:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__dxqg7
+                  )}
+                >
+                  {
+                    "\u0418\u0433\u0440\u043e\u043a \u00ab\u0427\u0435\u043b\u0441\u0438\u00bb \u0443\u0437\u043d\u0430\u043b \u043e\u0431 \u044d\u0442\u043e\u043c"
+                  }
+                </div>
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__n615V)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__w84ZK
+                  )}
+                >
+                  {"14:00"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__o5E9
+                  )}
+                >
+                  {
+                    "\u0418\u0433\u0440\u043e\u043a \u00ab\u0427\u0435\u043b\u0441\u0438\u00bb \u0443\u0437\u043d\u0430\u043b \u043e\u0431 \u044d\u0442\u043e\u043c"
+                  }
+                </div>
+              </div>
+            </Stack__>
+            <div className={classNames(projectcss.all, sty.column__ifeDh)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__wkeHe
+                )}
+              >
+                {"\u041f\u043e\u0434\u0440\u043e\u0431\u043d\u0435\u0435"}
+              </div>
+              <PlasmicImg__
+                alt={""}
+                className={classNames(sty.img__xtpA5)}
+                displayHeight={"auto"}
+                displayMaxHeight={"none"}
+                displayMaxWidth={"100%"}
+                displayMinHeight={"0"}
+                displayMinWidth={"0"}
+                displayWidth={"auto"}
+                loading={"lazy"}
+                src={
+                  "https://img.chelseafc.com/image/upload/f_auto,ar_16:9,w_500,c_fill,g_auto,q_90/editorial/news/2024/05/21/Richard_Olise_Chelsea_defender.jpg"
+                }
+              />
+
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__eHuVg
+                )}
+              >
+                {
+                  "\u00ab\u0427\u0435\u043b\u0441\u0438\u00bb \u0445\u043e\u0447\u0435\u0442 \u043f\u0440\u0438\u043e\u0431\u0440\u0435\u0441\u0442\u0438 \u0438\u0433\u0440\u043e\u043a\u0430 \u0438\u0437 \u041b\u0430 \u041b\u0438\u0433\u0438."
+                }
+              </div>
+            </div>
+            <div className={classNames(projectcss.all, sty.column__ycZ7Y)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__bS99H
+                )}
+              >
+                {"\u0442\u0430\u0431\u043b\u0438\u0446\u044c "}
+              </div>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__jGqfr)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__hyYfi
+                  )}
+                >
+                  {"\u0418\u0441\u043f\u0430\u043d\u0438\u044f"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__nKbvV)}
+                  displayHeight={"100%"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  height={"14px"}
+                  loading={"lazy"}
+                  src={
+                    "https://flagdownload.com/wp-content/uploads/Flag_of_Spain_Flat_Round.png"
+                  }
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__vcpuP)}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__q3Eyj
+                  )}
+                >
+                  {"O\u0431"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___1Z5WV
+                  )}
+                >
+                  {"T/S"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__uOOq0
+                  )}
+                >
+                  {"O"}
+                </div>
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__bqHCq)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__x3Ys4
+                  )}
+                >
+                  {"\u041c\u0430\u0434\u0440\u0438\u0434"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__foOtP)}
+                  displayHeight={"100%"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  height={"14px"}
+                  loading={"lazy"}
+                  src={
+                    "https://seeklogo.com/images/R/real-madrid-club-crest-new-logo-03D0B23BC4-seeklogo.com.png"
+                  }
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__jJFrc)}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__dMLfx
+                  )}
+                >
+                  {"12"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__d7Re
+                  )}
+                >
+                  {"9"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___6S3JN
+                  )}
+                >
+                  {"15"}
+                </div>
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__jnbNd)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__rQx7R
+                  )}
+                >
+                  {"\u041c\u0430\u0434\u0440\u0438\u0434"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__b61If)}
+                  displayHeight={"100%"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  height={"14px"}
+                  loading={"lazy"}
+                  src={
+                    "https://1000logos.net/wp-content/uploads/2018/05/Atletico-Madrid-Logo.png"
+                  }
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___6GjaG)}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__vxv67
+                  )}
+                >
+                  {"12"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__drsju
+                  )}
+                >
+                  {"9"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__pcjSo
+                  )}
+                >
+                  {"15"}
+                </div>
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__vH7Xq)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__fkE4N
+                  )}
+                >
+                  {"\u041c\u0430\u0434\u0440\u0438\u0434"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__icD35)}
+                  displayHeight={"100%"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  height={"14px"}
+                  loading={"lazy"}
+                  src={
+                    "https://upload.wikimedia.org/wikipedia/sco/thumb/c/cc/Chelsea_FC.svg/2048px-Chelsea_FC.svg.png"
+                  }
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__d8TKw)}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__hl0PT
+                  )}
+                >
+                  {"12"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__zKbfG
+                  )}
+                >
+                  {"9"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jaXhm
+                  )}
+                >
+                  {"15"}
+                </div>
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___1Rl5P)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__fxlkE
+                  )}
+                >
+                  {"\u041c\u0430\u0434\u0440\u0438\u0434"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__uWuZb)}
+                  displayHeight={"100%"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  height={"14px"}
+                  loading={"lazy"}
+                  src={
+                    "https://logowik.com/content/uploads/images/526_liverpoolfc.jpg"
+                  }
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__x3MJn)}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___8Rfy4
+                  )}
+                >
+                  {"12"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__i37HZ
+                  )}
+                >
+                  {"9"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__fZkA
+                  )}
+                >
+                  {"15"}
+                </div>
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___6Bcxj)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__b5ANs
+                  )}
+                >
+                  {"\u041c\u0430\u0434\u0440\u0438\u0434"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__rfGan)}
+                  displayHeight={"100%"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  height={"14px"}
+                  loading={"lazy"}
+                  src={
+                    "https://resources.premierleague.com/premierleague/badges/50/t1.png"
+                  }
+                  width={"14px"}
+                />
+
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___4UmHm)}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__qOdCq
+                  )}
+                >
+                  {"12"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___77NFm
+                  )}
+                >
+                  {"9"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__lYtwv
+                  )}
+                >
+                  {"15"}
+                </div>
+              </Stack__>
             </div>
           </div>
           <Footer
@@ -912,31 +2232,23 @@ const PlasmicDescendants = {
     "navbar",
     "clubs2",
     "heroSection",
-    "signIn",
-    "h4",
-    "h2",
-    "signInButtons",
     "searchComponent",
-    "breakingNews",
-    "breakingNewsSection",
-    "news",
-    "matchesCalendar",
     "soccerPlaceMens",
+    "select",
+    "select2",
+    "select5",
+    "select6",
     "footer"
   ],
   navbar: ["navbar"],
   clubs2: ["clubs2"],
-  heroSection: ["heroSection", "signIn", "h4", "h2", "signInButtons"],
-  signIn: ["signIn", "h4", "h2", "signInButtons"],
-  h4: ["h4"],
-  h2: ["h2"],
-  signInButtons: ["signInButtons"],
+  heroSection: ["heroSection"],
   searchComponent: ["searchComponent"],
-  breakingNews: ["breakingNews"],
-  breakingNewsSection: ["breakingNewsSection", "news", "matchesCalendar"],
-  news: ["news"],
-  matchesCalendar: ["matchesCalendar"],
   soccerPlaceMens: ["soccerPlaceMens"],
+  select: ["select"],
+  select2: ["select2"],
+  select5: ["select5"],
+  select6: ["select6"],
   footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -947,16 +2259,12 @@ type NodeDefaultElementType = {
   navbar: typeof Navbar;
   clubs2: typeof Clubs2;
   heroSection: "div";
-  signIn: "div";
-  h4: "h4";
-  h2: "h2";
-  signInButtons: typeof SignInButtons;
   searchComponent: typeof SearchComponent;
-  breakingNews: "div";
-  breakingNewsSection: "div";
-  news: "div";
-  matchesCalendar: typeof MatchesCalendar;
   soccerPlaceMens: typeof SoccerPlaceMens;
+  select: typeof Select;
+  select2: typeof Select;
+  select5: typeof Select;
+  select6: typeof Select;
   footer: typeof Footer;
 };
 
@@ -1040,16 +2348,12 @@ export const PlasmicHomepage = Object.assign(
     navbar: makeNodeComponent("navbar"),
     clubs2: makeNodeComponent("clubs2"),
     heroSection: makeNodeComponent("heroSection"),
-    signIn: makeNodeComponent("signIn"),
-    h4: makeNodeComponent("h4"),
-    h2: makeNodeComponent("h2"),
-    signInButtons: makeNodeComponent("signInButtons"),
     searchComponent: makeNodeComponent("searchComponent"),
-    breakingNews: makeNodeComponent("breakingNews"),
-    breakingNewsSection: makeNodeComponent("breakingNewsSection"),
-    news: makeNodeComponent("news"),
-    matchesCalendar: makeNodeComponent("matchesCalendar"),
     soccerPlaceMens: makeNodeComponent("soccerPlaceMens"),
+    select: makeNodeComponent("select"),
+    select2: makeNodeComponent("select2"),
+    select5: makeNodeComponent("select5"),
+    select6: makeNodeComponent("select6"),
     footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicHomepage

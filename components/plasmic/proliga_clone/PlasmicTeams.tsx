@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
 import {
   executePlasmicDataOp,
   usePlasmicDataOp,
@@ -66,10 +67,16 @@ import {
 } from "@plasmicapp/react-web/lib/data-sources";
 
 import Navbar from "../../Navbar"; // plasmic-import: TKT8XnZtrLZi/component
+import { AntdModal } from "@plasmicpkgs/antd5/skinny/registerModal";
+import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton";
+import UpdateCapitan from "../../UpdateCapitan"; // plasmic-import: XWByMSCmxs7g/component
 import { AntdDropdown } from "@plasmicpkgs/antd5/skinny/registerDropdown";
 import { AntdMenuItem } from "@plasmicpkgs/antd5/skinny/registerMenu";
-import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton";
+import AvatarPlayer from "../../AvatarPlayer"; // plasmic-import: 4QnaRcOLXj0D/component
 import SoccerPlaceMens2 from "../../SoccerPlaceMens2"; // plasmic-import: xodLqMOhDs29/component
+import PlayerPickerRow from "../../PlayerPickerRow"; // plasmic-import: NaQtMjgilBY9/component
+import SideBarMyTeam from "../../SideBarMyTeam"; // plasmic-import: 7ylFTnxhQETY/component
+import Footer from "../../Footer"; // plasmic-import: kIdovXGtWiEz/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariants_8Rmrqs5Mzp6I } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: 8Rmrqs5Mzp6I/globalVariant
@@ -95,10 +102,18 @@ export const PlasmicTeams__ArgProps = new Array<ArgPropType>();
 export type PlasmicTeams__OverridesType = {
   root?: Flex__<"div">;
   navbar?: Flex__<typeof Navbar>;
+  modal?: Flex__<typeof AntdModal>;
+  updateCapitan?: Flex__<typeof UpdateCapitan>;
   columns?: Flex__<"div">;
   _532?: Flex__<typeof AntdDropdown>;
-  button?: Flex__<typeof AntdButton>;
+  goa?: Flex__<"div">;
+  def?: Flex__<"div">;
+  mid?: Flex__<"div">;
+  str?: Flex__<"div">;
   soccerPlaceMens2?: Flex__<typeof SoccerPlaceMens2>;
+  playerPickerRow?: Flex__<typeof PlayerPickerRow>;
+  sideBarMyTeam?: Flex__<typeof SideBarMyTeam>;
+  footer?: Flex__<typeof Footer>;
 };
 
 export interface DefaultTeamsProps {}
@@ -137,28 +152,198 @@ function PlasmicTeams__RenderFunc(props: {
   let [$queries, setDollarQueries] = React.useState<
     Record<string, ReturnType<typeof usePlasmicDataOp>>
   >({});
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "inputState",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => "DEF"
+      },
+      {
+        path: "teamplayerstate",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+      },
+      {
+        path: "sellBtnBool",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return undefined;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "modal.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "playerId",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) => 0
+      },
+      {
+        path: "variable",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "capitanBtnVisibility",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: $queries,
+    $refs
+  });
+  const dataSourcesCtx = usePlasmicDataSourceContext();
+  const plasmicInvalidate = usePlasmicInvalidate();
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    query: usePlasmicDataOp(() => {
+    teamP: usePlasmicDataOp(() => {
       return {
         sourceId: "8cdHi4ivRUEkK6qbegQevF",
-        opId: "ddbabb1a-fe92-4796-ab1e-aaa7cfe9d995",
+        opId: "f2c281a8-38ed-48b3-ba38-e7231daa5b27",
+        userArgs: {},
+        cacheKey: `plasmic.$.f2c281a8-38ed-48b3-ba38-e7231daa5b27.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    goa: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "29d74613-54ba-4cc4-be49-65113419c637",
         userArgs: {
-          filters: [$ctx.params.id]
+          filters: [$queries.teamP.data[0].id]
         },
-        cacheKey: `plasmic.$.${(() => {
-          try {
-            return "getOne";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return "";
-            }
-            throw e;
-          }
-        })()}.$.ddbabb1a-fe92-4796-ab1e-aaa7cfe9d995.$.`,
+        cacheKey: `plasmic.$.29d74613-54ba-4cc4-be49-65113419c637.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    }),
+    player: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "1d0b7867-0ce2-4787-a529-89ca47095a81",
+        userArgs: {},
+        cacheKey: `plasmic.$.1d0b7867-0ce2-4787-a529-89ca47095a81.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    }),
+    def: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "c7d4d263-b030-4b91-9747-74e8333a1692",
+        userArgs: {
+          filters: [$queries.teamP.data[0].id]
+        },
+        cacheKey: `plasmic.$.c7d4d263-b030-4b91-9747-74e8333a1692.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    mid: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "6bdd93d5-cbe1-4513-9e93-4dd708ab47ff",
+        userArgs: {
+          filters: [$queries.teamP.data[0].id]
+        },
+        cacheKey: `plasmic.$.6bdd93d5-cbe1-4513-9e93-4dd708ab47ff.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    }),
+    str: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "8ed66bc2-bbd7-4865-ac90-a1928fef354e",
+        userArgs: {
+          filters: [$queries.teamP.data[0].id]
+        },
+        cacheKey: `plasmic.$.8ed66bc2-bbd7-4865-ac90-a1928fef354e.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    }),
+    teamPlayer: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "0587a83a-421e-4952-9de7-8fda9765b854",
+        userArgs: {
+          filters: [$queries.teamP.data[0].id]
+        },
+        cacheKey: `plasmic.$.0587a83a-421e-4952-9de7-8fda9765b854.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    }),
+    clubs: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "27028f27-27b7-4991-8695-0bfb15c4a008",
+        userArgs: {},
+        cacheKey: `plasmic.$.27028f27-27b7-4991-8695-0bfb15c4a008.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    }),
+    pickplayer: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "a5125adb-bfa7-44e1-93f4-3e0b2b9b670c",
+        userArgs: {
+          filters: [$state.inputState]
+        },
+        cacheKey: `plasmic.$.a5125adb-bfa7-44e1-93f4-3e0b2b9b670c.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    }),
+    pickedPlayersCount: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "dc06ce2a-bfaa-450c-9107-6eaef3b16d33",
+        userArgs: {
+          filters: [$queries.teamP.data[0].id]
+        },
+        cacheKey: `plasmic.$.dc06ce2a-bfaa-450c-9107-6eaef3b16d33.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    }),
+    teamCapitan: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "1c1b4b12-06d9-4774-90d7-13f88aae33f2",
+        userArgs: {
+          filters: [$queries.teamP.data[0].id]
+        },
+        cacheKey: `plasmic.$.1c1b4b12-06d9-4774-90d7-13f88aae33f2.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -238,6 +423,351 @@ function PlasmicTeams__RenderFunc(props: {
             >
               {"Points"}
             </PlasmicLink__>
+            <div className={classNames(projectcss.all, sty.freeBox__cynQa)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__jGxnO
+                )}
+              >
+                {"Balance"}
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__mbNo
+                )}
+              >
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return "$" + $queries.teamP.data[0].balance;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              </div>
+            </div>
+            <AntdModal
+              data-plasmic-name={"modal"}
+              data-plasmic-override={overrides.modal}
+              className={classNames("__wab_instance", sty.modal)}
+              closeButtonClassName={classNames({
+                [sty["pcls_Dx5cv0NQahko"]]: true
+              })}
+              defaultStylesClassName={classNames(
+                projectcss.root_reset,
+                projectcss.plasmic_default_styles,
+                projectcss.plasmic_mixins,
+                projectcss.plasmic_tokens,
+                plasmic_antd_5_hostless_css.plasmic_tokens,
+                plasmic_plasmic_rich_components_css.plasmic_tokens
+              )}
+              maskClosable={true}
+              modalContentClassName={classNames({
+                [sty["pcls_ssjnNtDHYMdD"]]: true
+              })}
+              modalScopeClassName={sty["modal__modal"]}
+              okText={"Sell"}
+              onOk={async () => {
+                const $steps = {};
+
+                $steps["postgresUpdateById"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        dataOp: {
+                          sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                          opId: "784d036a-6f3d-4248-a27d-1b8ba3616ac8",
+                          userArgs: {
+                            keys: [$state.teamplayerstate],
+                            variables: [null]
+                          },
+                          cacheKey: null,
+                          invalidatedKeys: ["plasmic_refresh_all"],
+                          roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                        }
+                      };
+                      return (async ({ dataOp, continueOnError }) => {
+                        try {
+                          const response = await executePlasmicDataOp(dataOp, {
+                            userAuthToken: dataSourcesCtx?.userAuthToken,
+                            user: dataSourcesCtx?.user
+                          });
+                          await plasmicInvalidate(dataOp.invalidatedKeys);
+                          return response;
+                        } catch (e) {
+                          if (!continueOnError) {
+                            throw e;
+                          }
+                          return e;
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["postgresUpdateById"] != null &&
+                  typeof $steps["postgresUpdateById"] === "object" &&
+                  typeof $steps["postgresUpdateById"].then === "function"
+                ) {
+                  $steps["postgresUpdateById"] = await $steps[
+                    "postgresUpdateById"
+                  ];
+                }
+
+                $steps["revertMoney"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        dataOp: {
+                          sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                          opId: "5df622fa-bcb3-48c3-b0bf-51f41af19ca7",
+                          userArgs: {
+                            keys: [$queries.teamP.data[0].id],
+                            variables: [
+                              $queries.teamP.data[0].balance +
+                                $queries.player.data[$state.playerId - 1]
+                                  .market_value
+                            ]
+                          },
+                          cacheKey: null,
+                          invalidatedKeys: ["plasmic_refresh_all"],
+                          roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                        }
+                      };
+                      return (async ({ dataOp, continueOnError }) => {
+                        try {
+                          const response = await executePlasmicDataOp(dataOp, {
+                            userAuthToken: dataSourcesCtx?.userAuthToken,
+                            user: dataSourcesCtx?.user
+                          });
+                          await plasmicInvalidate(dataOp.invalidatedKeys);
+                          return response;
+                        } catch (e) {
+                          if (!continueOnError) {
+                            throw e;
+                          }
+                          return e;
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["revertMoney"] != null &&
+                  typeof $steps["revertMoney"] === "object" &&
+                  typeof $steps["revertMoney"].then === "function"
+                ) {
+                  $steps["revertMoney"] = await $steps["revertMoney"];
+                }
+
+                $steps["upadateActivity"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        dataOp: {
+                          sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                          opId: "91020635-a445-466e-9689-42d162095ebd",
+                          userArgs: {
+                            variables: [
+                              $queries.teamP.data[0].id,
+                              "You Seld " +
+                                $queries.player.data[$state.playerId - 1].name +
+                                " for $" +
+                                $queries.player.data[$state.playerId - 1]
+                                  .market_value
+                            ]
+                          },
+                          cacheKey: null,
+                          invalidatedKeys: ["plasmic_refresh_all"],
+                          roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                        }
+                      };
+                      return (async ({ dataOp, continueOnError }) => {
+                        try {
+                          const response = await executePlasmicDataOp(dataOp, {
+                            userAuthToken: dataSourcesCtx?.userAuthToken,
+                            user: dataSourcesCtx?.user
+                          });
+                          await plasmicInvalidate(dataOp.invalidatedKeys);
+                          return response;
+                        } catch (e) {
+                          if (!continueOnError) {
+                            throw e;
+                          }
+                          return e;
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["upadateActivity"] != null &&
+                  typeof $steps["upadateActivity"] === "object" &&
+                  typeof $steps["upadateActivity"].then === "function"
+                ) {
+                  $steps["upadateActivity"] = await $steps["upadateActivity"];
+                }
+              }}
+              onOpenChange={generateStateOnChangeProp($state, [
+                "modal",
+                "open"
+              ])}
+              open={generateStateValueProp($state, ["modal", "open"])}
+              title={"Do you Want Sell this player?"}
+              trigger={
+                (() => {
+                  try {
+                    return $state.sellBtnBool;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <AntdButton
+                    className={classNames("__wab_instance", sty.button__ahFXh)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text___8Tten
+                      )}
+                    >
+                      {"Sell"}
+                    </div>
+                  </AntdButton>
+                ) : null
+              }
+              wrapClassName={classNames({ [sty["pcls_Ptl9_TeQa_Ax"]]: true })}
+            >
+              <div className={classNames(projectcss.all, sty.freeBox__spkbu)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__sFdYt
+                  )}
+                >
+                  {"Modal content"}
+                </div>
+              </div>
+            </AntdModal>
+            {(() => {
+              try {
+                return $state.capitanBtnVisibility;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <UpdateCapitan
+                data-plasmic-name={"updateCapitan"}
+                data-plasmic-override={overrides.updateCapitan}
+                acceptBtn={async () => {
+                  const $steps = {};
+
+                  $steps["unsetCapitan"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          dataOp: {
+                            sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                            opId: "fd8a9fde-dd5e-438f-aa7a-80522af64b03",
+                            userArgs: {
+                              keys: [$queries.teamCapitan.data[0].id]
+                            },
+                            cacheKey: null,
+                            invalidatedKeys: ["plasmic_refresh_all"],
+                            roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                          }
+                        };
+                        return (async ({ dataOp, continueOnError }) => {
+                          try {
+                            const response = await executePlasmicDataOp(
+                              dataOp,
+                              {
+                                userAuthToken: dataSourcesCtx?.userAuthToken,
+                                user: dataSourcesCtx?.user
+                              }
+                            );
+                            await plasmicInvalidate(dataOp.invalidatedKeys);
+                            return response;
+                          } catch (e) {
+                            if (!continueOnError) {
+                              throw e;
+                            }
+                            return e;
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["unsetCapitan"] != null &&
+                    typeof $steps["unsetCapitan"] === "object" &&
+                    typeof $steps["unsetCapitan"].then === "function"
+                  ) {
+                    $steps["unsetCapitan"] = await $steps["unsetCapitan"];
+                  }
+
+                  $steps["updateCapitan"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          dataOp: {
+                            sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                            opId: "4b1abc61-a700-4204-8274-7ede68ac93c7",
+                            userArgs: {
+                              keys: [$state.teamplayerstate]
+                            },
+                            cacheKey: null,
+                            invalidatedKeys: ["plasmic_refresh_all"],
+                            roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                          }
+                        };
+                        return (async ({ dataOp, continueOnError }) => {
+                          try {
+                            const response = await executePlasmicDataOp(
+                              dataOp,
+                              {
+                                userAuthToken: dataSourcesCtx?.userAuthToken,
+                                user: dataSourcesCtx?.user
+                              }
+                            );
+                            await plasmicInvalidate(dataOp.invalidatedKeys);
+                            return response;
+                          } catch (e) {
+                            if (!continueOnError) {
+                              throw e;
+                            }
+                            return e;
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCapitan"] != null &&
+                    typeof $steps["updateCapitan"] === "object" &&
+                    typeof $steps["updateCapitan"].then === "function"
+                  ) {
+                    $steps["updateCapitan"] = await $steps["updateCapitan"];
+                  }
+                }}
+                className={classNames("__wab_instance", sty.updateCapitan)}
+              />
+            ) : null}
           </Stack__>
           <div
             data-plasmic-name={"columns"}
@@ -316,9 +846,10 @@ function PlasmicTeams__RenderFunc(props: {
                     })()}
                   >
                     <AntdButton
-                      data-plasmic-name={"button"}
-                      data-plasmic-override={overrides.button}
-                      className={classNames("__wab_instance", sty.button)}
+                      className={classNames(
+                        "__wab_instance",
+                        sty.button__jbZUg
+                      )}
                     >
                       <div
                         className={classNames(
@@ -335,61 +866,1228 @@ function PlasmicTeams__RenderFunc(props: {
               })}
               <div className={classNames(projectcss.all, sty.freeBox__u1Zqe)}>
                 <div className={classNames(projectcss.all, sty.freeBox__iw1Nk)}>
-                  <div
+                  <Stack__
+                    as={"div"}
+                    hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox___6S8Gg)}
                   >
                     <div
-                      className={classNames(projectcss.all, sty.freeBox__pQzQt)}
+                      data-plasmic-name={"goa"}
+                      data-plasmic-override={overrides.goa}
+                      className={classNames(projectcss.all, sty.goa)}
                     >
                       <div
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox__nPy7E
+                          sty.freeBox__dcpmG
                         )}
                       >
-                        <PlasmicImg__
-                          alt={""}
-                          className={classNames(sty.img___4Hmyz)}
-                          displayHeight={"auto"}
-                          displayMaxHeight={"none"}
-                          displayMaxWidth={"100%"}
-                          displayMinHeight={"0"}
-                          displayMinWidth={"0"}
-                          displayWidth={"auto"}
-                          loading={"lazy"}
-                          src={
-                            "https://assets-fantasy.llt-services.com/players/t178/p75/256x256/p75_t178_1_001_000.png"
-                          }
-                          width={"52.55px"}
-                        />
+                        {(_par =>
+                          !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                          (() => {
+                            try {
+                              return $queries.goa.data;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()
+                        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                          const currentItem = __plasmic_item_0;
+                          const currentIndex = __plasmic_idx_0;
+                          return (
+                            <AvatarPlayer
+                              capitanVisibility={(() => {
+                                try {
+                                  return currentItem.is_captain;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.avatarPlayer__uvTA
+                              )}
+                              clickOn={async event => {
+                                const $steps = {};
 
-                        <PlasmicImg__
-                          alt={""}
-                          className={classNames(sty.img__e6Q93)}
-                          displayHeight={"auto"}
-                          displayMaxHeight={"none"}
-                          displayMaxWidth={"100%"}
-                          displayMinHeight={"0"}
-                          displayMinWidth={"0"}
-                          displayWidth={"auto"}
-                          loading={"lazy"}
-                          src={
-                            "https://assets-fantasy.llt-services.com/teambadge/t178/color/t178_fc-barcelona.png"
-                          }
-                          width={"15px"}
-                        />
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__rCe6L
-                        )}
-                      >
-                        {"Ingiro Marti...."}
+                                $steps["teamPlayerPosition"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["inputState"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.position
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["teamPlayerPosition"] != null &&
+                                  typeof $steps["teamPlayerPosition"] ===
+                                    "object" &&
+                                  typeof $steps["teamPlayerPosition"].then ===
+                                    "function"
+                                ) {
+                                  $steps["teamPlayerPosition"] = await $steps[
+                                    "teamPlayerPosition"
+                                  ];
+                                }
+
+                                $steps["teamPlayerId"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["teamplayerstate"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.id
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["teamPlayerId"] != null &&
+                                  typeof $steps["teamPlayerId"] === "object" &&
+                                  typeof $steps["teamPlayerId"].then ===
+                                    "function"
+                                ) {
+                                  $steps["teamPlayerId"] = await $steps[
+                                    "teamPlayerId"
+                                  ];
+                                }
+
+                                $steps["sellBtnBool"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["sellBtnBool"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.sell
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["sellBtnBool"] != null &&
+                                  typeof $steps["sellBtnBool"] === "object" &&
+                                  typeof $steps["sellBtnBool"].then ===
+                                    "function"
+                                ) {
+                                  $steps["sellBtnBool"] = await $steps[
+                                    "sellBtnBool"
+                                  ];
+                                }
+
+                                $steps["playerId"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["playerId"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.player_id
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["playerId"] != null &&
+                                  typeof $steps["playerId"] === "object" &&
+                                  typeof $steps["playerId"].then === "function"
+                                ) {
+                                  $steps["playerId"] = await $steps["playerId"];
+                                }
+
+                                $steps["capitanVisibility"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["capitanBtnVisibility"]
+                                        },
+                                        operation: 0,
+                                        value: !currentItem.is_captain
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["capitanVisibility"] != null &&
+                                  typeof $steps["capitanVisibility"] ===
+                                    "object" &&
+                                  typeof $steps["capitanVisibility"].then ===
+                                    "function"
+                                ) {
+                                  $steps["capitanVisibility"] = await $steps[
+                                    "capitanVisibility"
+                                  ];
+                                }
+                              }}
+                              clubLogo={(() => {
+                                try {
+                                  return $queries.clubs.data[
+                                    $queries.player.data[
+                                      currentItem.player_id - 1
+                                    ].club_id - 1
+                                  ].flag_url;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return {
+                                      src: "/plasmic/proliga/images/logoDesignTemplateB588De7Cc0B07E82392C3B2Ea4Ea7B73Screenjpg.jpg",
+                                      fullWidth: 690,
+                                      fullHeight: 690,
+                                      aspectRatio: undefined
+                                    };
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              image={(() => {
+                                try {
+                                  return $queries.player.data[
+                                    currentItem.player_id - 1
+                                  ].image;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_0-66.png";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              key={currentIndex}
+                              name={(() => {
+                                try {
+                                  return $queries.player.data[
+                                    currentItem.player_id - 1
+                                  ].name;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Player";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            />
+                          );
+                        })}
                       </div>
                     </div>
-                  </div>
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"def"}
+                      data-plasmic-override={overrides.def}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.def)}
+                    >
+                      {(_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
+                          try {
+                            return $queries.def.data;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                        const currentItem = __plasmic_item_0;
+                        const currentIndex = __plasmic_idx_0;
+                        return (
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__vv8U
+                            )}
+                            key={currentIndex}
+                          >
+                            <AvatarPlayer
+                              capitanVisibility={(() => {
+                                try {
+                                  return currentItem.is_captain;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.avatarPlayer__gYokA
+                              )}
+                              clickOn={async event => {
+                                const $steps = {};
+
+                                $steps["updateInputState"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["inputState"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.position
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateInputState"] != null &&
+                                  typeof $steps["updateInputState"] ===
+                                    "object" &&
+                                  typeof $steps["updateInputState"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateInputState"] = await $steps[
+                                    "updateInputState"
+                                  ];
+                                }
+
+                                $steps["updateInputState2"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["teamplayerstate"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.id
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateInputState2"] != null &&
+                                  typeof $steps["updateInputState2"] ===
+                                    "object" &&
+                                  typeof $steps["updateInputState2"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateInputState2"] = await $steps[
+                                    "updateInputState2"
+                                  ];
+                                }
+
+                                $steps["sellBtnBoll"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["sellBtnBool"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.sell
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["sellBtnBoll"] != null &&
+                                  typeof $steps["sellBtnBoll"] === "object" &&
+                                  typeof $steps["sellBtnBoll"].then ===
+                                    "function"
+                                ) {
+                                  $steps["sellBtnBoll"] = await $steps[
+                                    "sellBtnBoll"
+                                  ];
+                                }
+
+                                $steps["playerId"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["playerId"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.player_id
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["playerId"] != null &&
+                                  typeof $steps["playerId"] === "object" &&
+                                  typeof $steps["playerId"].then === "function"
+                                ) {
+                                  $steps["playerId"] = await $steps["playerId"];
+                                }
+
+                                $steps["capitanUpdate"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["capitanBtnVisibility"]
+                                        },
+                                        operation: 0,
+                                        value: !currentItem.is_captain
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["capitanUpdate"] != null &&
+                                  typeof $steps["capitanUpdate"] === "object" &&
+                                  typeof $steps["capitanUpdate"].then ===
+                                    "function"
+                                ) {
+                                  $steps["capitanUpdate"] = await $steps[
+                                    "capitanUpdate"
+                                  ];
+                                }
+                              }}
+                              clubLogo={(() => {
+                                try {
+                                  return $queries.clubs.data[
+                                    $queries.player.data[
+                                      currentItem.player_id - 1
+                                    ].club_id - 1
+                                  ].flag_url;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return {
+                                      src: "/plasmic/proliga/images/logoDesignTemplateB588De7Cc0B07E82392C3B2Ea4Ea7B73Screenjpg.jpg",
+                                      fullWidth: 690,
+                                      fullHeight: 690,
+                                      aspectRatio: undefined
+                                    };
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              image={(() => {
+                                try {
+                                  return $queries.player.data[
+                                    currentItem.player_id - 1
+                                  ].image;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_0-66.png";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              name={(() => {
+                                try {
+                                  return $queries.player.data[
+                                    currentItem.player_id - 1
+                                  ].name;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Player";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            />
+                          </div>
+                        );
+                      })}
+                    </Stack__>
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"mid"}
+                      data-plasmic-override={overrides.mid}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.mid)}
+                    >
+                      {(_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
+                          try {
+                            return $queries.mid.data;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                        const currentItem = __plasmic_item_0;
+                        const currentIndex = __plasmic_idx_0;
+                        return (
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__ofx2
+                            )}
+                            key={currentIndex}
+                          >
+                            <AvatarPlayer
+                              capitanVisibility={(() => {
+                                try {
+                                  return currentItem.is_captain;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.avatarPlayer__nu6Lx
+                              )}
+                              clickOn={async event => {
+                                const $steps = {};
+
+                                $steps["updateInputState"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["inputState"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.position
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateInputState"] != null &&
+                                  typeof $steps["updateInputState"] ===
+                                    "object" &&
+                                  typeof $steps["updateInputState"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateInputState"] = await $steps[
+                                    "updateInputState"
+                                  ];
+                                }
+
+                                $steps["updateInputState2"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["teamplayerstate"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.id
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateInputState2"] != null &&
+                                  typeof $steps["updateInputState2"] ===
+                                    "object" &&
+                                  typeof $steps["updateInputState2"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateInputState2"] = await $steps[
+                                    "updateInputState2"
+                                  ];
+                                }
+
+                                $steps["sellBtnBoll"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["sellBtnBool"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.sell
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["sellBtnBoll"] != null &&
+                                  typeof $steps["sellBtnBoll"] === "object" &&
+                                  typeof $steps["sellBtnBoll"].then ===
+                                    "function"
+                                ) {
+                                  $steps["sellBtnBoll"] = await $steps[
+                                    "sellBtnBoll"
+                                  ];
+                                }
+
+                                $steps["playerId"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["playerId"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.player_id
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["playerId"] != null &&
+                                  typeof $steps["playerId"] === "object" &&
+                                  typeof $steps["playerId"].then === "function"
+                                ) {
+                                  $steps["playerId"] = await $steps["playerId"];
+                                }
+
+                                $steps["capitanVisibility"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["capitanBtnVisibility"]
+                                        },
+                                        operation: 0,
+                                        value: !currentItem.is_captain
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["capitanVisibility"] != null &&
+                                  typeof $steps["capitanVisibility"] ===
+                                    "object" &&
+                                  typeof $steps["capitanVisibility"].then ===
+                                    "function"
+                                ) {
+                                  $steps["capitanVisibility"] = await $steps[
+                                    "capitanVisibility"
+                                  ];
+                                }
+                              }}
+                              clubLogo={(() => {
+                                try {
+                                  return $queries.clubs.data[
+                                    $queries.player.data[
+                                      currentItem.player_id - 1
+                                    ].club_id - 1
+                                  ].flag_url;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return {
+                                      src: "/plasmic/proliga/images/logoDesignTemplateB588De7Cc0B07E82392C3B2Ea4Ea7B73Screenjpg.jpg",
+                                      fullWidth: 690,
+                                      fullHeight: 690,
+                                      aspectRatio: undefined
+                                    };
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              image={(() => {
+                                try {
+                                  return $queries.player.data[
+                                    currentItem.player_id - 1
+                                  ].image;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_0-66.png";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              name={(() => {
+                                try {
+                                  return $queries.player.data[
+                                    currentItem.player_id - 1
+                                  ].name;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return ``;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            />
+                          </div>
+                        );
+                      })}
+                    </Stack__>
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"str"}
+                      data-plasmic-override={overrides.str}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.str)}
+                    >
+                      {(_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
+                          try {
+                            return $queries.str.data;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                        const currentItem = __plasmic_item_0;
+                        const currentIndex = __plasmic_idx_0;
+                        return (
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__l1A6S
+                            )}
+                            key={currentIndex}
+                          >
+                            <AvatarPlayer
+                              capitanVisibility={(() => {
+                                try {
+                                  return currentItem.is_captain;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.avatarPlayer__jttBq
+                              )}
+                              clickOn={async event => {
+                                const $steps = {};
+
+                                $steps["updateInputState"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["inputState"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.position
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateInputState"] != null &&
+                                  typeof $steps["updateInputState"] ===
+                                    "object" &&
+                                  typeof $steps["updateInputState"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateInputState"] = await $steps[
+                                    "updateInputState"
+                                  ];
+                                }
+
+                                $steps["updateInputState2"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["teamplayerstate"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.id
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateInputState2"] != null &&
+                                  typeof $steps["updateInputState2"] ===
+                                    "object" &&
+                                  typeof $steps["updateInputState2"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateInputState2"] = await $steps[
+                                    "updateInputState2"
+                                  ];
+                                }
+
+                                $steps["sellBtnBoll"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["sellBtnBool"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.sell
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["sellBtnBoll"] != null &&
+                                  typeof $steps["sellBtnBoll"] === "object" &&
+                                  typeof $steps["sellBtnBoll"].then ===
+                                    "function"
+                                ) {
+                                  $steps["sellBtnBoll"] = await $steps[
+                                    "sellBtnBoll"
+                                  ];
+                                }
+
+                                $steps["playerId"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["playerId"]
+                                        },
+                                        operation: 0,
+                                        value: currentItem.player_id
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["playerId"] != null &&
+                                  typeof $steps["playerId"] === "object" &&
+                                  typeof $steps["playerId"].then === "function"
+                                ) {
+                                  $steps["playerId"] = await $steps["playerId"];
+                                }
+
+                                $steps["capitanVisibility"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["capitanBtnVisibility"]
+                                        },
+                                        operation: 0,
+                                        value: !currentItem.is_captain
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["capitanVisibility"] != null &&
+                                  typeof $steps["capitanVisibility"] ===
+                                    "object" &&
+                                  typeof $steps["capitanVisibility"].then ===
+                                    "function"
+                                ) {
+                                  $steps["capitanVisibility"] = await $steps[
+                                    "capitanVisibility"
+                                  ];
+                                }
+                              }}
+                              clubLogo={(() => {
+                                try {
+                                  return $queries.clubs.data[
+                                    $queries.player.data[
+                                      currentItem.player_id - 1
+                                    ].club_id - 1
+                                  ].flag_url;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return {
+                                      src: "/plasmic/proliga/images/logoDesignTemplateB588De7Cc0B07E82392C3B2Ea4Ea7B73Screenjpg.jpg",
+                                      fullWidth: 690,
+                                      fullHeight: 690,
+                                      aspectRatio: undefined
+                                    };
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              image={(() => {
+                                try {
+                                  return $queries.player.data[
+                                    currentItem.player_id - 1
+                                  ].image;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_0-66.png";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              name={(() => {
+                                try {
+                                  return $queries.player.data[
+                                    currentItem.player_id - 1
+                                  ].name;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Player";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            />
+                          </div>
+                        );
+                      })}
+                    </Stack__>
+                  </Stack__>
                   <SoccerPlaceMens2
                     data-plasmic-name={"soccerPlaceMens2"}
                     data-plasmic-override={overrides.soccerPlaceMens2}
@@ -401,7 +2099,11 @@ function PlasmicTeams__RenderFunc(props: {
                 </div>
               </div>
             </div>
-            <div className={classNames(projectcss.all, sty.column__wTiGc)}>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.column__wTiGc)}
+            >
               <div className={classNames(projectcss.all, sty.freeBox__peasw)}>
                 <div
                   className={classNames(
@@ -413,13 +2115,35 @@ function PlasmicTeams__RenderFunc(props: {
                   {"Squad"}
                 </div>
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__fjj5R
-                  )}
+                  className={classNames(projectcss.all, sty.freeBox___6HiPo)}
                 >
-                  {"Players(2/11)"}
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__fjj5R
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return (
+                            "Player(" +
+                            $queries.pickedPlayersCount.data.length +
+                            "/11)"
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "Players";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
                 </div>
               </div>
               <Stack__
@@ -493,168 +2217,314 @@ function PlasmicTeams__RenderFunc(props: {
                   {"STR"}
                 </PlasmicLink__>
               </Stack__>
-            </div>
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return $queries.pickplayer.data;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <PlayerPickerRow
+                    data-plasmic-name={"playerPickerRow"}
+                    data-plasmic-override={overrides.playerPickerRow}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.playerPickerRow
+                    )}
+                    clubImage={(() => {
+                      try {
+                        return $queries.clubs.data[currentItem.club_id - 1]
+                          .flag_url;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return {
+                            src: "/plasmic/proliga/images/logoDesignTemplateB588De7Cc0B07E82392C3B2Ea4Ea7B73Screenjpg.jpg",
+                            fullWidth: 690,
+                            fullHeight: 690,
+                            aspectRatio: undefined
+                          };
+                        }
+                        throw e;
+                      }
+                    })()}
+                    firstImage={(() => {
+                      try {
+                        return currentItem.image;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    fsyp={(() => {
+                      try {
+                        return currentItem.FSYP;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    key={currentIndex}
+                    modalCancelBtn={async () => {
+                      const $steps = {};
+                    }}
+                    modalContent={(() => {
+                      try {
+                        return (
+                          "Market value: $" +
+                          currentItem.market_value +
+                          " Name: " +
+                          currentItem.name
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    modalOkBtn={async () => {
+                      const $steps = {};
+
+                      $steps["updateMoney"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                                opId: "5df622fa-bcb3-48c3-b0bf-51f41af19ca7",
+                                userArgs: {
+                                  keys: [$queries.teamP.data[0].id],
+                                  variables: [
+                                    $queries.teamP.data[0].balance -
+                                      currentItem.market_value
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateMoney"] != null &&
+                        typeof $steps["updateMoney"] === "object" &&
+                        typeof $steps["updateMoney"].then === "function"
+                      ) {
+                        $steps["updateMoney"] = await $steps["updateMoney"];
+                      }
+
+                      $steps["updatePlayer"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                                opId: "3dd1e590-3ad8-43f8-a6f0-fe6eca352a85",
+                                userArgs: {
+                                  keys: [$state.teamplayerstate],
+                                  variables: [
+                                    currentItem.id,
+                                    currentItem.position
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updatePlayer"] != null &&
+                        typeof $steps["updatePlayer"] === "object" &&
+                        typeof $steps["updatePlayer"].then === "function"
+                      ) {
+                        $steps["updatePlayer"] = await $steps["updatePlayer"];
+                      }
+
+                      $steps["updateUserActivity"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                                opId: "91020635-a445-466e-9689-42d162095ebd",
+                                userArgs: {
+                                  variables: [
+                                    $queries.teamP.data[0].id,
+                                    "You Bought " +
+                                      currentItem.name +
+                                      " for $" +
+                                      currentItem.market_value
+                                  ]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateUserActivity"] != null &&
+                        typeof $steps["updateUserActivity"] === "object" &&
+                        typeof $steps["updateUserActivity"].then === "function"
+                      ) {
+                        $steps["updateUserActivity"] = await $steps[
+                          "updateUserActivity"
+                        ];
+                      }
+                    }}
+                    modalTitle={(() => {
+                      try {
+                        return "Are you sure you want to buy this player?";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "Modal Title";
+                        }
+                        throw e;
+                      }
+                    })()}
+                    name={(() => {
+                      try {
+                        return currentItem.name;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    position={(() => {
+                      try {
+                        return currentItem.position;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    price={(() => {
+                      try {
+                        return currentItem.market_value;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
+                );
+              })}
+            </Stack__>
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox__za9Hp)}>
-            <div className={classNames(projectcss.all, sty.freeBox__mgXs8)}>
-              <PlasmicImg__
-                alt={""}
-                className={classNames(sty.img__lAwIj)}
-                displayHeight={"auto"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"auto"}
-                height={"45px"}
-                loading={"lazy"}
-                src={"https://cdn-icons-png.flaticon.com/512/3022/3022675.png"}
-                width={"30px"}
-              />
+          <SideBarMyTeam
+            data-plasmic-name={"sideBarMyTeam"}
+            data-plasmic-override={overrides.sideBarMyTeam}
+            className={classNames("__wab_instance", sty.sideBarMyTeam)}
+          />
 
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__qOi0G
-                )}
-              >
-                {"PROLIGA Fantasy"}
-              </div>
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__jgA6A)}>
-              <PlasmicImg__
-                alt={""}
-                className={classNames(sty.img___0RJcx)}
-                displayHeight={"auto"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"auto"}
-                height={"18.13"}
-                loading={"lazy"}
-                src={
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIcmZaJM1ZSe3jyr9tyEt3PfZ-_qh2LbCkdl9st3lV-16vIQwtrysBVlDaMisw62c_4Bk&usqp=CAU"
-                }
-                width={"23.13"}
-              />
-
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___0TTSl
-                )}
-              >
-                {"Standing"}
-              </div>
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__oknKy)}>
-              <PlasmicImg__
-                alt={""}
-                className={classNames(sty.img__pRQoA)}
-                displayHeight={"auto"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"auto"}
-                height={"18.13"}
-                loading={"lazy"}
-                src={
-                  "https://cdn-icons-png.flaticon.com/256/10167/10167851.png"
-                }
-                width={"23.13"}
-              />
-
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__bdwkQ
-                )}
-              >
-                {"My Team"}
-              </div>
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__xRaMp)}>
-              <PlasmicImg__
-                alt={""}
-                className={classNames(sty.img__qgQW)}
-                displayHeight={"auto"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"auto"}
-                height={"18.13"}
-                loading={"lazy"}
-                src={
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIcmZaJM1ZSe3jyr9tyEt3PfZ-_qh2LbCkdl9st3lV-16vIQwtrysBVlDaMisw62c_4Bk&usqp=CAU"
-                }
-                width={"23.13"}
-              />
-
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__p1Zqz
-                )}
-              >
-                {"Market"}
-              </div>
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__xj5Xg)}>
-              <PlasmicImg__
-                alt={""}
-                className={classNames(sty.img__f68Hh)}
-                displayHeight={"auto"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"auto"}
-                height={"18.13"}
-                loading={"lazy"}
-                src={
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIcmZaJM1ZSe3jyr9tyEt3PfZ-_qh2LbCkdl9st3lV-16vIQwtrysBVlDaMisw62c_4Bk&usqp=CAU"
-                }
-                width={"23.13"}
-              />
-
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__nHDO
-                )}
-              >
-                {"Activity"}
-              </div>
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__dbRpg)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___58Ka2
-                )}
-              >
-                {"END OF THE FIXTURE (36)"}
-              </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___9ApTh
-                )}
-              >
-                {"Friyday 16:00 Goo"}
-              </div>
-            </div>
-          </div>
+          <Footer
+            data-plasmic-name={"footer"}
+            data-plasmic-override={overrides.footer}
+            className={classNames("__wab_instance", sty.footer)}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -662,12 +2532,44 @@ function PlasmicTeams__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "navbar", "columns", "_532", "button", "soccerPlaceMens2"],
+  root: [
+    "root",
+    "navbar",
+    "modal",
+    "updateCapitan",
+    "columns",
+    "_532",
+    "goa",
+    "def",
+    "mid",
+    "str",
+    "soccerPlaceMens2",
+    "playerPickerRow",
+    "sideBarMyTeam",
+    "footer"
+  ],
   navbar: ["navbar"],
-  columns: ["columns", "_532", "button", "soccerPlaceMens2"],
-  _532: ["_532", "button"],
-  button: ["button"],
-  soccerPlaceMens2: ["soccerPlaceMens2"]
+  modal: ["modal"],
+  updateCapitan: ["updateCapitan"],
+  columns: [
+    "columns",
+    "_532",
+    "goa",
+    "def",
+    "mid",
+    "str",
+    "soccerPlaceMens2",
+    "playerPickerRow"
+  ],
+  _532: ["_532"],
+  goa: ["goa"],
+  def: ["def"],
+  mid: ["mid"],
+  str: ["str"],
+  soccerPlaceMens2: ["soccerPlaceMens2"],
+  playerPickerRow: ["playerPickerRow"],
+  sideBarMyTeam: ["sideBarMyTeam"],
+  footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -675,10 +2577,18 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   navbar: typeof Navbar;
+  modal: typeof AntdModal;
+  updateCapitan: typeof UpdateCapitan;
   columns: "div";
   _532: typeof AntdDropdown;
-  button: typeof AntdButton;
+  goa: "div";
+  def: "div";
+  mid: "div";
+  str: "div";
   soccerPlaceMens2: typeof SoccerPlaceMens2;
+  playerPickerRow: typeof PlayerPickerRow;
+  sideBarMyTeam: typeof SideBarMyTeam;
+  footer: typeof Footer;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -741,7 +2651,7 @@ function withPlasmicPageGuard<P extends object>(
 ) {
   const PageGuard: React.FC<P> = props => (
     <PlasmicPageGuard__
-      minRole={null}
+      minRole={"f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"}
       appId={"tDWy3GXn2mzd9e2xUaPdmu"}
       authorizeEndpoint={"https://studio.plasmic.app/authorize"}
       canTriggerLogin={false}
@@ -759,10 +2669,18 @@ export const PlasmicTeams = Object.assign(
   {
     // Helper components rendering sub-elements
     navbar: makeNodeComponent("navbar"),
+    modal: makeNodeComponent("modal"),
+    updateCapitan: makeNodeComponent("updateCapitan"),
     columns: makeNodeComponent("columns"),
     _532: makeNodeComponent("_532"),
-    button: makeNodeComponent("button"),
+    goa: makeNodeComponent("goa"),
+    def: makeNodeComponent("def"),
+    mid: makeNodeComponent("mid"),
+    str: makeNodeComponent("str"),
     soccerPlaceMens2: makeNodeComponent("soccerPlaceMens2"),
+    playerPickerRow: makeNodeComponent("playerPickerRow"),
+    sideBarMyTeam: makeNodeComponent("sideBarMyTeam"),
+    footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicTeams
     internalVariantProps: PlasmicTeams__VariantProps,

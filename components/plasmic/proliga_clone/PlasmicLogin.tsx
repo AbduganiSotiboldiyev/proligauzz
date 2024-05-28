@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import Navbar from "../../Navbar"; // plasmic-import: TKT8XnZtrLZi/component
 import AuthComponent from "../../AuthComponent"; // plasmic-import: f9VC6U83GUs6/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -81,7 +82,9 @@ type ArgPropType = keyof PlasmicLogin__ArgsType;
 export const PlasmicLogin__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicLogin__OverridesType = {
-  root?: Flex__<"div">;
+  login?: Flex__<"div">;
+  freeBox?: Flex__<"div">;
+  navbar?: Flex__<typeof Navbar>;
   authComponent?: Flex__<typeof AuthComponent>;
 };
 
@@ -130,8 +133,8 @@ function PlasmicLogin__RenderFunc(props: {
 
       <div className={projectcss.plasmic_page_wrapper}>
         <div
-          data-plasmic-name={"root"}
-          data-plasmic-override={overrides.root}
+          data-plasmic-name={"login"}
+          data-plasmic-override={overrides.login}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
@@ -142,14 +145,26 @@ function PlasmicLogin__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_plasmic_rich_components_css.plasmic_tokens,
-            sty.root
+            sty.login
           )}
         >
-          <AuthComponent
-            data-plasmic-name={"authComponent"}
-            data-plasmic-override={overrides.authComponent}
-            className={classNames("__wab_instance", sty.authComponent)}
-          />
+          <div
+            data-plasmic-name={"freeBox"}
+            data-plasmic-override={overrides.freeBox}
+            className={classNames(projectcss.all, sty.freeBox)}
+          >
+            <Navbar
+              data-plasmic-name={"navbar"}
+              data-plasmic-override={overrides.navbar}
+              className={classNames("__wab_instance", sty.navbar)}
+            />
+
+            <AuthComponent
+              data-plasmic-name={"authComponent"}
+              data-plasmic-override={overrides.authComponent}
+              className={classNames("__wab_instance", sty.authComponent)}
+            />
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -157,14 +172,18 @@ function PlasmicLogin__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "authComponent"],
+  login: ["login", "freeBox", "navbar", "authComponent"],
+  freeBox: ["freeBox", "navbar", "authComponent"],
+  navbar: ["navbar"],
   authComponent: ["authComponent"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
-  root: "div";
+  login: "div";
+  freeBox: "div";
+  navbar: typeof Navbar;
   authComponent: typeof AuthComponent;
 };
 
@@ -215,7 +234,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       forNode: nodeName
     });
   };
-  if (nodeName === "root") {
+  if (nodeName === "login") {
     func.displayName = "PlasmicLogin";
   } else {
     func.displayName = `PlasmicLogin.${nodeName}`;
@@ -242,9 +261,11 @@ function withPlasmicPageGuard<P extends object>(
 
 export const PlasmicLogin = Object.assign(
   // Top-level PlasmicLogin renders the root element
-  withPlasmicPageGuard(makeNodeComponent("root")),
+  withPlasmicPageGuard(makeNodeComponent("login")),
   {
     // Helper components rendering sub-elements
+    freeBox: makeNodeComponent("freeBox"),
+    navbar: makeNodeComponent("navbar"),
     authComponent: makeNodeComponent("authComponent"),
 
     // Metadata about props expected for PlasmicLogin

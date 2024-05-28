@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
   padding-right: 0px;
+  background: var(--token-RZcyrn6MkYNW);
 }
 .columns {
   display: flex;
@@ -18,7 +19,7 @@
   max-width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
-  background: var(--token-_Z-x7YSfdB4D);
+  background: url("https://www.premierleague.com/resources/rebrand/v7.146.7/i/elements/backgrounds/primary-graphic.svg");
   min-width: 0;
   --plsmc-rc-col-gap: 0px;
   padding: 8px;

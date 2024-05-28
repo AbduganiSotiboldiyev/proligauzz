@@ -6,6 +6,9 @@
   height: 520px;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  box-shadow: 8px 4px 16px 6px #3c057b52;
+  background: var(--token-DbGdjBpQ6R_X);
 }
 .rootvariant2 {
   width: 368px;

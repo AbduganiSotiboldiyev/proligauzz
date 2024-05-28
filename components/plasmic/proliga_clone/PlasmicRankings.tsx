@@ -65,6 +65,7 @@ import { AntdDropdown } from "@plasmicpkgs/antd5/skinny/registerDropdown";
 import { AntdMenuItem } from "@plasmicpkgs/antd5/skinny/registerMenu";
 import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton";
 import Rankings2 from "../../Rankings2"; // plasmic-import: NyvdXAM9ZnZV/component
+import Footer from "../../Footer"; // plasmic-import: kIdovXGtWiEz/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariants_8Rmrqs5Mzp6I } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: 8Rmrqs5Mzp6I/globalVariant
@@ -96,6 +97,7 @@ export type PlasmicRankings__OverridesType = {
   rankings2?: Flex__<typeof Rankings2>;
   h5?: Flex__<"h5">;
   img?: Flex__<typeof PlasmicImg__>;
+  footer?: Flex__<typeof Footer>;
 };
 
 export interface DefaultRankingsProps {}
@@ -657,6 +659,11 @@ function PlasmicRankings__RenderFunc(props: {
               </div>
             </div>
           </div>
+          <Footer
+            data-plasmic-name={"footer"}
+            data-plasmic-override={overrides.footer}
+            className={classNames("__wab_instance", sty.footer)}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -672,7 +679,8 @@ const PlasmicDescendants = {
     "h4",
     "rankings2",
     "h5",
-    "img"
+    "img",
+    "footer"
   ],
   navbar: ["navbar"],
   clubs2: ["clubs2"],
@@ -680,7 +688,8 @@ const PlasmicDescendants = {
   h4: ["h4"],
   rankings2: ["rankings2"],
   h5: ["h5"],
-  img: ["img"]
+  img: ["img"],
+  footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -694,6 +703,7 @@ type NodeDefaultElementType = {
   rankings2: typeof Rankings2;
   h5: "h5";
   img: typeof PlasmicImg__;
+  footer: typeof Footer;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -780,6 +790,7 @@ export const PlasmicRankings = Object.assign(
     rankings2: makeNodeComponent("rankings2"),
     h5: makeNodeComponent("h5"),
     img: makeNodeComponent("img"),
+    footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicRankings
     internalVariantProps: PlasmicRankings__VariantProps,

@@ -68,6 +68,7 @@ import {
 import Navbar from "../../Navbar"; // plasmic-import: TKT8XnZtrLZi/component
 import Clubs2 from "../../Clubs2"; // plasmic-import: 3EueAFP_3sEI/component
 import SoccerPlaceMens2 from "../../SoccerPlaceMens2"; // plasmic-import: xodLqMOhDs29/component
+import Footer from "../../Footer"; // plasmic-import: kIdovXGtWiEz/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -98,6 +99,7 @@ export type PlasmicClub__OverridesType = {
   def?: Flex__<"div">;
   mid?: Flex__<"div">;
   str?: Flex__<"div">;
+  footer?: Flex__<typeof Footer>;
 };
 
 export interface DefaultClubProps {}
@@ -158,18 +160,6 @@ function PlasmicClub__RenderFunc(props: {
             throw e;
           }
         })()}.$.7990f9e9-fa4d-4d86-92bd-bd24af6e6e7f.$.`,
-        invalidatedKeys: null,
-        roleId: null
-      };
-    }),
-    player: usePlasmicDataOp(() => {
-      return {
-        sourceId: "8cdHi4ivRUEkK6qbegQevF",
-        opId: "cd389ffd-474e-4351-9b57-c04df18a2a1b",
-        userArgs: {
-          filters: [$queries.query.data[0].id]
-        },
-        cacheKey: `plasmic.$.cd389ffd-474e-4351-9b57-c04df18a2a1b.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -492,43 +482,99 @@ function PlasmicClub__RenderFunc(props: {
                       className={classNames(projectcss.all, sty.freeBox__s2ORa)}
                       key={currentIndex}
                     >
-                      <PlasmicImg__
-                        alt={(() => {
-                          try {
-                            return currentItem.name;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+                      <PlasmicLink__
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.a,
+                          sty.link__cGxPy
+                        )}
+                        component={Link}
+                        platform={"nextjs"}
+                      >
+                        <PlasmicImg__
+                          alt={(() => {
+                            try {
+                              return currentItem.name;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()}
-                        aria-hidden={"true"}
-                        className={classNames(sty.img__sxe2M)}
-                        displayHeight={"110px"}
-                        displayMaxHeight={"none"}
-                        displayMaxWidth={"100%"}
-                        displayMinHeight={"0"}
-                        displayMinWidth={"0"}
-                        displayWidth={"89px"}
-                        loading={"lazy"}
-                        src={(() => {
-                          try {
-                            return currentItem.image;
-                          } catch (e) {
+                          })()}
+                          aria-hidden={"false"}
+                          className={classNames(sty.img__sxe2M)}
+                          displayHeight={"110px"}
+                          displayMaxHeight={"none"}
+                          displayMaxWidth={"100%"}
+                          displayMinHeight={"0"}
+                          displayMinWidth={"0"}
+                          displayWidth={"89px"}
+                          loading={"lazy"}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["goToPlayerInfo"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    destination: `/player-2/${(() => {
+                                      try {
+                                        return currentItem.id;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()}`
+                                  };
+                                  return (({ destination }) => {
+                                    if (
+                                      typeof destination === "string" &&
+                                      destination.startsWith("#")
+                                    ) {
+                                      document
+                                        .getElementById(destination.substr(1))
+                                        .scrollIntoView({ behavior: "smooth" });
+                                    } else {
+                                      __nextRouter?.push(destination);
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
                             if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
+                              $steps["goToPlayerInfo"] != null &&
+                              typeof $steps["goToPlayerInfo"] === "object" &&
+                              typeof $steps["goToPlayerInfo"].then ===
+                                "function"
                             ) {
-                              return undefined;
+                              $steps["goToPlayerInfo"] = await $steps[
+                                "goToPlayerInfo"
+                              ];
                             }
-                            throw e;
-                          }
-                        })()}
-                      />
+                          }}
+                          src={(() => {
+                            try {
+                              return currentItem.image;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                        />
+                      </PlasmicLink__>
                     </div>
                   );
                 })}
@@ -557,43 +603,99 @@ function PlasmicClub__RenderFunc(props: {
                     const currentItem = __plasmic_item_0;
                     const currentIndex = __plasmic_idx_0;
                     return (
-                      <PlasmicImg__
-                        alt={(() => {
-                          try {
-                            return currentItem.name;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                        className={classNames(sty.img__r0Q4F)}
-                        displayHeight={"110px"}
-                        displayMaxHeight={"none"}
-                        displayMaxWidth={"100%"}
-                        displayMinHeight={"0"}
-                        displayMinWidth={"0"}
-                        displayWidth={"89px"}
+                      <PlasmicLink__
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.a,
+                          sty.link__hhs63
+                        )}
+                        component={Link}
                         key={currentIndex}
-                        loading={"lazy"}
-                        src={(() => {
-                          try {
-                            return currentItem.image;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+                        platform={"nextjs"}
+                      >
+                        <PlasmicImg__
+                          alt={(() => {
+                            try {
+                              return currentItem.name;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()}
-                      />
+                          })()}
+                          className={classNames(sty.img__r0Q4F)}
+                          displayHeight={"110px"}
+                          displayMaxHeight={"none"}
+                          displayMaxWidth={"100%"}
+                          displayMinHeight={"0"}
+                          displayMinWidth={"0"}
+                          displayWidth={"89px"}
+                          loading={"lazy"}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["goToPlayerInfo"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    destination: `/player-2/${(() => {
+                                      try {
+                                        return currentItem.id;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()}`
+                                  };
+                                  return (({ destination }) => {
+                                    if (
+                                      typeof destination === "string" &&
+                                      destination.startsWith("#")
+                                    ) {
+                                      document
+                                        .getElementById(destination.substr(1))
+                                        .scrollIntoView({ behavior: "smooth" });
+                                    } else {
+                                      __nextRouter?.push(destination);
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["goToPlayerInfo"] != null &&
+                              typeof $steps["goToPlayerInfo"] === "object" &&
+                              typeof $steps["goToPlayerInfo"].then ===
+                                "function"
+                            ) {
+                              $steps["goToPlayerInfo"] = await $steps[
+                                "goToPlayerInfo"
+                              ];
+                            }
+                          }}
+                          src={(() => {
+                            try {
+                              return currentItem.image;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                        />
+                      </PlasmicLink__>
                     );
                   })}
                 </div>
@@ -603,7 +705,15 @@ function PlasmicClub__RenderFunc(props: {
                 data-plasmic-override={overrides.mid}
                 className={classNames(projectcss.all, sty.mid)}
               >
-                <div className={classNames(projectcss.all, sty.freeBox__wyJc4)}>
+                <PlasmicLink__
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    sty.link__wyJc4
+                  )}
+                  component={Link}
+                  platform={"nextjs"}
+                >
                   {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                     (() => {
                       try {
@@ -645,6 +755,51 @@ function PlasmicClub__RenderFunc(props: {
                         displayWidth={"89px"}
                         key={currentIndex}
                         loading={"lazy"}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["goToPlayerInfo"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  destination: `/player-2/${(() => {
+                                    try {
+                                      return currentItem.id;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}`
+                                };
+                                return (({ destination }) => {
+                                  if (
+                                    typeof destination === "string" &&
+                                    destination.startsWith("#")
+                                  ) {
+                                    document
+                                      .getElementById(destination.substr(1))
+                                      .scrollIntoView({ behavior: "smooth" });
+                                  } else {
+                                    __nextRouter?.push(destination);
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["goToPlayerInfo"] != null &&
+                            typeof $steps["goToPlayerInfo"] === "object" &&
+                            typeof $steps["goToPlayerInfo"].then === "function"
+                          ) {
+                            $steps["goToPlayerInfo"] = await $steps[
+                              "goToPlayerInfo"
+                            ];
+                          }
+                        }}
                         src={(() => {
                           try {
                             return currentItem.image;
@@ -661,7 +816,7 @@ function PlasmicClub__RenderFunc(props: {
                       />
                     );
                   })}
-                </div>
+                </PlasmicLink__>
               </div>
               <div
                 data-plasmic-name={"str"}
@@ -712,6 +867,51 @@ function PlasmicClub__RenderFunc(props: {
                         displayWidth={"89px"}
                         key={currentIndex}
                         loading={"lazy"}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["goToPlayerInfo"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  destination: `/player-2/${(() => {
+                                    try {
+                                      return currentItem.id;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}`
+                                };
+                                return (({ destination }) => {
+                                  if (
+                                    typeof destination === "string" &&
+                                    destination.startsWith("#")
+                                  ) {
+                                    document
+                                      .getElementById(destination.substr(1))
+                                      .scrollIntoView({ behavior: "smooth" });
+                                  } else {
+                                    __nextRouter?.push(destination);
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["goToPlayerInfo"] != null &&
+                            typeof $steps["goToPlayerInfo"] === "object" &&
+                            typeof $steps["goToPlayerInfo"].then === "function"
+                          ) {
+                            $steps["goToPlayerInfo"] = await $steps[
+                              "goToPlayerInfo"
+                            ];
+                          }
+                        }}
                         src={(() => {
                           try {
                             return currentItem.image;
@@ -1094,6 +1294,11 @@ function PlasmicClub__RenderFunc(props: {
             </div>
             <div className={classNames(projectcss.all, sty.column__udFqK)} />
           </div>
+          <Footer
+            data-plasmic-name={"footer"}
+            data-plasmic-override={overrides.footer}
+            className={classNames("__wab_instance", sty.footer)}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -1110,7 +1315,8 @@ const PlasmicDescendants = {
     "goa",
     "def",
     "mid",
-    "str"
+    "str",
+    "footer"
   ],
   navbar: ["navbar"],
   clubs2: ["clubs2"],
@@ -1119,7 +1325,8 @@ const PlasmicDescendants = {
   goa: ["goa"],
   def: ["def"],
   mid: ["mid"],
-  str: ["str"]
+  str: ["str"],
+  footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1134,6 +1341,7 @@ type NodeDefaultElementType = {
   def: "div";
   mid: "div";
   str: "div";
+  footer: typeof Footer;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1221,6 +1429,7 @@ export const PlasmicClub = Object.assign(
     def: makeNodeComponent("def"),
     mid: makeNodeComponent("mid"),
     str: makeNodeComponent("str"),
+    footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicClub
     internalVariantProps: PlasmicClub__VariantProps,
