@@ -58,7 +58,7 @@ function AuthComponent_(
               return;
             }
 
-            router.replace("/");
+            router.replace("/home-page-admin");
           } catch (err) {
             // setAuthError(err)
           } finally {
