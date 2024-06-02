@@ -71,6 +71,7 @@ import TextInput from "../../TextInput"; // plasmic-import: xwgFLXqL07mD/compone
 import Select from "../../Select"; // plasmic-import: bCMc_ebYmgPo/component
 import PlayerAction from "../../PlayerAction"; // plasmic-import: oJ05rQ2UYoHy/component
 import PlayerPickerRow from "../../PlayerPickerRow"; // plasmic-import: NaQtMjgilBY9/component
+import SideBarMyTeam from "../../SideBarMyTeam"; // plasmic-import: 7ylFTnxhQETY/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariants_8Rmrqs5Mzp6I } from "../proliga_clone/PlasmicGlobalVariant__Screen"; // plasmic-import: 8Rmrqs5Mzp6I/globalVariant
@@ -107,6 +108,7 @@ export type PlasmicTeams2Market__OverridesType = {
   playerCount?: Flex__<typeof Select>;
   playerAction?: Flex__<typeof PlayerAction>;
   playerPickerRow?: Flex__<typeof PlayerPickerRow>;
+  sideBarMyTeam?: Flex__<typeof SideBarMyTeam>;
 };
 
 export interface DefaultTeams2MarketProps {}
@@ -511,226 +513,46 @@ function PlasmicTeams2Market__RenderFunc(props: {
                 data-plasmic-name={"playerPickerRow"}
                 data-plasmic-override={overrides.playerPickerRow}
                 className={classNames("__wab_instance", sty.playerPickerRow)}
+                firstImage={(() => {
+                  try {
+                    return currentItem.image;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                fsyp={`0${currentItem.FSYP}`}
                 key={currentIndex}
+                modalTitle={`Show player action${undefined}`}
+                name={(() => {
+                  try {
+                    return currentItem.name;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                price={`0${currentItem.market_value}`}
               />
             );
           })}
         </div>
         <div className={classNames(projectcss.all, sty.freeBox__iak4F)}>
-          <div className={classNames(projectcss.all, sty.freeBox__qGo61)}>
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img__kETft)}
-              displayHeight={"auto"}
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              height={"45px"}
-              loading={"lazy"}
-              src={"https://cdn-icons-png.flaticon.com/512/3022/3022675.png"}
-              width={"30px"}
-            />
-
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__vyXe5
-              )}
-            >
-              {"PROLIGA Fantasy"}
-            </div>
-          </div>
-          <div className={classNames(projectcss.all, sty.freeBox__cro6A)}>
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img__zFYu5)}
-              displayHeight={"auto"}
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              height={"18.13"}
-              loading={"lazy"}
-              src={
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIcmZaJM1ZSe3jyr9tyEt3PfZ-_qh2LbCkdl9st3lV-16vIQwtrysBVlDaMisw62c_4Bk&usqp=CAU"
-              }
-              width={"23.13"}
-            />
-
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__nf8XB
-              )}
-            >
-              {"Standing"}
-            </div>
-          </div>
-          <div
-            className={classNames(projectcss.all, sty.freeBox__vrUkZ)}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["goToTeams"] = true
-                ? (() => {
-                    const actionArgs = { destination: `/team/classic` };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToTeams"] != null &&
-                typeof $steps["goToTeams"] === "object" &&
-                typeof $steps["goToTeams"].then === "function"
-              ) {
-                $steps["goToTeams"] = await $steps["goToTeams"];
-              }
-            }}
-          >
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img__rlilw)}
-              displayHeight={"auto"}
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              height={"18.13"}
-              loading={"lazy"}
-              src={"https://cdn-icons-png.flaticon.com/256/10167/10167851.png"}
-              width={"23.13"}
-            />
-
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___6XGh
-              )}
-            >
-              {"My Team"}
-            </div>
-          </div>
-          <div className={classNames(projectcss.all, sty.freeBox___7Axf0)}>
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img__z7Jol)}
-              displayHeight={"auto"}
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              height={"18.13"}
-              loading={"lazy"}
-              src={
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIcmZaJM1ZSe3jyr9tyEt3PfZ-_qh2LbCkdl9st3lV-16vIQwtrysBVlDaMisw62c_4Bk&usqp=CAU"
-              }
-              width={"23.13"}
-            />
-
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__u7Gmh
-              )}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["goToTeams2Market"] = true
-                  ? (() => {
-                      const actionArgs = { destination: `/new-page` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToTeams2Market"] != null &&
-                  typeof $steps["goToTeams2Market"] === "object" &&
-                  typeof $steps["goToTeams2Market"].then === "function"
-                ) {
-                  $steps["goToTeams2Market"] = await $steps["goToTeams2Market"];
-                }
-              }}
-            >
-              {"Market"}
-            </div>
-          </div>
-          <div className={classNames(projectcss.all, sty.freeBox__poBoI)}>
-            <PlasmicImg__
-              alt={""}
-              className={classNames(sty.img__jLqcj)}
-              displayHeight={"auto"}
-              displayMaxHeight={"none"}
-              displayMaxWidth={"100%"}
-              displayMinHeight={"0"}
-              displayMinWidth={"0"}
-              displayWidth={"auto"}
-              height={"18.13"}
-              loading={"lazy"}
-              src={
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIcmZaJM1ZSe3jyr9tyEt3PfZ-_qh2LbCkdl9st3lV-16vIQwtrysBVlDaMisw62c_4Bk&usqp=CAU"
-              }
-              width={"23.13"}
-            />
-
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__ouyCb
-              )}
-            >
-              {"Activity"}
-            </div>
-          </div>
-          <div className={classNames(projectcss.all, sty.freeBox__pJRw8)}>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__uw3Fv
-              )}
-            >
-              {"END OF THE FIXTURE (36)"}
-            </div>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__csf4L
-              )}
-            >
-              {"Friyday 16:00 Goo"}
-            </div>
-          </div>
+          <SideBarMyTeam
+            data-plasmic-name={"sideBarMyTeam"}
+            data-plasmic-override={overrides.sideBarMyTeam}
+            className={classNames("__wab_instance", sty.sideBarMyTeam)}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -748,7 +570,8 @@ const PlasmicDescendants = {
     "type",
     "playerCount",
     "playerAction",
-    "playerPickerRow"
+    "playerPickerRow",
+    "sideBarMyTeam"
   ],
   navbar: ["navbar"],
   columns: [
@@ -765,7 +588,8 @@ const PlasmicDescendants = {
   type: ["type"],
   playerCount: ["playerCount"],
   playerAction: ["playerAction"],
-  playerPickerRow: ["playerPickerRow"]
+  playerPickerRow: ["playerPickerRow"],
+  sideBarMyTeam: ["sideBarMyTeam"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -781,6 +605,7 @@ type NodeDefaultElementType = {
   playerCount: typeof Select;
   playerAction: typeof PlayerAction;
   playerPickerRow: typeof PlayerPickerRow;
+  sideBarMyTeam: typeof SideBarMyTeam;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -869,6 +694,7 @@ export const PlasmicTeams2Market = Object.assign(
     playerCount: makeNodeComponent("playerCount"),
     playerAction: makeNodeComponent("playerAction"),
     playerPickerRow: makeNodeComponent("playerPickerRow"),
+    sideBarMyTeam: makeNodeComponent("sideBarMyTeam"),
 
     // Metadata about props expected for PlasmicTeams2Market
     internalVariantProps: PlasmicTeams2Market__VariantProps,

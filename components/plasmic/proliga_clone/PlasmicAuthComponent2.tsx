@@ -91,16 +91,16 @@ import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: 6EplYmkkN57
 createPlasmicElementProxy;
 
 export type PlasmicAuthComponent2__VariantMembers = {
-  isSignUpFlow: "isSignUpFlow";
+  isSignUpFlow2: "isSignUpFlow2";
   signIn: "signIn";
 };
 export type PlasmicAuthComponent2__VariantsArgs = {
-  isSignUpFlow?: SingleBooleanChoiceArg<"isSignUpFlow">;
+  isSignUpFlow2?: SingleBooleanChoiceArg<"isSignUpFlow2">;
   signIn?: SingleBooleanChoiceArg<"signIn">;
 };
 type VariantPropType = keyof PlasmicAuthComponent2__VariantsArgs;
 export const PlasmicAuthComponent2__VariantProps = new Array<VariantPropType>(
-  "isSignUpFlow",
+  "isSignUpFlow2",
   "signIn"
 );
 
@@ -126,7 +126,7 @@ export type PlasmicAuthComponent2__OverridesType = {
 };
 
 export interface DefaultAuthComponent2Props {
-  isSignUpFlow?: SingleBooleanChoiceArg<"isSignUpFlow">;
+  isSignUpFlow2?: SingleBooleanChoiceArg<"isSignUpFlow2">;
   signIn?: SingleBooleanChoiceArg<"signIn">;
   className?: string;
 }
@@ -177,10 +177,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "isSignUpFlow",
+        path: "isSignUpFlow2",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isSignUpFlow
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isSignUpFlow2
       },
       {
         path: "form.value",
@@ -266,10 +266,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
         plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.root,
         {
-          [sty.rootisSignUpFlow]: hasVariant(
+          [sty.rootisSignUpFlow2]: hasVariant(
             $state,
-            "isSignUpFlow",
-            "isSignUpFlow"
+            "isSignUpFlow2",
+            "isSignUpFlow2"
           ),
           [sty.rootsignIn]: hasVariant($state, "signIn", "signIn")
         }
@@ -284,15 +284,15 @@ function PlasmicAuthComponent2__RenderFunc(props: {
           projectcss.__wab_text,
           sty.h1,
           {
-            [sty.h1isSignUpFlow]: hasVariant(
+            [sty.h1isSignUpFlow2]: hasVariant(
               $state,
-              "isSignUpFlow",
-              "isSignUpFlow"
+              "isSignUpFlow2",
+              "isSignUpFlow2"
             )
           }
         )}
       >
-        {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+        {hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
           ? "Start session"
           : "Create an Account"}
       </h1>
@@ -317,10 +317,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
 
         <div
           className={classNames(projectcss.all, sty.freeBox__mTZx, {
-            [sty.freeBoxisSignUpFlow__mTZxEk1Ar]: hasVariant(
+            [sty.freeBoxisSignUpFlow2__mTZxEk1Ar]: hasVariant(
               $state,
-              "isSignUpFlow",
-              "isSignUpFlow"
+              "isSignUpFlow2",
+              "isSignUpFlow2"
             )
           })}
         >
@@ -330,15 +330,15 @@ function PlasmicAuthComponent2__RenderFunc(props: {
               projectcss.__wab_text,
               sty.text__aRsiV,
               {
-                [sty.textisSignUpFlow__aRsiVek1Ar]: hasVariant(
+                [sty.textisSignUpFlow2__aRsiVek1Ar]: hasVariant(
                   $state,
-                  "isSignUpFlow",
-                  "isSignUpFlow"
+                  "isSignUpFlow2",
+                  "isSignUpFlow2"
                 )
               }
             )}
           >
-            {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+            {hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
               ? "Sign in with Facebook"
               : "Create account with Facebook"}
           </div>
@@ -346,10 +346,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
       </div>
       <div
         className={classNames(projectcss.all, sty.freeBox__ba3P8, {
-          [sty.freeBoxisSignUpFlow__ba3P8Ek1Ar]: hasVariant(
+          [sty.freeBoxisSignUpFlow2__ba3P8Ek1Ar]: hasVariant(
             $state,
-            "isSignUpFlow",
-            "isSignUpFlow"
+            "isSignUpFlow2",
+            "isSignUpFlow2"
           )
         })}
       />
@@ -358,10 +358,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
         <PlasmicImg__
           alt={""}
           className={classNames(sty.img__r1JHo, {
-            [sty.imgisSignUpFlow__r1JHoEk1Ar]: hasVariant(
+            [sty.imgisSignUpFlow2__r1JHoEk1Ar]: hasVariant(
               $state,
-              "isSignUpFlow",
-              "isSignUpFlow"
+              "isSignUpFlow2",
+              "isSignUpFlow2"
             )
           })}
           displayHeight={"auto"}
@@ -385,15 +385,15 @@ function PlasmicAuthComponent2__RenderFunc(props: {
             projectcss.__wab_text,
             sty.text__qSusQ,
             {
-              [sty.textisSignUpFlow__qSusQek1Ar]: hasVariant(
+              [sty.textisSignUpFlow2__qSusQek1Ar]: hasVariant(
                 $state,
-                "isSignUpFlow",
-                "isSignUpFlow"
+                "isSignUpFlow2",
+                "isSignUpFlow2"
               )
             }
           )}
         >
-          {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+          {hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
             ? "Sign in with Google"
             : "Create account with  Google"}
         </div>
@@ -423,15 +423,15 @@ function PlasmicAuthComponent2__RenderFunc(props: {
             projectcss.__wab_text,
             sty.text___4QMq,
             {
-              [sty.textisSignUpFlow___4QMqEk1Ar]: hasVariant(
+              [sty.textisSignUpFlow2___4QMqEk1Ar]: hasVariant(
                 $state,
-                "isSignUpFlow",
-                "isSignUpFlow"
+                "isSignUpFlow2",
+                "isSignUpFlow2"
               )
             }
           )}
         >
-          {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+          {hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
             ? "Sign in with Apple"
             : "Create account with  Apple"}
         </div>
@@ -439,10 +439,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
       {(() => {
         const child$Props = {
           className: classNames("__wab_instance", sty.form, {
-            [sty.formisSignUpFlow]: hasVariant(
+            [sty.formisSignUpFlow2]: hasVariant(
               $state,
-              "isSignUpFlow",
-              "isSignUpFlow"
+              "isSignUpFlow2",
+              "isSignUpFlow2"
             ),
             [sty.formsignIn]: hasVariant($state, "signIn", "signIn")
           }),
@@ -655,10 +655,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
               data-plasmic-name={"emailInput2"}
               data-plasmic-override={overrides.emailInput2}
               className={classNames("__wab_instance", sty.emailInput2, {
-                [sty.emailInput2isSignUpFlow]: hasVariant(
+                [sty.emailInput2isSignUpFlow2]: hasVariant(
                   $state,
-                  "isSignUpFlow",
-                  "isSignUpFlow"
+                  "isSignUpFlow2",
+                  "isSignUpFlow2"
                 ),
                 [sty.emailInput2signIn]: hasVariant($state, "signIn", "signIn")
               })}
@@ -810,6 +810,11 @@ function PlasmicAuthComponent2__RenderFunc(props: {
               data-plasmic-name={"submitButton"}
               data-plasmic-override={overrides.submitButton}
               className={classNames("__wab_instance", sty.submitButton, {
+                [sty.submitButtonisSignUpFlow2]: hasVariant(
+                  $state,
+                  "isSignUpFlow2",
+                  "isSignUpFlow2"
+                ),
                 [sty.submitButtonsignIn]: hasVariant($state, "signIn", "signIn")
               })}
               submitsForm={true}
@@ -819,10 +824,19 @@ function PlasmicAuthComponent2__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__ucF9
+                  sty.text__ucF9,
+                  {
+                    [sty.textisSignUpFlow2__ucF9Ek1Ar]: hasVariant(
+                      $state,
+                      "isSignUpFlow2",
+                      "isSignUpFlow2"
+                    )
+                  }
                 )}
               >
-                {"Create an Account"}
+                {hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
+                  ? "Sign UP"
+                  : "Login"}
               </div>
             </AntdButton>
           </FormWrapper>
@@ -834,10 +848,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
           projectcss.__wab_text,
           sty.text__nbx03,
           {
-            [sty.textisSignUpFlow__nbx03Ek1Ar]: hasVariant(
+            [sty.textisSignUpFlow2__nbx03Ek1Ar]: hasVariant(
               $state,
-              "isSignUpFlow",
-              "isSignUpFlow"
+              "isSignUpFlow2",
+              "isSignUpFlow2"
             )
           }
         )}
@@ -927,15 +941,15 @@ function PlasmicAuthComponent2__RenderFunc(props: {
               projectcss.__wab_text,
               sty.text__rv57E,
               {
-                [sty.textisSignUpFlow__rv57EEk1Ar]: hasVariant(
+                [sty.textisSignUpFlow2__rv57EEk1Ar]: hasVariant(
                   $state,
-                  "isSignUpFlow",
-                  "isSignUpFlow"
+                  "isSignUpFlow2",
+                  "isSignUpFlow2"
                 )
               }
             )}
           >
-            {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+            {hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
               ? "OR LOGIN WITH EMAIL"
               : "OR REGISTER USING YOUR EMAIL"}
           </div>
@@ -958,10 +972,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
             data-plasmic-name={"passwordInput"}
             data-plasmic-override={overrides.passwordInput}
             className={classNames("__wab_instance", sty.passwordInput, {
-              [sty.passwordInputisSignUpFlow]: hasVariant(
+              [sty.passwordInputisSignUpFlow2]: hasVariant(
                 $state,
-                "isSignUpFlow",
-                "isSignUpFlow"
+                "isSignUpFlow2",
+                "isSignUpFlow2"
               )
             })}
             onChange={(...eventArgs) => {
@@ -971,7 +985,7 @@ function PlasmicAuthComponent2__RenderFunc(props: {
             }}
             placeholder={"Enter your password..."}
             type={
-              hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+              hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
                 ? "password"
                 : "password"
             }
@@ -986,10 +1000,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
               projectcss.__wab_text,
               sty.text__vmlZj,
               {
-                [sty.textisSignUpFlow__vmlZjEk1Ar]: hasVariant(
+                [sty.textisSignUpFlow2__vmlZjEk1Ar]: hasVariant(
                   $state,
-                  "isSignUpFlow",
-                  "isSignUpFlow"
+                  "isSignUpFlow2",
+                  "isSignUpFlow2"
                 )
               }
             )}
@@ -1004,10 +1018,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
               data-plasmic-override={overrides.radio}
               autoFocus={false}
               className={classNames("__wab_instance", sty.radio, {
-                [sty.radioisSignUpFlow]: hasVariant(
+                [sty.radioisSignUpFlow2]: hasVariant(
                   $state,
-                  "isSignUpFlow",
-                  "isSignUpFlow"
+                  "isSignUpFlow2",
+                  "isSignUpFlow2"
                 )
               })}
             >
@@ -1028,10 +1042,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}
             className={classNames("__wab_instance", sty.button, {
-              [sty.buttonisSignUpFlow]: hasVariant(
+              [sty.buttonisSignUpFlow2]: hasVariant(
                 $state,
-                "isSignUpFlow",
-                "isSignUpFlow"
+                "isSignUpFlow2",
+                "isSignUpFlow2"
               )
             })}
             color={"green"}
@@ -1149,25 +1163,25 @@ function PlasmicAuthComponent2__RenderFunc(props: {
                 projectcss.__wab_text,
                 sty.text___5Jmpr,
                 {
-                  [sty.textisSignUpFlow___5Jmprek1Ar]: hasVariant(
+                  [sty.textisSignUpFlow2___5Jmprek1Ar]: hasVariant(
                     $state,
-                    "isSignUpFlow",
-                    "isSignUpFlow"
+                    "isSignUpFlow2",
+                    "isSignUpFlow2"
                   )
                 }
               )}
             >
-              {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+              {hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
                 ? "Start session "
                 : "Create an Account"}
             </div>
           </Button>
           <div
             className={classNames(projectcss.all, sty.freeBox__vqgzG, {
-              [sty.freeBoxisSignUpFlow__vqgzGek1Ar]: hasVariant(
+              [sty.freeBoxisSignUpFlow2__vqgzGek1Ar]: hasVariant(
                 $state,
-                "isSignUpFlow",
-                "isSignUpFlow"
+                "isSignUpFlow2",
+                "isSignUpFlow2"
               )
             })}
           >
@@ -1177,15 +1191,15 @@ function PlasmicAuthComponent2__RenderFunc(props: {
                 projectcss.__wab_text,
                 sty.text__wHeI9,
                 {
-                  [sty.textisSignUpFlow__wHeI9Ek1Ar]: hasVariant(
+                  [sty.textisSignUpFlow2__wHeI9Ek1Ar]: hasVariant(
                     $state,
-                    "isSignUpFlow",
-                    "isSignUpFlow"
+                    "isSignUpFlow2",
+                    "isSignUpFlow2"
                   )
                 }
               )}
             >
-              {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+              {hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
                 ? "You dont have an account?"
                 : "I have an Account,"}
             </div>
@@ -1195,10 +1209,10 @@ function PlasmicAuthComponent2__RenderFunc(props: {
                 projectcss.__wab_text,
                 sty.text__bepa0,
                 {
-                  [sty.textisSignUpFlow__bepa0Ek1Ar]: hasVariant(
+                  [sty.textisSignUpFlow2__bepa0Ek1Ar]: hasVariant(
                     $state,
-                    "isSignUpFlow",
-                    "isSignUpFlow"
+                    "isSignUpFlow2",
+                    "isSignUpFlow2"
                   )
                 }
               )}
@@ -1231,7 +1245,7 @@ function PlasmicAuthComponent2__RenderFunc(props: {
                 }
               }}
             >
-              {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
+              {hasVariant($state, "isSignUpFlow2", "isSignUpFlow2")
                 ? "Register"
                 : "Start session"}
             </div>

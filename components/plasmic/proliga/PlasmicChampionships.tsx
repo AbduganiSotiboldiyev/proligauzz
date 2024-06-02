@@ -93,6 +93,8 @@ export type PlasmicChampionships__OverridesType = {
   h1?: Flex__<"h1">;
   freeBox?: Flex__<"div">;
   columns?: Flex__<"div">;
+  column?: Flex__<"div">;
+  text?: Flex__<"div">;
 };
 
 export interface DefaultChampionshipsProps {}
@@ -133,15 +135,14 @@ function PlasmicChampionships__RenderFunc(props: {
   >({});
 
   const dataSourcesCtx = usePlasmicDataSourceContext();
+  const plasmicInvalidate = usePlasmicInvalidate();
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    query: usePlasmicDataOp(() => {
+    compotetion: usePlasmicDataOp(() => {
       return {
         sourceId: "8cdHi4ivRUEkK6qbegQevF",
-        opId: "820c7796-1e52-4809-a06b-dad4ad2009a9",
-        userArgs: {
-          filters: [$ctx.params.id]
-        },
+        opId: "a3926ae2-ba51-4cc3-a479-7fb855fe9bdb",
+        userArgs: {},
         cacheKey: `plasmic.$.${(() => {
           try {
             return "getOne";
@@ -154,7 +155,7 @@ function PlasmicChampionships__RenderFunc(props: {
             }
             throw e;
           }
-        })()}.$.820c7796-1e52-4809-a06b-dad4ad2009a9.$.`,
+        })()}.$.a3926ae2-ba51-4cc3-a479-7fb855fe9bdb.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -221,106 +222,163 @@ function PlasmicChampionships__RenderFunc(props: {
               hasGap={true}
               className={classNames(projectcss.all, sty.columns)}
             >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.column__bo6Pl)}
-              >
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__lxqfa)}
-                  displayHeight={"136px"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"318px"}
-                  loading={"lazy"}
-                  src={
-                    "https://upload.wikimedia.org/wikipedia/ru/thumb/f/f2/Premier_League_Logo.svg/1200px-Premier_League_Logo.svg.png"
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return $queries.compotetion.data;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
                   }
-                />
-              </Stack__>
-              <PlasmicLink__
-                className={classNames(
-                  projectcss.all,
-                  projectcss.a,
-                  sty.column___1YXpz
-                )}
-                component={Link}
-                onClick={async event => {
-                  const $steps = {};
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <Stack__
+                    as={"div"}
+                    data-plasmic-name={"column"}
+                    data-plasmic-override={overrides.column}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.column)}
+                    key={currentIndex}
+                    onClick={async event => {
+                      const $steps = {};
 
-                  $steps["goToTeamCreate"] = true
-                    ? (() => {
-                        const actionArgs = { destination: `/team-create` };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
+                      $steps["postgresCreate"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              dataOp: {
+                                sourceId: "8cdHi4ivRUEkK6qbegQevF",
+                                opId: "95ea4abc-f557-4a2e-ab82-5ac4166a59fe",
+                                userArgs: {
+                                  variables: [currentItem.id]
+                                },
+                                cacheKey: null,
+                                invalidatedKeys: ["plasmic_refresh_all"],
+                                roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+                              }
+                            };
+                            return (async ({ dataOp, continueOnError }) => {
+                              try {
+                                const response = await executePlasmicDataOp(
+                                  dataOp,
+                                  {
+                                    userAuthToken:
+                                      dataSourcesCtx?.userAuthToken,
+                                    user: dataSourcesCtx?.user
+                                  }
+                                );
+                                await plasmicInvalidate(dataOp.invalidatedKeys);
+                                return response;
+                              } catch (e) {
+                                if (!continueOnError) {
+                                  throw e;
+                                }
+                                return e;
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["postgresCreate"] != null &&
+                        typeof $steps["postgresCreate"] === "object" &&
+                        typeof $steps["postgresCreate"].then === "function"
+                      ) {
+                        $steps["postgresCreate"] = await $steps[
+                          "postgresCreate"
+                        ];
+                      }
+
+                      $steps["goToTeams"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: `/user/team/${(() => {
+                                try {
+                                  return currentItem.id;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}`
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToTeams"] != null &&
+                        typeof $steps["goToTeams"] === "object" &&
+                        typeof $steps["goToTeams"].then === "function"
+                      ) {
+                        $steps["goToTeams"] = await $steps["goToTeams"];
+                      }
+                    }}
+                  >
+                    <PlasmicImg__
+                      alt={""}
+                      className={classNames(sty.img__lxqfa)}
+                      displayHeight={"136px"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"318px"}
+                      loading={"lazy"}
+                      src={
+                        "https://upload.wikimedia.org/wikipedia/ru/thumb/f/f2/Premier_League_Logo.svg/1200px-Premier_League_Logo.svg.png"
+                      }
+                    />
+
+                    <div
+                      data-plasmic-name={"text"}
+                      data-plasmic-override={overrides.text}
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return currentItem.title;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "";
+                            }
+                            throw e;
                           }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["goToTeamCreate"] != null &&
-                    typeof $steps["goToTeamCreate"] === "object" &&
-                    typeof $steps["goToTeamCreate"].then === "function"
-                  ) {
-                    $steps["goToTeamCreate"] = await $steps["goToTeamCreate"];
-                  }
-                }}
-                platform={"nextjs"}
-              >
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__pykFi)}
-                  displayHeight={"103px"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn.worldvectorlogo.com/logos/laliga-1.svg"}
-                />
-              </PlasmicLink__>
-              <div className={classNames(projectcss.all, sty.column__fSsuY)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__ta3Sk)}
-                  displayHeight={"143px"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"281px"}
-                  loading={"lazy"}
-                  src={
-                    "https://1000logos.net/wp-content/uploads/2021/06/German-Bundesliga-logo.png"
-                  }
-                />
-              </div>
-              <div className={classNames(projectcss.all, sty.column___8MWgj)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__d0SAc)}
-                  displayHeight={"246px"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://api.logobank.uz/media/logos_png/UzPFL-01.png"}
-                />
-              </div>
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  </Stack__>
+                );
+              })}
             </Stack__>
           </div>
           <PlasmicImg__
@@ -347,10 +405,12 @@ function PlasmicChampionships__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "h1", "freeBox", "columns"],
+  root: ["root", "h1", "freeBox", "columns", "column", "text"],
   h1: ["h1"],
-  freeBox: ["freeBox", "columns"],
-  columns: ["columns"]
+  freeBox: ["freeBox", "columns", "column", "text"],
+  columns: ["columns", "column", "text"],
+  column: ["column", "text"],
+  text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -360,6 +420,8 @@ type NodeDefaultElementType = {
   h1: "h1";
   freeBox: "div";
   columns: "div";
+  column: "div";
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -442,6 +504,8 @@ export const PlasmicChampionships = Object.assign(
     h1: makeNodeComponent("h1"),
     freeBox: makeNodeComponent("freeBox"),
     columns: makeNodeComponent("columns"),
+    column: makeNodeComponent("column"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicChampionships
     internalVariantProps: PlasmicChampionships__VariantProps,

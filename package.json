@@ -17,6 +17,7 @@
     "@plasmicpkgs/antd5": "^0.0.233",
     "@plasmicpkgs/plasmic-basic-components": "^0.0.214",
     "@plasmicpkgs/plasmic-cms": "^0.0.257",
+    "@plasmicpkgs/plasmic-embed-css": "^0.1.181",
     "@plasmicpkgs/plasmic-graphcms": "^0.0.166",
     "@plasmicpkgs/plasmic-nav": "^0.0.165",
     "@plasmicpkgs/plasmic-query": "^0.0.213",

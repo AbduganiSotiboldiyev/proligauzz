@@ -194,7 +194,6 @@ function PlasmicBreakinNews__RenderFunc(props: {
                   "__wab_instance",
                   sty.breakinNewsCards__fxUs6
                 )}
-                variant2={true}
               />
             </div>
             <div className={classNames(projectcss.all, sty.column___69WjQ)}>
@@ -203,7 +202,6 @@ function PlasmicBreakinNews__RenderFunc(props: {
                   "__wab_instance",
                   sty.breakinNewsCards___8Ul0N
                 )}
-                variant3={true}
               />
             </div>
           </div>
@@ -214,7 +212,6 @@ function PlasmicBreakinNews__RenderFunc(props: {
                   "__wab_instance",
                   sty.breakinNewsCards___6S8Iu
                 )}
-                variant2={true}
               />
             </div>
             <div className={classNames(projectcss.all, sty.column__x81TI)}>
@@ -231,7 +228,6 @@ function PlasmicBreakinNews__RenderFunc(props: {
                   "__wab_instance",
                   sty.breakinNewsCards__ieC1D
                 )}
-                rmTeam={true}
               />
             </div>
           </div>
@@ -242,7 +238,6 @@ function PlasmicBreakinNews__RenderFunc(props: {
                   "__wab_instance",
                   sty.breakinNewsCards__ke0X4
                 )}
-                variant3={true}
               />
             </div>
             <div className={classNames(projectcss.all, sty.column__a5E2H)}>
@@ -251,7 +246,6 @@ function PlasmicBreakinNews__RenderFunc(props: {
                   "__wab_instance",
                   sty.breakinNewsCards__iwYaK
                 )}
-                rmTeam={true}
               />
             </div>
             <div className={classNames(projectcss.all, sty.column__kfs8J)}>
@@ -260,7 +254,6 @@ function PlasmicBreakinNews__RenderFunc(props: {
                   "__wab_instance",
                   sty.breakinNewsCards__paDj4
                 )}
-                variant2={true}
               />
             </div>
           </div>
@@ -271,7 +264,6 @@ function PlasmicBreakinNews__RenderFunc(props: {
                   "__wab_instance",
                   sty.breakinNewsCards__wkUbs
                 )}
-                rmTeam={true}
               />
             </div>
           </div>

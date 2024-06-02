@@ -231,7 +231,15 @@ function PlasmicAuthComponent__RenderFunc(props: {
         }
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__aLJlu)}>
+      <div
+        className={classNames(projectcss.all, sty.freeBox__aLJlu, {
+          [sty.freeBoxisSignUpFlow__aLJluPPyrn]: hasVariant(
+            $state,
+            "isSignUpFlow",
+            "isSignUpFlow"
+          )
+        })}
+      >
         <div className={classNames(projectcss.all, sty.freeBox__kzxqf)}>
           <Stack__
             as={"div"}
@@ -450,6 +458,11 @@ function PlasmicAuthComponent__RenderFunc(props: {
                   projectcss.a,
                   sty.link__ezWnS,
                   {
+                    [sty.linkisError__ezWnSy7MDj]: hasVariant(
+                      $state,
+                      "isError",
+                      "isError"
+                    ),
                     [sty.linkisSignUpFlow__ezWnSpPyrn]: hasVariant(
                       $state,
                       "isSignUpFlow",
@@ -458,17 +471,18 @@ function PlasmicAuthComponent__RenderFunc(props: {
                   }
                 )}
                 component={Link}
-                href={
-                  hasVariant($state, "isSignUpFlow", "isSignUpFlow")
-                    ? `/login`
-                    : `/signup`
-                }
+                href={`/signup`}
                 platform={"nextjs"}
               >
                 <Button2
                   data-plasmic-name={"button"}
                   data-plasmic-override={overrides.button}
                   className={classNames("__wab_instance", sty.button, {
+                    [sty.buttonisError]: hasVariant(
+                      $state,
+                      "isError",
+                      "isError"
+                    ),
                     [sty.buttonisSignUpFlow]: hasVariant(
                       $state,
                       "isSignUpFlow",
@@ -476,6 +490,37 @@ function PlasmicAuthComponent__RenderFunc(props: {
                     )
                   })}
                   color={"link"}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateIsSignUpFlow"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            vgroup: "isSignUpFlow",
+                            operation: 2,
+                            value: "isSignUpFlow"
+                          };
+                          return (({ vgroup, value }) => {
+                            if (typeof value === "string") {
+                              value = [value];
+                            }
+
+                            const oldValue = $stateGet($state, vgroup);
+                            $stateSet($state, vgroup, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateIsSignUpFlow"] != null &&
+                      typeof $steps["updateIsSignUpFlow"] === "object" &&
+                      typeof $steps["updateIsSignUpFlow"].then === "function"
+                    ) {
+                      $steps["updateIsSignUpFlow"] = await $steps[
+                        "updateIsSignUpFlow"
+                      ];
+                    }
+                  }}
                 >
                   {hasVariant($state, "isSignUpFlow", "isSignUpFlow")
                     ? "Login here"

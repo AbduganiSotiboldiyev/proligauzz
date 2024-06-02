@@ -592,7 +592,7 @@ function PlasmicNavbar__RenderFunc(props: {
                   sty.link__fy5Z9
                 )}
                 component={Link}
-                href={`/team/classic`}
+                href={`/user/team/[id]`}
                 onClick={async event => {
                   const $steps = {};
 
@@ -646,7 +646,7 @@ function PlasmicNavbar__RenderFunc(props: {
                       role={"img"}
                     />
                   }
-                  link={`/team/classic`}
+                  link={`/user/team/[id]`}
                   onClick={async event => {
                     const $steps = {};
 
@@ -714,7 +714,7 @@ function PlasmicNavbar__RenderFunc(props: {
 
                     $steps["goToTeams"] = true
                       ? (() => {
-                          const actionArgs = { destination: `/team/classic` };
+                          const actionArgs = { destination: `/user/team/[id]` };
                           return (({ destination }) => {
                             if (
                               typeof destination === "string" &&

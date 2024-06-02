@@ -85,9 +85,21 @@ export const PlasmicBreakinNewsCards__VariantProps = new Array<VariantPropType>(
   "rmTeam"
 );
 
-export type PlasmicBreakinNewsCards__ArgsType = {};
+export type PlasmicBreakinNewsCards__ArgsType = {
+  image?: string;
+  heading?: string;
+  dataNew?: string;
+  mainHeading?: string;
+  news?: string;
+};
 type ArgPropType = keyof PlasmicBreakinNewsCards__ArgsType;
-export const PlasmicBreakinNewsCards__ArgProps = new Array<ArgPropType>();
+export const PlasmicBreakinNewsCards__ArgProps = new Array<ArgPropType>(
+  "image",
+  "heading",
+  "dataNew",
+  "mainHeading",
+  "news"
+);
 
 export type PlasmicBreakinNewsCards__OverridesType = {
   root?: Flex__<"div">;
@@ -95,6 +107,11 @@ export type PlasmicBreakinNewsCards__OverridesType = {
 };
 
 export interface DefaultBreakinNewsCardsProps {
+  image?: string;
+  heading?: string;
+  dataNew?: string;
+  mainHeading?: string;
+  news?: string;
   variant2?: SingleBooleanChoiceArg<"variant2">;
   variant3?: SingleBooleanChoiceArg<"variant3">;
   rmTeam?: SingleBooleanChoiceArg<"rmTeam">;
@@ -221,12 +238,24 @@ function PlasmicBreakinNewsCards__RenderFunc(props: {
                   fullHeight: 320,
                   aspectRatio: undefined
                 }
-              : {
-                  src: "/plasmic/proliga_clone/images/croswebp.webp",
-                  fullWidth: 569,
-                  fullHeight: 320,
-                  aspectRatio: undefined
-                }
+              : (() => {
+                  try {
+                    return $props.image;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return {
+                        src: "/plasmic/proliga_clone/images/croswebp.webp",
+                        fullWidth: 569,
+                        fullHeight: 320,
+                        aspectRatio: undefined
+                      };
+                    }
+                    throw e;
+                  }
+                })()
           }
         />
 
@@ -238,7 +267,21 @@ function PlasmicBreakinNewsCards__RenderFunc(props: {
               sty.text__oHRhU
             )}
           >
-            {"NOTICIAS"}
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.heading;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "NOTICIAS";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
           </div>
           <div
             className={classNames(
@@ -247,7 +290,21 @@ function PlasmicBreakinNewsCards__RenderFunc(props: {
               sty.text__hkRd
             )}
           >
-            {"2 DAYS AGO"}
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.dataNew;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "2 DAYS AGO";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
           </div>
         </div>
         <div
@@ -274,13 +331,29 @@ function PlasmicBreakinNewsCards__RenderFunc(props: {
             }
           )}
         >
-          {hasVariant($state, "rmTeam", "rmTeam")
-            ? "Militao podr\u00eda sumar minutos ante el Mallorca: cu\u00e1nto pujar por \u00e9l y hasta qu\u00e9 precio puede subir en LALIGA FANTASY"
-            : hasVariant($state, "variant3", "variant3")
-            ? "Lesi\u00f3n de Chimy \u00c1vila: qu\u00e9 tiene y cu\u00e1ndo vuelve a jugar con el Betis"
-            : hasVariant($state, "variant2", "variant2")
-            ? "Por qu\u00e9 el consejo para la jornada 31 es no alinear a jugadores de Bar\u00e7a, Madrid o Atl\u00e9tico en LALIGA FANTASY"
-            : "Clasificaci\u00f3n general de los puntos Relevo: as\u00ed queda el ranking tras la \u00faltima jornada"}
+          {hasVariant($state, "rmTeam", "rmTeam") ? (
+            "Militao podr\u00eda sumar minutos ante el Mallorca: cu\u00e1nto pujar por \u00e9l y hasta qu\u00e9 precio puede subir en LALIGA FANTASY"
+          ) : hasVariant($state, "variant3", "variant3") ? (
+            "Lesi\u00f3n de Chimy \u00c1vila: qu\u00e9 tiene y cu\u00e1ndo vuelve a jugar con el Betis"
+          ) : hasVariant($state, "variant2", "variant2") ? (
+            "Por qu\u00e9 el consejo para la jornada 31 es no alinear a jugadores de Bar\u00e7a, Madrid o Atl\u00e9tico en LALIGA FANTASY"
+          ) : (
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.mainHeading;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "Clasificaci\u00f3n general de los puntos Relevo: as\u00ed queda el ranking tras la \u00faltima jornada";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          )}
         </div>
         <div
           className={classNames(
@@ -306,13 +379,29 @@ function PlasmicBreakinNewsCards__RenderFunc(props: {
             }
           )}
         >
-          {hasVariant($state, "rmTeam", "rmTeam")
-            ? "El central brasile\u00f1o ya jug\u00f3 los compases finales del duelo frente al Athletic Club. .."
-            : hasVariant($state, "variant3", "variant3")
-            ? "El futbolista argentino, que se retir\u00f3 lesionado del Girona-Betis, sufre una lesi\u00f3n miotendinosa proximal del isquiotibial izquierdo...."
-            : hasVariant($state, "variant2", "variant2")
-            ? "Los equipos que disputaron competici\u00f3n europea podr\u00edan rotar en la nueva fecha de la competici\u00f3n, ya pensando en el partido de vuelta...."
-            : "La lista se actualizar\u00e1 cada semana y mostrar\u00e1 la clasificaci\u00f3n general de los puntos Relevo...."}
+          {hasVariant($state, "rmTeam", "rmTeam") ? (
+            "El central brasile\u00f1o ya jug\u00f3 los compases finales del duelo frente al Athletic Club. .."
+          ) : hasVariant($state, "variant3", "variant3") ? (
+            "El futbolista argentino, que se retir\u00f3 lesionado del Girona-Betis, sufre una lesi\u00f3n miotendinosa proximal del isquiotibial izquierdo...."
+          ) : hasVariant($state, "variant2", "variant2") ? (
+            "Los equipos que disputaron competici\u00f3n europea podr\u00edan rotar en la nueva fecha de la competici\u00f3n, ya pensando en el partido de vuelta...."
+          ) : (
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.news;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "La lista se actualizar\u00e1 cada semana y mostrar\u00e1 la clasificaci\u00f3n general de los puntos Relevo....";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          )}
         </div>
       </div>
     </div>

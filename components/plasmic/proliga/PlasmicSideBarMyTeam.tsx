@@ -178,7 +178,37 @@ function PlasmicSideBarMyTeam__RenderFunc(props: {
           {"PROLIGA Fantasy"}
         </div>
       </Stack__>
-      <div className={classNames(projectcss.all, sty.freeBox___565V6)}>
+      <div
+        className={classNames(projectcss.all, sty.freeBox___565V6)}
+        onClick={async event => {
+          const $steps = {};
+
+          $steps["goToRankings"] = true
+            ? (() => {
+                const actionArgs = { destination: `/rankings` };
+                return (({ destination }) => {
+                  if (
+                    typeof destination === "string" &&
+                    destination.startsWith("#")
+                  ) {
+                    document
+                      .getElementById(destination.substr(1))
+                      .scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    __nextRouter?.push(destination);
+                  }
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["goToRankings"] != null &&
+            typeof $steps["goToRankings"] === "object" &&
+            typeof $steps["goToRankings"].then === "function"
+          ) {
+            $steps["goToRankings"] = await $steps["goToRankings"];
+          }
+        }}
+      >
         <PlasmicImg__
           alt={""}
           className={classNames(sty.img__oAyQe)}
@@ -202,6 +232,34 @@ function PlasmicSideBarMyTeam__RenderFunc(props: {
             projectcss.__wab_text,
             sty.text__d0EAn
           )}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["goToRankings"] = true
+              ? (() => {
+                  const actionArgs = { destination: `/rankings` };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["goToRankings"] != null &&
+              typeof $steps["goToRankings"] === "object" &&
+              typeof $steps["goToRankings"].then === "function"
+            ) {
+              $steps["goToRankings"] = await $steps["goToRankings"];
+            }
+          }}
         >
           {"Standing"}
         </div>
@@ -233,7 +291,7 @@ function PlasmicSideBarMyTeam__RenderFunc(props: {
 
             $steps["goToTeams"] = true
               ? (() => {
-                  const actionArgs = { destination: `/team/classic` };
+                  const actionArgs = { destination: `/user/team/[id]` };
                   return (({ destination }) => {
                     if (
                       typeof destination === "string" &&

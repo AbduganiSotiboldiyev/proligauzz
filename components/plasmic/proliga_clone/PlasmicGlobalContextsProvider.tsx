@@ -9,6 +9,7 @@ import { hasVariant, ensureGlobalVariants } from "@plasmicapp/react-web";
 import { AntdConfigProvider } from "@plasmicpkgs/antd5/skinny/registerConfigProvider";
 import { GraphCMSCredentialsProvider } from "@plasmicpkgs/plasmic-graphcms";
 import { CmsCredentialsProvider } from "@plasmicpkgs/plasmic-cms";
+import { EmbedCss } from "@plasmicpkgs/plasmic-embed-css";
 
 export interface GlobalContextsProviderProps {
   children?: React.ReactElement;
@@ -23,6 +24,10 @@ export interface GlobalContextsProviderProps {
   cmsCredentialsProviderProps?: Partial<
     Omit<React.ComponentProps<typeof CmsCredentialsProvider>, "children">
   >;
+
+  embedCssProps?: Partial<
+    Omit<React.ComponentProps<typeof EmbedCss>, "children">
+  >;
 }
 
 export default function GlobalContextsProvider(
@@ -32,7 +37,8 @@ export default function GlobalContextsProvider(
     children,
     antdConfigProviderProps,
     graphCMSCredentialsProviderProps,
-    cmsCredentialsProviderProps
+    cmsCredentialsProviderProps,
+    embedCssProps
   } = props;
 
   return (
@@ -169,7 +175,16 @@ export default function GlobalContextsProvider(
               : "default"
           }
         >
-          {children}
+          <EmbedCss
+            {...embedCssProps}
+            css={
+              embedCssProps && "css" in embedCssProps
+                ? embedCssProps.css!
+                : ".glass-effect{\r\n    background: rgba( 255, 255, 255, 0.2 );\r\nbox-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );\r\nbackdrop-filter: blur( 6px );\r\n-webkit-backdrop-filter: blur( 6px );\r\nborder-radius: 10px;\r\nborder: 1px solid rgba( 255, 255, 255, 0.18 );\r\n}"
+            }
+          >
+            {children}
+          </EmbedCss>
         </CmsCredentialsProvider>
       </GraphCMSCredentialsProvider>
     </AntdConfigProvider>

@@ -1474,7 +1474,7 @@
           "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
           "renderModuleFilePath": "plasmic/proliga_clone/PlasmicTeams.tsx",
           "importSpec": {
-            "modulePath": "../pages/team/classic.tsx"
+            "modulePath": "../pages/user/team/[id].tsx"
           },
           "cssFilePath": "plasmic/proliga_clone/PlasmicTeams.module.css",
           "scheme": "blackbox",
@@ -1493,20 +1493,6 @@
           "cssFilePath": "plasmic/proliga_clone/PlasmicSoccerPlaceMens2.module.css",
           "scheme": "blackbox",
           "componentType": "component"
-        },
-        {
-          "id": "xmY-b23pZr3-",
-          "name": "Club",
-          "type": "managed",
-          "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
-          "renderModuleFilePath": "plasmic/proliga_clone/PlasmicClub.tsx",
-          "importSpec": {
-            "modulePath": "../pages/clubs/[id].tsx"
-          },
-          "cssFilePath": "plasmic/proliga_clone/PlasmicClub.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/club-4/[id]"
         },
         {
           "id": "Kg9RPQ5P0NJA",
@@ -1666,7 +1652,7 @@
           "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
           "renderModuleFilePath": "plasmic/proliga/PlasmicChampionships.tsx",
           "importSpec": {
-            "modulePath": "../pages/competition/[id].tsx"
+            "modulePath": "../pages/competition.tsx"
           },
           "cssFilePath": "plasmic/proliga/PlasmicChampionships.module.css",
           "scheme": "blackbox",
@@ -1804,6 +1790,47 @@
           "cssFilePath": "plasmic/proliga/PlasmicSwitch.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "AYkdRE0S8ipX",
+          "name": "Clubs22",
+          "type": "managed",
+          "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
+          "renderModuleFilePath": "plasmic/proliga/PlasmicClubs22.tsx",
+          "importSpec": {
+            "modulePath": "Clubs22.tsx"
+          },
+          "cssFilePath": "plasmic/proliga/PlasmicClubs22.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "JwM9j40Em2Mz",
+          "name": "TestPage",
+          "type": "managed",
+          "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
+          "renderModuleFilePath": "plasmic/proliga/PlasmicTestPage.tsx",
+          "importSpec": {
+            "modulePath": "../pages/test-page.tsx"
+          },
+          "cssFilePath": "plasmic/proliga/PlasmicTestPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/test-page"
+        },
+        {
+          "id": "HkymKsA_ZArE",
+          "name": "Club2",
+          "type": "managed",
+          "projectId": "tDWy3GXn2mzd9e2xUaPdmu",
+          "renderModuleFilePath": "plasmic/proliga/PlasmicClub2.tsx",
+          "importSpec": {
+            "modulePath": "../pages/clubs-2/[id].tsx"
+          },
+          "cssFilePath": "plasmic/proliga/PlasmicClub2.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/clubs-2/[id]"
         }
       ],
       "icons": [
@@ -2243,6 +2270,11 @@
           "id": "W0guQWKBMwDw",
           "name": "logo-design-template-b588de7cc0b07e82392c3b2ea4ea7b73_screen.jpg",
           "filePath": "../public/plasmic/proliga/images/logoDesignTemplateB588De7Cc0B07E82392C3B2Ea4Ea7B73Screenjpg.jpg"
+        },
+        {
+          "id": "k7toujHeMO5Y",
+          "name": "first.jpg",
+          "filePath": "../public/plasmic/proliga/images/firstjpg.jpg"
         }
       ],
       "indirect": false,
@@ -2263,6 +2295,29 @@
         }
       ],
       "customFunctions": []
+    },
+    {
+      "projectId": "8PtdGodUbexNYgkuyBUcWu",
+      "projectApiToken": "34o5R5KswluuZ4sD83F88oQrcLWsNNeUpCptQ8Okf4hYqgjnHnX2idGAlhtB7WWQQelNAInf5XFazR1cGw",
+      "projectName": "plasmic-embed-css",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/plasmic_embed_css/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "plasmic/plasmic_embed_css/PlasmicGlobalContextsProvider.tsx",
+      "splitsProviderFilePath": "",
+      "codeComponents": [
+        {
+          "id": "qF0uJxFztB",
+          "name": "EmbedCss",
+          "displayName": "global-embed-css",
+          "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
+        }
+      ],
+      "customFunctions": [],
+      "jsBundleThemes": []
     }
   ],
   "globalVariants": {

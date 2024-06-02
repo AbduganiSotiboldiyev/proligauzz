@@ -11,7 +11,7 @@
   padding-bottom: 0px;
   padding-left: 0px;
 }
-.freeBox__pnlSg {
+.def {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -30,7 +30,7 @@
   width: 100%;
   min-width: 0;
 }
-.freeBox__tq3Mf {
+.str {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -41,7 +41,7 @@
   padding: 8px;
   margin: 50px;
 }
-.freeBox__tq3Mf > :global(.__wab_flex-container) {
+.str > :global(.__wab_flex-container) {
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -51,14 +51,10 @@
   margin-left: calc(0px - 10px);
   width: calc(100% + 10px);
 }
-.freeBox__tq3Mf > :global(.__wab_flex-container) > *,
-.freeBox__tq3Mf > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__tq3Mf > :global(.__wab_flex-container) > picture > img,
-.freeBox__tq3Mf
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
+.str > :global(.__wab_flex-container) > *,
+.str > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.str > :global(.__wab_flex-container) > picture > img,
+.str > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
   margin-left: 10px;
 }
 .idealTeamMember__nLitS:global(.__wab_instance) {
@@ -75,7 +71,7 @@
   max-width: 100%;
   position: relative;
 }
-.freeBox___0Xvvu {
+.mid {
   display: flex;
   position: relative;
   flex-direction: row;
@@ -104,7 +100,7 @@
   max-width: 100%;
   position: relative;
 }
-.freeBox__p3FUy {
+.goa {
   display: flex;
   position: relative;
   flex-direction: row;

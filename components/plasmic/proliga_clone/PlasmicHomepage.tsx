@@ -59,12 +59,21 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
 import Navbar from "../../Navbar"; // plasmic-import: TKT8XnZtrLZi/component
 import Clubs2 from "../../Clubs2"; // plasmic-import: 3EueAFP_3sEI/component
 import SearchComponent from "../../SearchComponent"; // plasmic-import: mmk_GiTXUtux/component
-import SoccerPlaceMens from "../../SoccerPlaceMens"; // plasmic-import: w6mcybgJxhpK/component
+import AvatarPlayer from "../../AvatarPlayer"; // plasmic-import: 4QnaRcOLXj0D/component
 import MessageCard from "../../MessageCard"; // plasmic-import: KNRpEkS9bXP0/component
 import Select from "../../Select"; // plasmic-import: bCMc_ebYmgPo/component
+import { RichTable } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
+import { tableHelpers as RichTable_Helpers } from "@plasmicpkgs/plasmic-rich-components/skinny/rich-table";
+import BreakinNewsCards from "../../BreakinNewsCards"; // plasmic-import: cgwtBVaX8unu/component
 import Footer from "../../Footer"; // plasmic-import: kIdovXGtWiEz/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -92,11 +101,19 @@ export type PlasmicHomepage__OverridesType = {
   clubs2?: Flex__<typeof Clubs2>;
   heroSection?: Flex__<"div">;
   searchComponent?: Flex__<typeof SearchComponent>;
-  soccerPlaceMens?: Flex__<typeof SoccerPlaceMens>;
+  playersTable?: Flex__<"div">;
+  goa?: Flex__<"div">;
+  def?: Flex__<"div">;
+  mid?: Flex__<"div">;
+  str?: Flex__<"div">;
+  vseKlubi?: Flex__<"div">;
   select?: Flex__<typeof Select>;
   select2?: Flex__<typeof Select>;
+  vse?: Flex__<"div">;
   select5?: Flex__<typeof Select>;
   select6?: Flex__<typeof Select>;
+  table?: Flex__<typeof RichTable>;
+  breakinNewsCards?: Flex__<typeof BreakinNewsCards>;
   footer?: Flex__<typeof Footer>;
 };
 
@@ -133,6 +150,9 @@ function PlasmicHomepage__RenderFunc(props: {
 
   const currentUser = useCurrentUser?.() || {};
 
+  let [$queries, setDollarQueries] = React.useState<
+    Record<string, ReturnType<typeof usePlasmicDataOp>>
+  >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -158,6 +178,57 @@ function PlasmicHomepage__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "players",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $queries.players.data;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "table.selectedRowKey",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: generateOnMutateForSpec("selectedRowKey", RichTable_Helpers)
+      },
+      {
+        path: "table.selectedRow",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: generateOnMutateForSpec("selectedRow", RichTable_Helpers)
+      },
+      {
+        path: "table.selectedRows",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: generateOnMutateForSpec("selectedRows", RichTable_Helpers)
+      },
+      {
+        path: "table.selectedRowKeys",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: generateOnMutateForSpec("selectedRowKeys", RichTable_Helpers)
       }
     ],
     [$props, $ctx, $refs]
@@ -165,9 +236,27 @@ function PlasmicHomepage__RenderFunc(props: {
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
-    $queries: {},
+    $queries: $queries,
     $refs
   });
+
+  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
+    players: usePlasmicDataOp(() => {
+      return {
+        sourceId: "8cdHi4ivRUEkK6qbegQevF",
+        opId: "e02d95ac-bbfa-4d91-b6fb-f8bf3b743dff",
+        userArgs: {},
+        cacheKey: `plasmic.$.e02d95ac-bbfa-4d91-b6fb-f8bf3b743dff.$.`,
+        invalidatedKeys: null,
+        roleId: "f8970d3a-c1ae-4ba8-80dd-90e548ee70d6"
+      };
+    })
+  };
+  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
+    setDollarQueries(new$Queries);
+
+    $queries = new$Queries;
+  }
 
   return (
     <React.Fragment>
@@ -263,31 +352,125 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
               </div>
               <div className={classNames(projectcss.all, sty.freeBox__ipYwg)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__tYlG
-                  )}
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"playersTable"}
+                  data-plasmic-override={overrides.playersTable}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.playersTable)}
                 >
-                  {"11"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___8FaeX
-                  )}
-                >
-                  {"100 \u0441\u0443\u043c"}
-                </div>
-              </div>
-              <SoccerPlaceMens
-                data-plasmic-name={"soccerPlaceMens"}
-                data-plasmic-override={overrides.soccerPlaceMens}
-                className={classNames("__wab_instance", sty.soccerPlaceMens)}
-              />
+                  <div
+                    data-plasmic-name={"goa"}
+                    data-plasmic-override={overrides.goa}
+                    className={classNames(projectcss.all, sty.goa)}
+                  >
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__eYqn
+                      )}
+                    />
+                  </div>
+                  <Stack__
+                    as={"div"}
+                    data-plasmic-name={"def"}
+                    data-plasmic-override={overrides.def}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.def)}
+                  >
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__zHe2
+                      )}
+                    />
 
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__gKg6U
+                      )}
+                    />
+
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__gy4Be
+                      )}
+                    />
+
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__fMyT
+                      )}
+                    />
+                  </Stack__>
+                  <Stack__
+                    as={"div"}
+                    data-plasmic-name={"mid"}
+                    data-plasmic-override={overrides.mid}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.mid)}
+                  >
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__scu4E
+                      )}
+                    />
+
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__rwYkb
+                      )}
+                    />
+
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__ytkgs
+                      )}
+                    />
+
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__dwZcr
+                      )}
+                    />
+                  </Stack__>
+                  <Stack__
+                    as={"div"}
+                    data-plasmic-name={"str"}
+                    data-plasmic-override={overrides.str}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.str)}
+                  >
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__rJ1Bo
+                      )}
+                    />
+
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer__dLfj0
+                      )}
+                    />
+
+                    <AvatarPlayer
+                      className={classNames(
+                        "__wab_instance",
+                        sty.avatarPlayer___0Fap9
+                      )}
+                    />
+                  </Stack__>
+                </Stack__>
+              </div>
               <Stack__
                 as={"div"}
                 hasGap={true}
@@ -352,6 +535,10 @@ function PlasmicHomepage__RenderFunc(props: {
               </div>
               <MessageCard
                 className={classNames("__wab_instance", sty.messageCard__hDvns)}
+                heading={"Qoida 1"}
+                textInfo={
+                  "Har bir o'yinda bir komandadan faqat 2 ta o'yinchi sotib olsa bo'ladi! Qolgan o'yinchilar uchun to'lov amalga oshiriladi"
+                }
               />
 
               <MessageCard
@@ -359,6 +546,10 @@ function PlasmicHomepage__RenderFunc(props: {
                   "__wab_instance",
                   sty.messageCard___4RSaU
                 )}
+                heading={"Qoida 2"}
+                textInfo={
+                  "Sotib olinga o'yinchilar 100 dan oshib ketmasligi kerak"
+                }
               />
 
               <MessageCard
@@ -366,10 +557,16 @@ function PlasmicHomepage__RenderFunc(props: {
                   "__wab_instance",
                   sty.messageCard___2ONt1
                 )}
+                heading={"Qoida 3"}
+                textInfo={
+                  "Har turda 2 ta dan ortiq transferlar qilib bo'lmaydi!"
+                }
               />
 
               <MessageCard
                 className={classNames("__wab_instance", sty.messageCard__apEks)}
+                heading={"Qoida 4"}
+                textInfo={"Savollar bo'yicha Moderatorga murojaat qiling!"}
               />
             </Stack__>
             <Stack__
@@ -384,12 +581,14 @@ function PlasmicHomepage__RenderFunc(props: {
                   sty.text__qp8Lp
                 )}
               >
-                {"\u041f\u0420\u0410\u0412\u0418\u041b\u0418!"}
+                {"\u041a\u041e\u041c\u0410\u041d\u0414\u042b"}
               </div>
               <Stack__
                 as={"div"}
+                data-plasmic-name={"vseKlubi"}
+                data-plasmic-override={overrides.vseKlubi}
                 hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__nZk)}
+                className={classNames(projectcss.all, sty.vseKlubi)}
               >
                 <Select
                   data-plasmic-name={"select"}
@@ -442,8 +641,10 @@ function PlasmicHomepage__RenderFunc(props: {
               </Stack__>
               <Stack__
                 as={"div"}
+                data-plasmic-name={"vse"}
+                data-plasmic-override={overrides.vse}
                 hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___4FfY4)}
+                className={classNames(projectcss.all, sty.vse)}
               >
                 <Select
                   data-plasmic-name={"select5"}
@@ -512,10 +713,19 @@ function PlasmicHomepage__RenderFunc(props: {
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
+                    sty.text___8306T
+                  )}
+                >
+                  {"\u041f\u043e\u0437\u0438\u0446\u0438\u044f"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
                     sty.text__nXnUk
                   )}
                 >
-                  {"\u041e\u0447\u043a\u0438"}
+                  {"\u0426\u0435\u043d\u0430"}
                 </div>
                 <div
                   className={classNames(
@@ -524,610 +734,144 @@ function PlasmicHomepage__RenderFunc(props: {
                     sty.text___04Pyj
                   )}
                 >
-                  {"\u0426\u0435\u043d\u0430"}
+                  {"\u041e\u0447\u043a\u0438"}
                 </div>
               </Stack__>
-              <div className={classNames(projectcss.all, sty.freeBox__fJFlU)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img___6DBE)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
+              {(() => {
+                const child$Props = {
+                  canSelectRows: "none",
+                  className: classNames("__wab_instance", sty.table),
+                  data: (() => {
+                    try {
+                      return $state.players;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })(),
+                  defaultSize: "large",
+                  fields: (() => {
+                    const __composite = [
+                      { key: "id", fieldId: "id", isHidden: null },
+                      { key: "name", fieldId: "name" },
+                      { key: "position", fieldId: "position" },
+                      { key: "market_value", fieldId: "market_value" },
+                      { key: "image", fieldId: "image", isHidden: null },
+                      {
+                        key: "shirt_number",
+                        fieldId: "shirt_number",
+                        isHidden: null
+                      },
+                      { key: "club_id", fieldId: "club_id", isHidden: null },
+                      {
+                        key: "previues_value",
+                        fieldId: "previues_value",
+                        isHidden: null
+                      },
+                      {
+                        key: "current_value ",
+                        fieldId: "current_value ",
+                        isHidden: null
+                      },
+                      { key: "FSYP", fieldId: "FSYP" }
+                    ];
+                    __composite["0"]["isHidden"] = true;
+                    __composite["4"]["isHidden"] = true;
+                    __composite["5"]["isHidden"] = true;
+                    __composite["6"]["isHidden"] = true;
+                    __composite["7"]["isHidden"] = true;
+                    __composite["8"]["isHidden"] = true;
+                    return __composite;
+                  })(),
 
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__msyDb)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
+                  hideColumnPicker: false,
+                  hideExports: false,
+                  hideSearch: false,
+                  onRowSelectionChanged: async (...eventArgs: any) => {
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "selectedRowKey",
+                      ["table", "selectedRowKey"],
+                      RichTable_Helpers
+                    ).apply(null, eventArgs);
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "selectedRow",
+                      ["table", "selectedRow"],
+                      RichTable_Helpers
+                    ).apply(null, eventArgs);
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "selectedRows",
+                      ["table", "selectedRows"],
+                      RichTable_Helpers
+                    ).apply(null, eventArgs);
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "selectedRowKeys",
+                      ["table", "selectedRowKeys"],
+                      RichTable_Helpers
+                    ).apply(null, eventArgs);
+                  },
+                  pageSize: 12,
+                  pagination: true,
+                  scopeClassName: sty["table__instance"],
+                  selectedRowKey: generateStateValueProp($state, [
+                    "table",
+                    "selectedRowKey"
+                  ]),
+                  selectedRowKeys: generateStateValueProp($state, [
+                    "table",
+                    "selectedRowKeys"
+                  ]),
+                  themeResetClassName: classNames(
+                    projectcss.root_reset,
+                    projectcss.root_reset_tags,
+                    projectcss.plasmic_default_styles,
+                    projectcss.plasmic_mixins,
+                    projectcss.plasmic_tokens,
+                    plasmic_antd_5_hostless_css.plasmic_tokens,
+                    plasmic_plasmic_rich_components_css.plasmic_tokens
+                  )
+                };
+                initializeCodeComponentStates(
+                  $state,
+                  [
+                    {
+                      name: "selectedRowKey",
+                      plasmicStateName: "table.selectedRowKey"
+                    },
+                    {
+                      name: "selectedRow",
+                      plasmicStateName: "table.selectedRow"
+                    },
+                    {
+                      name: "selectedRows",
+                      plasmicStateName: "table.selectedRows"
+                    },
+                    {
+                      name: "selectedRowKeys",
+                      plasmicStateName: "table.selectedRowKeys"
+                    }
+                  ],
+                  [],
+                  RichTable_Helpers ?? {},
+                  child$Props
+                );
 
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__pAknB
-                  )}
-                >
-                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__hg32Z
-                  )}
-                >
-                  {"32"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___62SEp
-                  )}
-                >
-                  {"12.5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__f0IVw)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__y5KrK)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
-
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__hz3Ct)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__me2YB
-                  )}
-                >
-                  {"\u041c\u0435\u0441\u0441\u0438"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__winha
-                  )}
-                >
-                  {"11"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__ezFd
-                  )}
-                >
-                  {"10,5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__edVNc)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__kOawP)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
-
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__vkCjS)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__gFkUp
-                  )}
-                >
-                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___7ExXl
-                  )}
-                >
-                  {"32"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__zwTp4
-                  )}
-                >
-                  {"12.5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__z5ACu)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__pguL)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
-
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__ub07N)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__rQb3C
-                  )}
-                >
-                  {"\u041c\u0435\u0441\u0441\u0438"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__bSAtL
-                  )}
-                >
-                  {"11"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__bEjft
-                  )}
-                >
-                  {"10,5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__jgO73)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img___7ZLm)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
-
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img___0TMco)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__arpgY
-                  )}
-                >
-                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__jlIgg
-                  )}
-                >
-                  {"32"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__vvVfn
-                  )}
-                >
-                  {"12.5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__vwNj5)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img___2RcI7)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
-
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__uz2A1)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__qzYTg
-                  )}
-                >
-                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__m8H4O
-                  )}
-                >
-                  {"32"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__vazOn
-                  )}
-                >
-                  {"12.5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__qdDw)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__fWag2)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
-
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__oGrB5)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___4G5XL
-                  )}
-                >
-                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__adJoz
-                  )}
-                >
-                  {"32"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__zoxXi
-                  )}
-                >
-                  {"12.5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox___9EfPu)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__tyMtF)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
-
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__kxU39)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__ibbk
-                  )}
-                >
-                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__umwI5
-                  )}
-                >
-                  {"32"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__xNm8B
-                  )}
-                >
-                  {"12.5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__x8EHu)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__lX1Qe)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
-
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__dMaJc)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__oft4H
-                  )}
-                >
-                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__r1Oyy
-                  )}
-                >
-                  {"32"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__tCriD
-                  )}
-                >
-                  {"12.5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox__xmYee)}>
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__egzat)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.flaticon.com/512/1/1176.png"}
-                  width={"14px"}
-                />
-
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__rPfdy)}
-                  displayHeight={"auto"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"auto"}
-                  loading={"lazy"}
-                  src={"https://cdn-icons-png.freepik.com/512/5974/5974633.png"}
-                  width={"14px"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__fKhW0
-                  )}
-                >
-                  {"\u0420\u043e\u043d\u0430\u043b\u0434\u0443"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__rmwlv
-                  )}
-                >
-                  {"32"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__nPJ7
-                  )}
-                >
-                  {"12.5"}
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox___7GljZ)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__jNvEx
-                  )}
-                >
-                  {
-                    "\u041f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0438\u0439"
-                  }
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__l2Bv
-                  )}
-                >
-                  {"|"}
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__bIGh
-                  )}
-                >
-                  {"\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439"}
-                </div>
-              </div>
+                return (
+                  <RichTable
+                    data-plasmic-name={"table"}
+                    data-plasmic-override={overrides.table}
+                    {...child$Props}
+                  />
+                );
+              })()}
             </Stack__>
           </div>
           <div className={classNames(projectcss.all, sty.columns__mFen7)}>
@@ -1156,9 +900,12 @@ function PlasmicHomepage__RenderFunc(props: {
                   displayMinWidth={"0"}
                   displayWidth={"auto"}
                   loading={"lazy"}
-                  src={
-                    "https://resources.premierleague.com/premierleague/badges/50/t3.png"
-                  }
+                  src={{
+                    src: "/plasmic/proliga_clone/images/realBetispng.png",
+                    fullWidth: 123,
+                    fullHeight: 104,
+                    aspectRatio: undefined
+                  }}
                 />
 
                 <div
@@ -1798,32 +1545,11 @@ function PlasmicHomepage__RenderFunc(props: {
               >
                 {"\u041f\u043e\u0434\u0440\u043e\u0431\u043d\u0435\u0435"}
               </div>
-              <PlasmicImg__
-                alt={""}
-                className={classNames(sty.img__xtpA5)}
-                displayHeight={"auto"}
-                displayMaxHeight={"none"}
-                displayMaxWidth={"100%"}
-                displayMinHeight={"0"}
-                displayMinWidth={"0"}
-                displayWidth={"auto"}
-                loading={"lazy"}
-                src={
-                  "https://img.chelseafc.com/image/upload/f_auto,ar_16:9,w_500,c_fill,g_auto,q_90/editorial/news/2024/05/21/Richard_Olise_Chelsea_defender.jpg"
-                }
+              <BreakinNewsCards
+                data-plasmic-name={"breakinNewsCards"}
+                data-plasmic-override={overrides.breakinNewsCards}
+                className={classNames("__wab_instance", sty.breakinNewsCards)}
               />
-
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__eHuVg
-                )}
-              >
-                {
-                  "\u00ab\u0427\u0435\u043b\u0441\u0438\u00bb \u0445\u043e\u0447\u0435\u0442 \u043f\u0440\u0438\u043e\u0431\u0440\u0435\u0441\u0442\u0438 \u0438\u0433\u0440\u043e\u043a\u0430 \u0438\u0437 \u041b\u0430 \u041b\u0438\u0433\u0438."
-                }
-              </div>
             </div>
             <div className={classNames(projectcss.all, sty.column__ycZ7Y)}>
               <div
@@ -2233,22 +1959,38 @@ const PlasmicDescendants = {
     "clubs2",
     "heroSection",
     "searchComponent",
-    "soccerPlaceMens",
+    "playersTable",
+    "goa",
+    "def",
+    "mid",
+    "str",
+    "vseKlubi",
     "select",
     "select2",
+    "vse",
     "select5",
     "select6",
+    "table",
+    "breakinNewsCards",
     "footer"
   ],
   navbar: ["navbar"],
   clubs2: ["clubs2"],
   heroSection: ["heroSection"],
   searchComponent: ["searchComponent"],
-  soccerPlaceMens: ["soccerPlaceMens"],
+  playersTable: ["playersTable", "goa", "def", "mid", "str"],
+  goa: ["goa"],
+  def: ["def"],
+  mid: ["mid"],
+  str: ["str"],
+  vseKlubi: ["vseKlubi", "select", "select2"],
   select: ["select"],
   select2: ["select2"],
+  vse: ["vse", "select5", "select6"],
   select5: ["select5"],
   select6: ["select6"],
+  table: ["table"],
+  breakinNewsCards: ["breakinNewsCards"],
   footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -2260,11 +2002,19 @@ type NodeDefaultElementType = {
   clubs2: typeof Clubs2;
   heroSection: "div";
   searchComponent: typeof SearchComponent;
-  soccerPlaceMens: typeof SoccerPlaceMens;
+  playersTable: "div";
+  goa: "div";
+  def: "div";
+  mid: "div";
+  str: "div";
+  vseKlubi: "div";
   select: typeof Select;
   select2: typeof Select;
+  vse: "div";
   select5: typeof Select;
   select6: typeof Select;
+  table: typeof RichTable;
+  breakinNewsCards: typeof BreakinNewsCards;
   footer: typeof Footer;
 };
 
@@ -2349,11 +2099,19 @@ export const PlasmicHomepage = Object.assign(
     clubs2: makeNodeComponent("clubs2"),
     heroSection: makeNodeComponent("heroSection"),
     searchComponent: makeNodeComponent("searchComponent"),
-    soccerPlaceMens: makeNodeComponent("soccerPlaceMens"),
+    playersTable: makeNodeComponent("playersTable"),
+    goa: makeNodeComponent("goa"),
+    def: makeNodeComponent("def"),
+    mid: makeNodeComponent("mid"),
+    str: makeNodeComponent("str"),
+    vseKlubi: makeNodeComponent("vseKlubi"),
     select: makeNodeComponent("select"),
     select2: makeNodeComponent("select2"),
+    vse: makeNodeComponent("vse"),
     select5: makeNodeComponent("select5"),
     select6: makeNodeComponent("select6"),
+    table: makeNodeComponent("table"),
+    breakinNewsCards: makeNodeComponent("breakinNewsCards"),
     footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicHomepage

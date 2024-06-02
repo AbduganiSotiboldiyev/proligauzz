@@ -67,12 +67,6 @@ import {
 
 import Navbar from "../../Navbar"; // plasmic-import: TKT8XnZtrLZi/component
 import Clubs2 from "../../Clubs2"; // plasmic-import: 3EueAFP_3sEI/component
-import { AntdDropdown } from "@plasmicpkgs/antd5/skinny/registerDropdown";
-import { AntdMenuItem } from "@plasmicpkgs/antd5/skinny/registerMenu";
-import { AntdButton } from "@plasmicpkgs/antd5/skinny/registerButton";
-import { CmsQueryRepeater } from "@plasmicpkgs/plasmic-cms";
-import { CmsRowField } from "@plasmicpkgs/plasmic-cms";
-import Footer from "../../Footer"; // plasmic-import: kIdovXGtWiEz/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -98,9 +92,11 @@ export type PlasmicMatches__OverridesType = {
   navbar?: Flex__<typeof Navbar>;
   clubs2?: Flex__<typeof Clubs2>;
   h2?: Flex__<"h2">;
-  dropdown?: Flex__<typeof AntdDropdown>;
-  button?: Flex__<typeof AntdButton>;
-  footer?: Flex__<typeof Footer>;
+  mainStak?: Flex__<"div">;
+  leftStack?: Flex__<"div">;
+  matchStak?: Flex__<"div">;
+  rightStack?: Flex__<"div">;
+  matchStak2?: Flex__<"div">;
 };
 
 export interface DefaultMatchesProps {}
@@ -249,1215 +245,176 @@ function PlasmicMatches__RenderFunc(props: {
               </div>
             </div>
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox__zogXm)}>
-            <div className={classNames(projectcss.all, sty.freeBox__jBkRj)}>
-              <div className={classNames(projectcss.all, sty.freeBox__mhHl5)}>
-                <AntdDropdown
-                  data-plasmic-name={"dropdown"}
-                  data-plasmic-override={overrides.dropdown}
-                  className={classNames("__wab_instance", sty.dropdown)}
-                  dropdownMenuScopeClassName={sty["dropdown__dropdownMenu"]}
-                  menuClassName={classNames({
-                    [sty["pcls_8LrtE7JIYVHA"]]: true
-                  })}
-                  menuItems={() => (
-                    <React.Fragment>
-                      <AntdMenuItem
-                        className={classNames(
-                          "__wab_instance",
-                          sty.menuItem__nYeUa
-                        )}
-                        key={"menu-item-1"}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__hleuj
-                          )}
-                        >
-                          {"Menu item"}
-                        </div>
-                      </AntdMenuItem>
-                      <AntdMenuItem
-                        className={classNames(
-                          "__wab_instance",
-                          sty.menuItem__ydmxl
-                        )}
-                        key={"menu-item-2"}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__mNu0T
-                          )}
-                        >
-                          {"Menu item"}
-                        </div>
-                      </AntdMenuItem>
-                    </React.Fragment>
+          <div
+            data-plasmic-name={"mainStak"}
+            data-plasmic-override={overrides.mainStak}
+            className={classNames(projectcss.all, sty.mainStak)}
+          >
+            <Stack__
+              as={"div"}
+              data-plasmic-name={"leftStack"}
+              data-plasmic-override={overrides.leftStack}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.leftStack)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__yQgN
+                )}
+              >
+                {"Today's Matches"}
+              </div>
+              <div
+                data-plasmic-name={"matchStak"}
+                data-plasmic-override={overrides.matchStak}
+                className={classNames(projectcss.all, sty.matchStak)}
+              >
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__pLVoh)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  height={``}
+                  loading={"lazy"}
+                  src={
+                    "https://assets-fantasy.llt-services.com/teambadge/t186/color/t186_real-madrid.png"
+                  }
+                  width={"30px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jbGru
                   )}
-                  menuItemsJson={(() => {
-                    const __composite = [
-                      { type: "item", value: "action1", label: null },
-                      { type: "item", value: "action2", label: null },
-                      { type: "item", label: null }
-                    ];
-                    __composite["0"]["label"] = "Fixture 1";
-                    __composite["1"]["label"] = "Fixture 2";
-                    __composite["2"]["label"] = "Fixture 3";
-                    return __composite;
-                  })()}
                 >
-                  <AntdButton
-                    data-plasmic-name={"button"}
-                    data-plasmic-override={overrides.button}
-                    className={classNames("__wab_instance", sty.button)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__bvdsf
-                      )}
-                    >
-                      {"Fixture"}
-                    </div>
-                  </AntdButton>
-                </AntdDropdown>
-              </div>
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox___59N3)}>
-              <div className={classNames(projectcss.all, sty.freeBox__gkxea)}>
-                <div className={classNames(projectcss.all, sty.freeBox__lHn24)}>
-                  <CmsQueryRepeater
-                    className={classNames(
-                      "__wab_instance",
-                      sty.cmsDataFetcher__uEcU0
-                    )}
-                    desc={false}
-                    emptyMessage={
-                      <DataCtxReader__>
-                        {$ctx => (
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__aCut0
-                            )}
-                          >
-                            {"No matching published entries found."}
-                          </div>
-                        )}
-                      </DataCtxReader__>
-                    }
-                    fields={["clubsLogo", "clubName", "_id"]}
-                    forceEmptyState={false}
-                    forceLoadingState={false}
-                    limit={10}
-                    loadingMessage={
-                      <DataCtxReader__>
-                        {$ctx => (
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__w8Vo
-                            )}
-                          >
-                            {"Loading..."}
-                          </div>
-                        )}
-                      </DataCtxReader__>
-                    }
-                    noAutoRepeat={false}
-                    noLayout={false}
-                    table={"clubs"}
-                    useDraft={false}
-                  >
-                    <DataCtxReader__>
-                      {$ctx => (
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__vn6UL
-                          )}
-                        >
-                          <CmsRowField
-                            className={classNames(
-                              "__wab_instance",
-                              sty.cmsEntryField__uG4Er
-                            )}
-                            field={"clubsLogo"}
-                            themeResetClassName={classNames(
-                              projectcss.root_reset,
-                              projectcss.root_reset_tags,
-                              projectcss.plasmic_default_styles,
-                              projectcss.plasmic_mixins,
-                              projectcss.plasmic_tokens,
-                              plasmic_antd_5_hostless_css.plasmic_tokens,
-                              plasmic_plasmic_rich_components_css.plasmic_tokens
-                            )}
-                          />
-
-                          <CmsRowField
-                            className={classNames(
-                              "__wab_instance",
-                              sty.cmsEntryField___4Ln3V
-                            )}
-                            themeResetClassName={classNames(
-                              projectcss.root_reset,
-                              projectcss.root_reset_tags,
-                              projectcss.plasmic_default_styles,
-                              projectcss.plasmic_mixins,
-                              projectcss.plasmic_tokens,
-                              plasmic_antd_5_hostless_css.plasmic_tokens,
-                              plasmic_plasmic_rich_components_css.plasmic_tokens
-                            )}
-                          />
-                        </Stack__>
-                      )}
-                    </DataCtxReader__>
-                  </CmsQueryRepeater>
-                </div>
-                <div className={classNames(projectcss.all, sty.freeBox___57Ug)}>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__ljMH)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__otq1P
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__wvGuP
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___8Z8An)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__sjG7A
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__d265R
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___8A2Wa)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__tdBiZ
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__lukQ
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__dc0Fd)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__dvRxi
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__n0KtX
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__c6Jj)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__knWyz
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__gHnDp
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__ttSj)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text___0Y4Ws
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__k4Lf
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__neRl)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__rp8Lo
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__r6L
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__wTyl3)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__jOj2R
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__ru0Vc
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__zuziJ)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__vlPvP
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__tLurD
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__cg07S)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__y3EwD
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__zmDa9
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                </div>
-                <div className={classNames(projectcss.all, sty.freeBox__bgttO)}>
-                  <CmsQueryRepeater
-                    className={classNames(
-                      "__wab_instance",
-                      sty.cmsDataFetcher__dEjZ
-                    )}
-                    desc={false}
-                    emptyMessage={
-                      <DataCtxReader__>
-                        {$ctx => (
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__nykJx
-                            )}
-                          >
-                            {"No matching published entries found."}
-                          </div>
-                        )}
-                      </DataCtxReader__>
-                    }
-                    fields={["clubsLogo", "clubName", "_id"]}
-                    forceEmptyState={false}
-                    forceLoadingState={false}
-                    limit={10}
-                    loadingMessage={
-                      <DataCtxReader__>
-                        {$ctx => (
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__mVst
-                            )}
-                          >
-                            {"Loading..."}
-                          </div>
-                        )}
-                      </DataCtxReader__>
-                    }
-                    noAutoRepeat={false}
-                    noLayout={false}
-                    table={"clubs"}
-                    useDraft={false}
-                  >
-                    <DataCtxReader__>
-                      {$ctx => (
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__fpZaw
-                          )}
-                        >
-                          <CmsRowField
-                            className={classNames(
-                              "__wab_instance",
-                              sty.cmsEntryField__pOoa9
-                            )}
-                            themeResetClassName={classNames(
-                              projectcss.root_reset,
-                              projectcss.root_reset_tags,
-                              projectcss.plasmic_default_styles,
-                              projectcss.plasmic_mixins,
-                              projectcss.plasmic_tokens,
-                              plasmic_antd_5_hostless_css.plasmic_tokens,
-                              plasmic_plasmic_rich_components_css.plasmic_tokens
-                            )}
-                          />
-
-                          <CmsRowField
-                            className={classNames(
-                              "__wab_instance",
-                              sty.cmsEntryField__lvDxq
-                            )}
-                            field={"clubsLogo"}
-                            themeResetClassName={classNames(
-                              projectcss.root_reset,
-                              projectcss.root_reset_tags,
-                              projectcss.plasmic_default_styles,
-                              projectcss.plasmic_mixins,
-                              projectcss.plasmic_tokens,
-                              plasmic_antd_5_hostless_css.plasmic_tokens,
-                              plasmic_plasmic_rich_components_css.plasmic_tokens
-                            )}
-                          />
-                        </Stack__>
-                      )}
-                    </DataCtxReader__>
-                  </CmsQueryRepeater>
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox___4KeTc)}>
-                <div className={classNames(projectcss.all, sty.freeBox__sAzs0)}>
-                  <CmsQueryRepeater
-                    className={classNames(
-                      "__wab_instance",
-                      sty.cmsDataFetcher___5BzIq
-                    )}
-                    desc={false}
-                    emptyMessage={
-                      <DataCtxReader__>
-                        {$ctx => (
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__kxvbu
-                            )}
-                          >
-                            {"No matching published entries found."}
-                          </div>
-                        )}
-                      </DataCtxReader__>
-                    }
-                    fields={["clubsLogo", "clubName", "_id"]}
-                    forceEmptyState={false}
-                    forceLoadingState={false}
-                    limit={10}
-                    loadingMessage={
-                      <DataCtxReader__>
-                        {$ctx => (
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text___7Bmfh
-                            )}
-                          >
-                            {"Loading..."}
-                          </div>
-                        )}
-                      </DataCtxReader__>
-                    }
-                    noAutoRepeat={false}
-                    noLayout={false}
-                    table={"clubs"}
-                    useDraft={false}
-                  >
-                    <DataCtxReader__>
-                      {$ctx => (
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___6Aq6S
-                          )}
-                        >
-                          <CmsRowField
-                            className={classNames(
-                              "__wab_instance",
-                              sty.cmsEntryField__yezF
-                            )}
-                            field={"clubsLogo"}
-                            themeResetClassName={classNames(
-                              projectcss.root_reset,
-                              projectcss.root_reset_tags,
-                              projectcss.plasmic_default_styles,
-                              projectcss.plasmic_mixins,
-                              projectcss.plasmic_tokens,
-                              plasmic_antd_5_hostless_css.plasmic_tokens,
-                              plasmic_plasmic_rich_components_css.plasmic_tokens
-                            )}
-                          />
-
-                          <CmsRowField
-                            className={classNames(
-                              "__wab_instance",
-                              sty.cmsEntryField___8U0Zh
-                            )}
-                            themeResetClassName={classNames(
-                              projectcss.root_reset,
-                              projectcss.root_reset_tags,
-                              projectcss.plasmic_default_styles,
-                              projectcss.plasmic_mixins,
-                              projectcss.plasmic_tokens,
-                              plasmic_antd_5_hostless_css.plasmic_tokens,
-                              plasmic_plasmic_rich_components_css.plasmic_tokens
-                            )}
-                          />
-                        </Stack__>
-                      )}
-                    </DataCtxReader__>
-                  </CmsQueryRepeater>
-                </div>
-                <div className={classNames(projectcss.all, sty.freeBox___9YMh)}>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__n2Dsy)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__sfFuY
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__hmYD
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___6Pxl0)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__tioBn
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__bWys
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__shzUa)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__nnFc6
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__tgEjc
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__hSxa7)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__qs0Di
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__dXz8
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___9DrQh)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__y4CfJ
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5___0BPd9
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__rcFcn)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text___6YTpT
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5___2F1Qm
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__hcwdm)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__x8HDv
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5___9RMk
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__iVBc4)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__je5RV
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5__mC30D
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__my77Y)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__sN42B
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5___7Xwee
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__maOmM)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__jcnQb
-                      )}
-                    >
-                      <React.Fragment>
-                        <React.Fragment>{""}</React.Fragment>
-                        {
-                          <h5
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h5,
-                              projectcss.__wab_text,
-                              sty.h5___2YZ
-                            )}
-                          >
-                            <React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ color: "var(--token-jgohepLVeKvh)" }}
-                              >
-                                {"-"}
-                              </span>
-                            </React.Fragment>
-                          </h5>
-                        }
-                        <React.Fragment>{""}</React.Fragment>
-                      </React.Fragment>
-                    </div>
-                  </div>
+                  {"Real Madrid"}
                 </div>
                 <div
-                  className={classNames(projectcss.all, sty.freeBox___899II)}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___0FWZ
+                  )}
                 >
-                  <CmsQueryRepeater
-                    className={classNames(
-                      "__wab_instance",
-                      sty.cmsDataFetcher__hVbUl
-                    )}
-                    desc={false}
-                    emptyMessage={
-                      <DataCtxReader__>
-                        {$ctx => (
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__vpfEb
-                            )}
-                          >
-                            {"No matching published entries found."}
-                          </div>
-                        )}
-                      </DataCtxReader__>
-                    }
-                    fields={["clubsLogo", "clubName", "_id"]}
-                    forceEmptyState={false}
-                    forceLoadingState={false}
-                    limit={10}
-                    loadingMessage={
-                      <DataCtxReader__>
-                        {$ctx => (
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__x6Hn
-                            )}
-                          >
-                            {"Loading..."}
-                          </div>
-                        )}
-                      </DataCtxReader__>
-                    }
-                    noAutoRepeat={false}
-                    noLayout={false}
-                    table={"clubs"}
-                    useDraft={false}
-                  >
-                    <DataCtxReader__>
-                      {$ctx => (
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__kULqm
-                          )}
-                        >
-                          <CmsRowField
-                            className={classNames(
-                              "__wab_instance",
-                              sty.cmsEntryField__tmsMa
-                            )}
-                            themeResetClassName={classNames(
-                              projectcss.root_reset,
-                              projectcss.root_reset_tags,
-                              projectcss.plasmic_default_styles,
-                              projectcss.plasmic_mixins,
-                              projectcss.plasmic_tokens,
-                              plasmic_antd_5_hostless_css.plasmic_tokens,
-                              plasmic_plasmic_rich_components_css.plasmic_tokens
-                            )}
-                          />
-
-                          <CmsRowField
-                            className={classNames(
-                              "__wab_instance",
-                              sty.cmsEntryField__apNJf
-                            )}
-                            field={"clubsLogo"}
-                            themeResetClassName={classNames(
-                              projectcss.root_reset,
-                              projectcss.root_reset_tags,
-                              projectcss.plasmic_default_styles,
-                              projectcss.plasmic_mixins,
-                              projectcss.plasmic_tokens,
-                              plasmic_antd_5_hostless_css.plasmic_tokens,
-                              plasmic_plasmic_rich_components_css.plasmic_tokens
-                            )}
-                          />
-                        </Stack__>
-                      )}
-                    </DataCtxReader__>
-                  </CmsQueryRepeater>
+                  {"7:0"}
                 </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___4VvIb
+                  )}
+                >
+                  {"Barcelona"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__sspg9)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://assets-fantasy.llt-services.com/teambadge/t178/color/t178_fc-barcelona.png"
+                  }
+                  width={"30px"}
+                />
               </div>
-            </div>
+            </Stack__>
+            <Stack__
+              as={"div"}
+              data-plasmic-name={"rightStack"}
+              data-plasmic-override={overrides.rightStack}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.rightStack)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__f5ED
+                )}
+              >
+                {"All Planning Matches"}
+              </div>
+              <div
+                data-plasmic-name={"matchStak2"}
+                data-plasmic-override={overrides.matchStak2}
+                className={classNames(projectcss.all, sty.matchStak2)}
+              >
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__y026P)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  height={``}
+                  loading={"lazy"}
+                  src={
+                    "https://assets-fantasy.llt-services.com/teambadge/t186/color/t186_real-madrid.png"
+                  }
+                  width={"30px"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__kpqlc
+                  )}
+                >
+                  {"Real Madrid"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__q7KYq
+                  )}
+                >
+                  {"7:0"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__juZd
+                  )}
+                >
+                  {"Barcelona"}
+                </div>
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__wwxXm)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://assets-fantasy.llt-services.com/teambadge/t178/color/t178_fc-barcelona.png"
+                  }
+                  width={"30px"}
+                />
+              </div>
+            </Stack__>
           </div>
-          <Footer
-            data-plasmic-name={"footer"}
-            data-plasmic-override={overrides.footer}
-            className={classNames("__wab_instance", sty.footer)}
-          />
         </div>
       </div>
     </React.Fragment>
@@ -1465,13 +422,25 @@ function PlasmicMatches__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "navbar", "clubs2", "h2", "dropdown", "button", "footer"],
+  root: [
+    "root",
+    "navbar",
+    "clubs2",
+    "h2",
+    "mainStak",
+    "leftStack",
+    "matchStak",
+    "rightStack",
+    "matchStak2"
+  ],
   navbar: ["navbar"],
   clubs2: ["clubs2"],
   h2: ["h2"],
-  dropdown: ["dropdown", "button"],
-  button: ["button"],
-  footer: ["footer"]
+  mainStak: ["mainStak", "leftStack", "matchStak", "rightStack", "matchStak2"],
+  leftStack: ["leftStack", "matchStak"],
+  matchStak: ["matchStak"],
+  rightStack: ["rightStack", "matchStak2"],
+  matchStak2: ["matchStak2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1481,9 +450,11 @@ type NodeDefaultElementType = {
   navbar: typeof Navbar;
   clubs2: typeof Clubs2;
   h2: "h2";
-  dropdown: typeof AntdDropdown;
-  button: typeof AntdButton;
-  footer: typeof Footer;
+  mainStak: "div";
+  leftStack: "div";
+  matchStak: "div";
+  rightStack: "div";
+  matchStak2: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1566,9 +537,11 @@ export const PlasmicMatches = Object.assign(
     navbar: makeNodeComponent("navbar"),
     clubs2: makeNodeComponent("clubs2"),
     h2: makeNodeComponent("h2"),
-    dropdown: makeNodeComponent("dropdown"),
-    button: makeNodeComponent("button"),
-    footer: makeNodeComponent("footer"),
+    mainStak: makeNodeComponent("mainStak"),
+    leftStack: makeNodeComponent("leftStack"),
+    matchStak: makeNodeComponent("matchStak"),
+    rightStack: makeNodeComponent("rightStack"),
+    matchStak2: makeNodeComponent("matchStak2"),
 
     // Metadata about props expected for PlasmicMatches
     internalVariantProps: PlasmicMatches__VariantProps,

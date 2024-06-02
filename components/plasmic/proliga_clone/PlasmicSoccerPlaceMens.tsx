@@ -76,15 +76,27 @@ type VariantPropType = keyof PlasmicSoccerPlaceMens__VariantsArgs;
 export const PlasmicSoccerPlaceMens__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicSoccerPlaceMens__ArgsType = {};
+export type PlasmicSoccerPlaceMens__ArgsType = {
+  goaName?: string;
+  goaImage?: string;
+};
 type ArgPropType = keyof PlasmicSoccerPlaceMens__ArgsType;
-export const PlasmicSoccerPlaceMens__ArgProps = new Array<ArgPropType>();
+export const PlasmicSoccerPlaceMens__ArgProps = new Array<ArgPropType>(
+  "goaName",
+  "goaImage"
+);
 
 export type PlasmicSoccerPlaceMens__OverridesType = {
   root?: Flex__<"div">;
+  def?: Flex__<"div">;
+  str?: Flex__<"div">;
+  mid?: Flex__<"div">;
+  goa?: Flex__<"div">;
 };
 
 export interface DefaultSoccerPlaceMensProps {
+  goaName?: string;
+  goaImage?: string;
   className?: string;
 }
 
@@ -136,66 +148,356 @@ function PlasmicSoccerPlaceMens__RenderFunc(props: {
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__pnlSg)}>
+      <div
+        data-plasmic-name={"def"}
+        data-plasmic-override={overrides.def}
+        className={classNames(projectcss.all, sty.def)}
+      >
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__ydPhw)}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
       </div>
       <Stack__
         as={"div"}
+        data-plasmic-name={"str"}
+        data-plasmic-override={overrides.str}
         hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__tq3Mf)}
+        className={classNames(projectcss.all, sty.str)}
       >
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__nLitS)}
-          sergioRamos={true}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
 
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__wox8)}
-          johnPache2={true}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
 
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__k5ULv)}
-          mingueza={true}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
       </Stack__>
-      <div className={classNames(projectcss.all, sty.freeBox___0Xvvu)}>
+      <div
+        data-plasmic-name={"mid"}
+        data-plasmic-override={overrides.mid}
+        className={classNames(projectcss.all, sty.mid)}
+      >
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__aDUhW)}
-          zakaryan={true}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
 
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__dlFlB)}
-          ikerMundez={true}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
 
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__cHn2K)}
-          robertNav={true}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
 
         <IdealTeamMember
-          alcaraz={true}
           className={classNames("__wab_instance", sty.idealTeamMember__grWey)}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__p3FUy)}>
+      <div
+        data-plasmic-name={"goa"}
+        data-plasmic-override={overrides.goa}
+        className={classNames(projectcss.all, sty.goa)}
+      >
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__wrlxt)}
-          rodrygo={true}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
 
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__hfPtL)}
-          dovbyk={true}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
 
         <IdealTeamMember
           className={classNames("__wab_instance", sty.idealTeamMember__oPpO7)}
-          willianJose={true}
+          playerImage={(() => {
+            try {
+              return $props.goaImage;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          playerName={(() => {
+            try {
+              return $props.goaName;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
         />
       </div>
     </div>
@@ -203,13 +505,21 @@ function PlasmicSoccerPlaceMens__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "def", "str", "mid", "goa"],
+  def: ["def"],
+  str: ["str"],
+  mid: ["mid"],
+  goa: ["goa"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  def: "div";
+  str: "div";
+  mid: "div";
+  goa: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -272,6 +582,10 @@ export const PlasmicSoccerPlaceMens = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    def: makeNodeComponent("def"),
+    str: makeNodeComponent("str"),
+    mid: makeNodeComponent("mid"),
+    goa: makeNodeComponent("goa"),
 
     // Metadata about props expected for PlasmicSoccerPlaceMens
     internalVariantProps: PlasmicSoccerPlaceMens__VariantProps,

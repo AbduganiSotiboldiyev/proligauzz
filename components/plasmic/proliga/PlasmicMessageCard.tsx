@@ -59,6 +59,8 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { AntdAvatar } from "@plasmicpkgs/antd5/skinny/registerAvatar";
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
@@ -73,15 +75,24 @@ export type PlasmicMessageCard__VariantsArgs = {};
 type VariantPropType = keyof PlasmicMessageCard__VariantsArgs;
 export const PlasmicMessageCard__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicMessageCard__ArgsType = {};
+export type PlasmicMessageCard__ArgsType = {
+  heading?: string;
+  textInfo?: string;
+};
 type ArgPropType = keyof PlasmicMessageCard__ArgsType;
-export const PlasmicMessageCard__ArgProps = new Array<ArgPropType>();
+export const PlasmicMessageCard__ArgProps = new Array<ArgPropType>(
+  "heading",
+  "textInfo"
+);
 
 export type PlasmicMessageCard__OverridesType = {
   root?: Flex__<"div">;
+  modirator?: Flex__<typeof AntdAvatar>;
 };
 
 export interface DefaultMessageCardProps {
+  heading?: string;
+  textInfo?: string;
   className?: string;
 }
 
@@ -130,7 +141,8 @@ function PlasmicMessageCard__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_plasmic_rich_components_css.plasmic_tokens,
-        sty.root
+        sty.root,
+        "glass-effect"
       )}
     >
       <div className={classNames(projectcss.all, sty.freeBox__f40Z)}>
@@ -141,7 +153,21 @@ function PlasmicMessageCard__RenderFunc(props: {
             sty.text__i9Fsy
           )}
         >
-          {"GAMEPLAN"}
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.heading;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "RULES";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
         </div>
       </div>
       <Stack__
@@ -156,23 +182,45 @@ function PlasmicMessageCard__RenderFunc(props: {
             sty.text___4Ebg
           )}
         >
-          {
-            "The sport is played with two teams, each consisting of [number of players] players. The objective is to [describe the objective of the sport]. The game is divided into [number of periods or innings]. Each team takes turns [describe the gameplay]."
-          }
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.textInfo;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "Bir o'yinda bitta komandadan faqat 2 ta o'yinchi olsak bo'ladi. Qolgan o'yinchilar uchun to'lov qilinadi.";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
         </div>
       </Stack__>
+      <div className={classNames(projectcss.all, sty.freeBox__oFp4A)}>
+        <AntdAvatar
+          data-plasmic-name={"modirator"}
+          data-plasmic-override={overrides.modirator}
+          className={classNames("__wab_instance", sty.modirator)}
+          letters={``}
+        />
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "modirator"],
+  modirator: ["modirator"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  modirator: typeof AntdAvatar;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -235,6 +283,7 @@ export const PlasmicMessageCard = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    modirator: makeNodeComponent("modirator"),
 
     // Metadata about props expected for PlasmicMessageCard
     internalVariantProps: PlasmicMessageCard__VariantProps,

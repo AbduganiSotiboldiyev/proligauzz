@@ -106,9 +106,15 @@ export const PlasmicIdealTeamMember__VariantProps = new Array<VariantPropType>(
   "willianJose"
 );
 
-export type PlasmicIdealTeamMember__ArgsType = {};
+export type PlasmicIdealTeamMember__ArgsType = {
+  playerName?: string;
+  playerImage?: string;
+};
 type ArgPropType = keyof PlasmicIdealTeamMember__ArgsType;
-export const PlasmicIdealTeamMember__ArgProps = new Array<ArgPropType>();
+export const PlasmicIdealTeamMember__ArgProps = new Array<ArgPropType>(
+  "playerName",
+  "playerImage"
+);
 
 export type PlasmicIdealTeamMember__OverridesType = {
   root?: Flex__<"div">;
@@ -118,6 +124,8 @@ export type PlasmicIdealTeamMember__OverridesType = {
 };
 
 export interface DefaultIdealTeamMemberProps {
+  playerName?: string;
+  playerImage?: string;
   sergioRamos?: SingleBooleanChoiceArg<"sergioRamos">;
   johnPache2?: SingleBooleanChoiceArg<"johnPache2">;
   mingueza?: SingleBooleanChoiceArg<"mingueza">;
@@ -451,12 +459,24 @@ function PlasmicIdealTeamMember__RenderFunc(props: {
                   fullHeight: 256,
                   aspectRatio: undefined
                 }
-              : {
-                  src: "/plasmic/proliga_clone/images/sergioHerpng.png",
-                  fullWidth: 256,
-                  fullHeight: 256,
-                  aspectRatio: undefined
-                }
+              : (() => {
+                  try {
+                    return $props.playerImage;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return {
+                        src: "/plasmic/proliga_clone/images/sergioHerpng.png",
+                        fullWidth: 256,
+                        fullHeight: 256,
+                        aspectRatio: undefined
+                      };
+                    }
+                    throw e;
+                  }
+                })()
           }
         />
 
@@ -497,27 +517,43 @@ function PlasmicIdealTeamMember__RenderFunc(props: {
             }
           )}
         >
-          {hasVariant($state, "willianJose", "willianJose")
-            ? "Willian Jos\u00e9"
-            : hasVariant($state, "dovbyk", "dovbyk")
-            ? "Dovbyk"
-            : hasVariant($state, "rodrygo", "rodrygo")
-            ? "Rodrygo"
-            : hasVariant($state, "alcaraz", "alcaraz")
-            ? "Alcaraz"
-            : hasVariant($state, "robertNav", "robertNav")
-            ? "Robert Nav"
-            : hasVariant($state, "ikerMundez", "ikerMundez")
-            ? "Iker Munofiz"
-            : hasVariant($state, "zakaryan", "zakaryan")
-            ? "Zahkaryan"
-            : hasVariant($state, "mingueza", "mingueza")
-            ? "Mingueza"
-            : hasVariant($state, "johnPache2", "johnPache2")
-            ? "John Pache"
-            : hasVariant($state, "sergioRamos", "sergioRamos")
-            ? "Sergio Ramos"
-            : "Sergio Herr..."}
+          {hasVariant($state, "willianJose", "willianJose") ? (
+            "Willian Jos\u00e9"
+          ) : hasVariant($state, "dovbyk", "dovbyk") ? (
+            "Dovbyk"
+          ) : hasVariant($state, "rodrygo", "rodrygo") ? (
+            "Rodrygo"
+          ) : hasVariant($state, "alcaraz", "alcaraz") ? (
+            "Alcaraz"
+          ) : hasVariant($state, "robertNav", "robertNav") ? (
+            "Robert Nav"
+          ) : hasVariant($state, "ikerMundez", "ikerMundez") ? (
+            "Iker Munofiz"
+          ) : hasVariant($state, "zakaryan", "zakaryan") ? (
+            "Zahkaryan"
+          ) : hasVariant($state, "mingueza", "mingueza") ? (
+            "Mingueza"
+          ) : hasVariant($state, "johnPache2", "johnPache2") ? (
+            "John Pache"
+          ) : hasVariant($state, "sergioRamos", "sergioRamos") ? (
+            "Sergio Ramos"
+          ) : (
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.playerName;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "Sergio Herr...";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          )}
         </div>
       </div>
     </div>
