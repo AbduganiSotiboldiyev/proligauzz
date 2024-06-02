@@ -3,8 +3,8 @@
 import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 // import GlobalContextsProvider from "../../components/plasmic/proliga_clone/PlasmicGlobalContextsProvider";
-
-// import { PlasmicChampionships } from "../../components/plasmic/proliga/PlasmicChampionships";
+import GlobalContextsProvider from "../components/plasmic/proliga_clone/PlasmicGlobalContextsProvider";
+import { PlasmicChampionships } from "../components/plasmic/proliga/PlasmicChampionships";
 import { useRouter } from "next/router";
 
 function Championships() {
@@ -25,15 +25,15 @@ function Championships() {
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
   return (
-    // <GlobalContextsProvider>
+    <GlobalContextsProvider>
       <PageParamsProvider__
         route={useRouter()?.pathname}
         params={useRouter()?.query}
         query={useRouter()?.query}
       >
-        {/* <PlasmicChampionships /> */}
+        <PlasmicChampionships />
       </PageParamsProvider__>
-    // </GlobalContextsProvider>
+    </GlobalContextsProvider>
   );
 }
 
