@@ -882,11 +882,25 @@ function PlasmicNavbar__RenderFunc(props: {
             href={`/login`}
             platform={"nextjs"}
           >
-            <LoginButton2
-              data-plasmic-name={"loginButton2"}
-              data-plasmic-override={overrides.loginButton2}
-              className={classNames("__wab_instance", sty.loginButton2)}
-            />
+            {(() => {
+              try {
+                return !currentUser.isLoggedIn;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <LoginButton2
+                data-plasmic-name={"loginButton2"}
+                data-plasmic-override={overrides.loginButton2}
+                className={classNames("__wab_instance", sty.loginButton2)}
+              />
+            ) : null}
           </PlasmicLink__>
         </div>
       </Stack__>

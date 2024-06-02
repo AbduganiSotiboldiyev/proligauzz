@@ -38,7 +38,7 @@ function AuthComponent_(
       }}
       submitButton={{
         onClick: async () => {
-          // setAuthError(null)
+          setAuthError(null)
           setLoading(true);
 
           try {
@@ -61,7 +61,7 @@ function AuthComponent_(
             }
 
           } catch (err) {
-            // setAuthError(err)
+            setAuthError(err)
           } finally {
             setLoading(false);
           }
