@@ -45,7 +45,7 @@ function AuthComponent_(
             let authFunction = null;
             if(props.isSignUpFlow) {
               authFunction = supabase.auth.signUp({email, password})
-              router.replace("/")
+              router.replace("/login")
             }
             else {
               authFunction = supabase.auth.signInWithPassword({email, password})
