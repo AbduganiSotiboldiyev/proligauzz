@@ -602,6 +602,29 @@ function PlasmicAdminNavbar__RenderFunc(props: {
           {"Admin"}
         </div>
       </Stack__>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__yKiob
+        )}
+      >
+        <React.Fragment>
+          {(() => {
+            try {
+              return currentUser.customProperties.email;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "Not logged";
+              }
+              throw e;
+            }
+          })()}
+        </React.Fragment>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
