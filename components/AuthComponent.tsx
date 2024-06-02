@@ -49,7 +49,7 @@ function AuthComponent_(
             }
             else {
               authFunction = supabase.auth.signInWithPassword({email, password})
-              router.replace("/competition");
+              router.replace("/home-page-admin");
             }
 
             const { error } =  await authFunction
