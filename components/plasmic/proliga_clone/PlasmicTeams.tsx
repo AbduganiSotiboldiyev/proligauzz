@@ -1178,9 +1178,9 @@ function PlasmicTeams__RenderFunc(props: {
                               })()}
                               image={(() => {
                                 try {
-                                  return $queries.player.data[
-                                    currentItem.player_id - 1
-                                  ].image;
+                                  return $queries.player.data.find(
+                                    x => x.id === currentItem.player_id
+                                  ).image;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1195,9 +1195,9 @@ function PlasmicTeams__RenderFunc(props: {
                               key={currentIndex}
                               name={(() => {
                                 try {
-                                  return $queries.player.data[
-                                    currentItem.player_id - 1
-                                  ].name;
+                                  return $queries.player.data.find(
+                                    x => x.id === currentItem.player_id
+                                  ).name;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1481,9 +1481,22 @@ function PlasmicTeams__RenderFunc(props: {
                                   throw e;
                                 }
                               })()}
-                              image={
-                                "https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_0-66.png"
-                              }
+                              image={(() => {
+                                try {
+                                  return $queries.player.data.find(
+                                    x => x.id === currentItem.player_id
+                                  ).image;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_0-66.png";
+                                  }
+                                  throw e;
+                                }
+                              })()}
                               name={(() => {
                                 try {
                                   return $queries.player.data.find(
@@ -1775,9 +1788,9 @@ function PlasmicTeams__RenderFunc(props: {
                               })()}
                               image={(() => {
                                 try {
-                                  return $queries.player.data[
-                                    currentItem.player_id - 1
-                                  ].image;
+                                  return $queries.player.data.find(
+                                    x => x.id === currentItem.player_id
+                                  ).image;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1791,9 +1804,9 @@ function PlasmicTeams__RenderFunc(props: {
                               })()}
                               name={(() => {
                                 try {
-                                  return $queries.player.data[
-                                    currentItem.player_id - 1
-                                  ].name;
+                                  return $queries.player.data.find(
+                                    x => x.id === currentItem.player_id
+                                  ).name;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2080,9 +2093,9 @@ function PlasmicTeams__RenderFunc(props: {
                               })()}
                               image={(() => {
                                 try {
-                                  return $queries.player.data[
-                                    currentItem.player_id - 1
-                                  ].image;
+                                  return $queries.player.data.find(
+                                    x => x.id === currentItem.player_id
+                                  ).image;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2096,9 +2109,9 @@ function PlasmicTeams__RenderFunc(props: {
                               })()}
                               name={(() => {
                                 try {
-                                  return $queries.player.data[
-                                    currentItem.player_id - 1
-                                  ].name;
+                                  return $queries.player.data.find(
+                                    x => x.id === currentItem.player_id
+                                  ).name;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
